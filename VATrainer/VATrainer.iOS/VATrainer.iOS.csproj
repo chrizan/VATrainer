@@ -99,6 +99,8 @@
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BaseUrl.cs" />
+    <Compile Include="DatabaseService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <BundleResource Include="..\..\EF_SQLite_Dummy\Database\VATrainerDB.db">

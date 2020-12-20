@@ -1,5 +1,6 @@
 using Prism;
 using Prism.Ioc;
+using VATrainer.DataLayer;
 using VATrainer.ViewModels;
 using VATrainer.Views;
 using Xamarin.Essentials.Implementation;
@@ -18,6 +19,7 @@ namespace VATrainer
         protected override async void OnInitialized()
         {
             InitializeComponent();
+            DependencyService.Get<IDatabaseService>().CopyDbToInternalStorage();
 
             await NavigationService.NavigateAsync("MainPage/NavigationPage/HomePage");
         }
