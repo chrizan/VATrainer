@@ -18,8 +18,8 @@ The VATrainer Xamarin android/iOS application helps students to train their valu
   is generated into the EF_SQLite_Dummy project and added as link to the Asssets folder on Android, the Resources folder on iOS respectively.    
   On Visual Studio use the Package Manager Console to migrate and update the database:   
   Uncomment iOS/Android specific part in VATrainer.DataLayer.VATrainerContext.OnConfiguring(...)   
-  `PM>dotnet ef migrations --project VATrainer --startup-project EF_SQLite_Dummy add MyMigration`    
-  `PM>dotnet ef database --project VATrainer --startup-project EF_SQLite_Dummy update`
+  `PM>dotnet ef migrations --project VATrainer/VATrainer --startup-project EF_SQLite_Dummy add MyMigration`    
+  `PM>dotnet ef database --project VATrainer/VATrainer --startup-project EF_SQLite_Dummy update`
 
 * How to run tests
 * Deployment instructions
