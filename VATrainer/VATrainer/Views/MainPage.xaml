@@ -1,11 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VATrainer.Views.MainPage"
-             Title="{Binding Title}">
+<MasterDetailPage
+    x:Class="VATrainer.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="page"
+    Title="Main Page">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
+    <MasterDetailPage.Master>
+        <ContentPage
+            Title="Menu"
+            Padding="{OnPlatform Default='20',
+                                 iOS='20,40'}"
+            IconImageSource="{OnPlatform iOS='hamburger.png'}">
+            <StackLayout>
+                <Label
+                    Margin="0,20"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Master Detail Demo" />
+                <Button
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="HomePage"
+                    Text="Home Page" />
+                <Button
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="ResourcePage"
+                    Text="Resource Page" />
+                <Button
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="SettingPage"
+                    Text="Setting Page" />
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
 
-</ContentPage>
+</MasterDetailPage>

@@ -8,12 +8,21 @@ using System.Text;
 
 namespace VATrainer.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : BindableBase
     {
+        private INavigationService _navigationService { get; }
+
         public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
         {
-            Title = "Main Page";
+            _navigationService = navigationService;
+            NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);
+        }
+
+        public DelegateCommand<string> NavigateCommand { get; }
+
+        private async void NavigateCommandExecuted(string view)
+        {
+            await _navigationService.NavigateAsync($"NavigationPage/{view}");
         }
     }
 }
