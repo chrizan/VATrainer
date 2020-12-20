@@ -34,6 +34,5 @@ namespace VATrainer.iOS
             string destFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), dbFileName);
             File.Copy(sourceFileName, destFileName);
         }
-
     }
 }
