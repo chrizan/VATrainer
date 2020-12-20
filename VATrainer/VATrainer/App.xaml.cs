@@ -1,6 +1,7 @@
 using Prism;
 using Prism.Ioc;
 using VATrainer.DataLayer;
+using VATrainer.Models;
 using VATrainer.ViewModels;
 using VATrainer.Views;
 using Xamarin.Essentials.Implementation;
@@ -27,6 +28,9 @@ namespace VATrainer
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+
+            containerRegistry.Register<ISessionManager, SessionManager>();
+            containerRegistry.Register<IWebpageCreator, WebpageCreator>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();

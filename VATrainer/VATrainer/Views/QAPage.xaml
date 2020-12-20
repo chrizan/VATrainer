@@ -3,14 +3,113 @@
     x:Class="VATrainer.Views.QAPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:flip="clr-namespace:VATrainer.Views;assembly=VATrainer"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
     Title="{x:Static resx:AppResources.Title_QA}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
-    <Label
-        HorizontalOptions="CenterAndExpand"
-        Text="QAPage"
-        VerticalOptions="CenterAndExpand" />
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 40, 0, 25" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="flipView">
+                #F0FFFF
+            </Color>
+            <Color x:Key="page">
+                #5CACEE
+            </Color>
+            <Color x:Key="text">
+                #551A8B
+            </Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource page}">
+
+            <flip:FlipView
+                Flip="{Binding Flip}"
+                HeightRequest="1000"
+                WidthRequest="1000">
+                <flip:FlipView.FrontView>
+                    <Frame
+                        Margin="15,15,15,0"
+                        Padding="0"
+                        CornerRadius="10"
+                        HasShadow="True">
+                        <flip:CustomWebView PannedCommand="{Binding PannedCommand}" Source="{Binding Question, Mode=OneWay}">
+                            <WebView.GestureRecognizers>
+                                <SwipeGestureRecognizer Command="{Binding SwipeCommand}" Direction="Left" />
+                                <SwipeGestureRecognizer Command="{Binding SwipeCommand}" Direction="Right" />
+                            </WebView.GestureRecognizers>
+                        </flip:CustomWebView>
+                    </Frame>
+                </flip:FlipView.FrontView>
+                <flip:FlipView.BackView>
+                    <Frame
+                        Margin="15,15,15,0"
+                        Padding="0"
+                        CornerRadius="10"
+                        HasShadow="True">
+                        <flip:CustomWebView PannedCommand="{Binding PannedCommand}" Source="{Binding Answer, Mode=OneWay}">
+                            <WebView.GestureRecognizers>
+                                <SwipeGestureRecognizer
+                                    Command="{Binding SwipeCommand}"
+                                    CommandParameter="Left"
+                                    Direction="Left" />
+                                <SwipeGestureRecognizer
+                                    Command="{Binding SwipeCommand}"
+                                    CommandParameter="Right"
+                                    Direction="Right" />
+                            </WebView.GestureRecognizers>
+                        </flip:CustomWebView>
+                    </Frame>
+                </flip:FlipView.BackView>
+            </flip:FlipView>
+
+            <Grid Margin="15,0,15,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                </Grid.RowDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource flipView}"
+                    Command="{Binding ButtonCommand}"
+                    CornerRadius="10"
+                    FontSize="Large"
+                    IsVisible="{Binding IsButtonVisible}"
+                    Text="Got it"
+                    TextColor="{StaticResource text}" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="{Binding Counter}"
+                    TextColor="{StaticResource text}"
+                    VerticalOptions="Center" />
+                <Button
+                    Grid.Column="2"
+                    Padding="0"
+                    BackgroundColor="{StaticResource flipView}"
+                    Command="{Binding ButtonCommand}"
+                    CornerRadius="10"
+                    FontSize="Large"
+                    IsVisible="{Binding IsButtonVisible}"
+                    Text="Again"
+                    TextColor="{StaticResource text}" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>
