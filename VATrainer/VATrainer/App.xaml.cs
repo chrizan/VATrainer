@@ -31,6 +31,11 @@ namespace VATrainer
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<ResourcePage, ResourcePageViewModel>();
             containerRegistry.RegisterForNavigation<SettingPage, SettingPageViewModel>();
+            containerRegistry.RegisterForNavigation<BrowsingPage, BrowsingPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModePage, ModePageViewModel>();
+            containerRegistry.RegisterForNavigation<ContentsPage, ContentsPageViewModel>();
+            containerRegistry.RegisterForNavigation<TrainingPage, TrainingPageViewModel>();
+            containerRegistry.RegisterForNavigation<QAPage, QAPageViewModel>();
         }
     }
 }

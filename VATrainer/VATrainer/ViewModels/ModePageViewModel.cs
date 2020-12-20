@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace VATrainer.ViewModels
 {
-    public class HomePageViewModel : BindableBase
+    public class ModePageViewModel : BindableBase
     {
         private INavigationService _navigationService { get; }
 
-        public HomePageViewModel(INavigationService navigationService)
+        public ModePageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);

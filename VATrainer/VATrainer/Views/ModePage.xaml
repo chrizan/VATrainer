@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="VATrainer.Views.HomePage"
+    x:Class="VATrainer.Views.ModePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
@@ -19,27 +19,19 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Button
                 Grid.Row="1"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="ModePage"
-                Text="MWST Schweiz (1)" />
+                CommandParameter="TrainingPage"
+                Text="Lernen" />
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="ModePage"
-                Text="MWST EU RL (2)" />
-            <Button
-                Grid.Row="5"
-                Grid.Column="1"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="ModePage"
-                Text="OECD ROW (3)" />
+                CommandParameter="BrowsingPage"
+                Text="Stöbern" />
         </Grid>
     </ContentPage.Content>
 
