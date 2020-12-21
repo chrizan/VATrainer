@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Commands;
+using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Windows.Input;
@@ -20,20 +21,20 @@ namespace VATrainer.ViewModels
         private bool _isButtonVisible;
         private FlipAnimationParams _flipAnimationParams;
 
-        public QAPageViewModel(INavigationService navigationService, ISessionManager sessionManager, IWebpageCreator webpageCreator)
+        public QAPageViewModel(ISessionManager sessionManager, IWebpageCreator webpageCreator)
         {
             _sessionManager = sessionManager;
             _webpageCreator = webpageCreator;
             InitCommands();
             SetContent();
             OnAnimationFinished += OnFlipCallBackChanged;
+            ButtonCommand = new DelegateCommand<string>(ButtonCommanExecuted);
         }
 
         private void InitCommands()
         {
             SwipeCommand = new Command<SwipedEventArgs>(ExecuteSwipeCommand);
             PannedCommand = new Command<PannedDirection>(ExecutePannedCommand);
-            ButtonCommand = new Command(ExecuteButtonCommand);
         }
 
         private void SetContent()
@@ -118,20 +119,22 @@ namespace VATrainer.ViewModels
             Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstAndSecondQuarter, OnAnimationFinished);
         }
 
-        public ICommand ButtonCommand { private set; get; }
+        public DelegateCommand<string> ButtonCommand { get; }
 
-        private void ExecuteButtonCommand()
+        private async void ButtonCommanExecuted(string btn)
         {
-            _sessionManager.LoadNextQuestionAnswer();
-            IsButtonVisible = false;
-            if (FlipDirection.Left == Flip.Direction)
+            if (btn.Equals("left") || btn.Equals("right"))
             {
-                Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstQuarter, OnAnimationFinished);
-            }
-            else
-            {
-                Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstQuarter, OnAnimationFinished);
-
+                _sessionManager.LoadNextQuestionAnswer();
+                IsButtonVisible = false;
+                if (FlipDirection.Left == Flip.Direction)
+                {
+                    Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstQuarter, OnAnimationFinished);
+                }
+                else
+                {
+                    Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstQuarter, OnAnimationFinished);
+                }
             }
         }
 

@@ -30,8 +30,8 @@ namespace VATrainer
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
             containerRegistry.Register<ISessionManager, SessionManager>();
-            containerRegistry.Register<IRepository, Repository>();
-            containerRegistry.Register<IWebpageCreator, WebpageCreator>();
+            containerRegistry.RegisterSingleton<IRepository, Repository>();
+            containerRegistry.RegisterSingleton<IWebpageCreator, WebpageCreator>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();

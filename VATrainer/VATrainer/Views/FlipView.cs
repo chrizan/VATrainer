@@ -115,6 +115,11 @@ namespace VATrainer.Views
 
         private async void ExecuteFlip(FlipAnimationParams flipAnimationParams)
         {
+            //TODO : ExecuteFlip is called after navigating back (<-) with parameter null
+            if (null == flipAnimationParams)
+            {
+                return;
+            }
             if (FlipStep.FirstAndSecondQuarter == flipAnimationParams.Step)
             {
                 await ExecuteFirstAndSecondQuarterFlip(flipAnimationParams);
@@ -155,15 +160,15 @@ namespace VATrainer.Views
                 //await Task.Delay((int)FlipTime / 2);
 
                 RotationY = 0;
-                await this.ScaleTo(scaleFactor, 2*FlipTime / 16, Easing.Linear);
-                await this.RotateYTo(90, 6*FlipTime / 16, Easing.Linear);
+                await this.ScaleTo(scaleFactor, 2 * FlipTime / 16, Easing.Linear);
+                await this.RotateYTo(90, 6 * FlipTime / 16, Easing.Linear);
 
                 FrontView.IsVisible = !FrontView.IsVisible;
                 BackView.IsVisible = !BackView.IsVisible;
 
                 RotationY = 270;
-                await this.RotateYTo(360, 6*FlipTime / 16, Easing.Linear);
-                await this.ScaleTo(1, 2*FlipTime / 16, Easing.Linear);
+                await this.RotateYTo(360, 6 * FlipTime / 16, Easing.Linear);
+                await this.ScaleTo(1, 2 * FlipTime / 16, Easing.Linear);
 
                 //var parentAnimation1 = new Animation();
                 //var scaleUpAnimation = new Animation(v => this.Scale = v, 0.5, 1, Easing.Linear);
