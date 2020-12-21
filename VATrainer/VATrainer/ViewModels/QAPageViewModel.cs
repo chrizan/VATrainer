@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace VATrainer.ViewModels
 {
-    public class QAPageViewModel : BindableBase
+    public class QAPageViewModel : BindableBase, IDisposable
     {
         private event EventHandler OnAnimationFinished;
 
