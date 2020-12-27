@@ -14,5 +14,10 @@
         /// Platform specific copying of the database into an accessible directory
         /// </summary>
         void CopyDbToInternalStorage();
+
+        /// <summary>
+        /// Platform specific initialization of the SQLite database provider
+        /// </summary>
+        void InitializeDbProvider();
     }
 }

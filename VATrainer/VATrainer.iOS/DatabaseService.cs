@@ -28,6 +28,11 @@ namespace VATrainer.iOS
             return dbPath;
         }
 
+        public void InitializeDbProvider()
+        {
+            SQLitePCL.Batteries.Init();
+        }
+
         private void CopyDbFile(string dbFileName)
         {
             string sourceFileName = Path.Combine(NSBundle.MainBundle.ResourcePath, dbFileName);

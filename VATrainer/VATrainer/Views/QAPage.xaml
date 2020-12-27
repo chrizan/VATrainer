@@ -9,11 +9,11 @@
     Title="{x:Static resx:AppResources.Title_QA}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
-    <ContentPage.Padding>
+    <!--<ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0, 40, 0, 25" />
         </OnPlatform>
-    </ContentPage.Padding>
+    </ContentPage.Padding>-->
 
     <ContentPage.Resources>
         <ResourceDictionary>

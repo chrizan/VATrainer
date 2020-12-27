@@ -20,7 +20,9 @@ namespace VATrainer
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            DependencyService.Get<IDatabaseService>().CopyDbToInternalStorage();
+            IDatabaseService databaseService = DependencyService.Get<IDatabaseService>();
+            databaseService.CopyDbToInternalStorage();
+            databaseService.InitializeDbProvider();
 
             await NavigationService.NavigateAsync("MainPage/NavigationPage/HomePage");
         }

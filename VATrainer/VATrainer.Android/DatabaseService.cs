@@ -27,6 +27,11 @@ namespace VATrainer.Droid
             return dbPath;
         }
 
+        public void InitializeDbProvider()
+        {
+            //Not necessary on Android
+        }
+
         private void CopyDbFile(string dbFileName)
         {
             using BinaryReader binaryReader = new BinaryReader(Android.App.Application.Context.Assets.Open(dbFileName));
