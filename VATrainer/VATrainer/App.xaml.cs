@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace VATrainer
 {
-    public partial class App
+    public partial class App 
     {
         public App(IPlatformInitializer initializer)
             : base(initializer)
@@ -20,11 +20,15 @@ namespace VATrainer
         protected override async void OnInitialized()
         {
             InitializeComponent();
+            SetupDatabase();
+            await NavigationService.NavigateAsync("MainPage/NavigationPage/HomePage");
+        }
+
+        private static void SetupDatabase()
+        {
             IDatabaseService databaseService = DependencyService.Get<IDatabaseService>();
             databaseService.CopyDbToInternalStorage();
             databaseService.InitializeDbProvider();
-
-            await NavigationService.NavigateAsync("MainPage/NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

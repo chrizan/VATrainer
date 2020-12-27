@@ -9,10 +9,12 @@
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
-        <Label
-            HorizontalOptions="CenterAndExpand"
-            Text="ContentsPage"
-            VerticalOptions="CenterAndExpand" />
+        <StackLayout Padding="20" BackgroundColor="Green">
+            <WebView
+                BackgroundColor="Red"
+                HeightRequest="500"
+                Source="{Binding Content, Mode=OneWay}" />
+        </StackLayout>
     </ContentPage.Content>
 
 </ContentPage>

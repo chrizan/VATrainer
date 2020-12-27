@@ -28,19 +28,19 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="ContentsPage"
+                CommandParameter="1"
                 Text="Browsing Einleitung (1)" />
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="ContentsPage"
+                CommandParameter="2"
                 Text="Browsing Steuersubjekt (2)" />
             <Button
                 Grid.Row="5"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="ContentsPage"
+                CommandParameter="3"
                 Text="Browsing Steuerobjekt (3)" />
         </Grid>
     </ContentPage.Content>

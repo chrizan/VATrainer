@@ -9,19 +9,23 @@ namespace VATrainer.ViewModels
 {
     public class BrowsingPageViewModel : BindableBase
     {
-        private INavigationService _navigationService { get; }
+        private INavigationService NavigationService { get; }
 
         public BrowsingPageViewModel(INavigationService navigationService)
         {
-            _navigationService = navigationService;
+            NavigationService = navigationService;
             NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);
         }
 
         public DelegateCommand<string> NavigateCommand { get; }
 
-        private async void NavigateCommandExecuted(string view)
+        private async void NavigateCommandExecuted(string theme)
         {
-            await _navigationService.NavigateAsync(view);
+            var navigationParams = new NavigationParameters
+            {
+                { "theme", theme }
+            };
+            await NavigationService.NavigateAsync("ContentsPage", navigationParams);
         }
     }
 }
