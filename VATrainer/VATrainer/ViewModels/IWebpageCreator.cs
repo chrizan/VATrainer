@@ -1,10 +1,12 @@
-﻿using VATrainer.Models;
+﻿using System.Collections.Generic;
+using VATrainer.Models;
 
 namespace VATrainer.ViewModels
 {
     public interface IWebpageCreator
     {
-        string CreateWebpageForQuestion(Question question);
-        string CreateWebpageForAnswer(Answer answer);
+        string CreateQuestionWebpage(Question question);
+        string CreateAnswerWebpage(Answer answer);
+        string CreateContentWebpage(List<Question> questions);
     }
 }

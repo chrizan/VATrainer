@@ -1,6 +1,5 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
 using System;
 using System.Windows.Input;
 using VATrainer.Models;
@@ -41,11 +40,11 @@ namespace VATrainer.ViewModels
         {
             Question = new HtmlWebViewSource
             {
-                Html = _webpageCreator.CreateWebpageForQuestion(_sessionManager.Question)
+                Html = _webpageCreator.CreateQuestionWebpage(_sessionManager.Question)
             };
             Answer = new HtmlWebViewSource
             {
-                Html = _webpageCreator.CreateWebpageForAnswer(_sessionManager.Answer)
+                Html = _webpageCreator.CreateAnswerWebpage(_sessionManager.Question.Answer)
             };
             Counter = _sessionManager.Question.Id.ToString();
         }

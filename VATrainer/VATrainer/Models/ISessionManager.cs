@@ -5,7 +5,6 @@
     /// </summary>
     public interface ISessionManager
     {
-        Answer Answer { get; }
         Question Question { get; }
         void LoadNextQuestionAnswer();
     }
