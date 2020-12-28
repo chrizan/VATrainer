@@ -8,7 +8,7 @@
         {
             this.repository = repository;
             Question = repository.GetQuestionForId(1).Result;
-            Answer = repository.GetAnswerToQuestion(1).Result;
+            Answer = Question.Answer;
         }
 
         public Question Question { get; private set; }
@@ -21,12 +21,12 @@
             if (question == null)
             {
                 Question = repository.GetQuestionForId(1).Result;
-                Answer = repository.GetAnswerToQuestion(1).Result;
+                Answer = Question.Answer;
             }
             else
             {
                 Question = question;
-                Answer = repository.GetAnswerToQuestion(question.Id).Result;
+                Answer = Question.Answer;
             }
         }
     }

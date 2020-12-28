@@ -10,12 +10,15 @@ namespace VATrainer.DataLayer
         public async Task<Question> GetQuestionForId(int questionId)
         {
             using var context = new VATrainerContext();
-            Question q = await context.Question
+            Question question = await context.Question
                 .Where(question => question.Id == questionId)
                 .Include(question => question.ArticleQuestions)
                 .ThenInclude(articleQuestion => articleQuestion.Article)
+                .Include(question => question.Answer)
+                .ThenInclude(answer => answer.ArticleAnswers)
+                .ThenInclude(articleAnswer => articleAnswer.Article)
                 .FirstOrDefaultAsync();
-            return q;
+            return question;
         }
 
         public async Task<Question> GetNextQuestionOfSameTheme(Question currentQuestion)
@@ -26,19 +29,11 @@ namespace VATrainer.DataLayer
                 .Where(question => question.Order > currentQuestion.Order)
                 .Include(question => question.ArticleQuestions)
                 .ThenInclude(articleQuestion => articleQuestion.Article)
+                .Include(question => question.Answer)
+                .ThenInclude(answer => answer.ArticleAnswers)
+                .ThenInclude(articleAnswers => articleAnswers.Article)
                 .FirstOrDefaultAsync();
             return q;
-        }
-
-        public async Task<Answer> GetAnswerToQuestion(int questionId)
-        {
-            using var context = new VATrainerContext();
-            Answer a = await context.Answer
-                .Where(answer => answer.QuestionId == questionId)
-                .Include(answer => answer.ArticleAnswers)
-                .ThenInclude(articleAnswer => articleAnswer.Article)
-                .FirstOrDefaultAsync();
-            return a;
         }
     }
 }

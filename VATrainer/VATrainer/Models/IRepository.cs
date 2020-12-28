@@ -20,12 +20,5 @@ namespace VATrainer.Models
         /// <param name="currentQuestion"></param>
         /// <returns></returns>
         Task<Question> GetNextQuestionOfSameTheme(Question currentQuestion);
-
-        /// <summary>
-        /// Returns the answer belonging to the question
-        /// </summary>
-        /// <param name="questionId">The primary key of the question to which the answer is evaluated</param>
-        /// <returns></returns>
-        Task<Answer> GetAnswerToQuestion(int questionId);
     }
 }

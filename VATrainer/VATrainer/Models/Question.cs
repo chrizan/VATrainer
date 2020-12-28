@@ -13,10 +13,16 @@ namespace VATrainer.Models
         public string Text { get; set; }
 
         [Required]
+        public int AnswerId { get; set; }
+
+        [Required]
         public int ThemeId { get; set; }
 
         [Required]
         public int Order { get; set; }
+
+        [ForeignKey(nameof(AnswerId))]
+        public virtual Answer Answer { get; set; }
 
         [ForeignKey(nameof(ThemeId))]
         public virtual Theme Theme { get; set; }
