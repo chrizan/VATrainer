@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VATrainer.Android", "VATrai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VATrainer.iOS", "VATrainer\VATrainer.iOS\VATrainer.iOS.csproj", "{CF4EA3C5-E718-4491-B5D0-1F2A6CC02AD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF_SQLite_Dummy", "EF_SQLite_Dummy\EF_SQLite_Dummy.csproj", "{27D0531D-D618-4864-BA01-34C740175059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_SQLite_Dummy", "EF_SQLite_Dummy\EF_SQLite_Dummy.csproj", "{27D0531D-D618-4864-BA01-34C740175059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VATrainer.Test", "VATrainer.Test\VATrainer.Test.csproj", "{7C22D2A8-A1D1-4EA3-93E5-EFB606865629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VATrainer.Test", "VATrainer.Test\VATrainer.Test.csproj", "{7C22D2A8-A1D1-4EA3-93E5-EFB606865629}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

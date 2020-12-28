@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace VATrainer.Models
 {
@@ -20,5 +21,12 @@ namespace VATrainer.Models
         /// <param name="currentQuestion"></param>
         /// <returns></returns>
         Task<Question> GetNextQuestionOfSameTheme(Question currentQuestion);
+
+        /// <summary>
+        /// Returns all questions within this theme
+        /// </summary>
+        /// <param name="themeId"></param>
+        /// <returns></returns>
+        Task<List<Question>> GetAllQuestionsOfTheme(int themeId);
     }
 }

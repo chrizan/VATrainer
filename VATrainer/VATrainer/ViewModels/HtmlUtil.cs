@@ -112,9 +112,9 @@ namespace VATrainer.ViewModels
                     @"</script>";
         }
 
-        public static string BuildJavaScript(string articles)
+        public static string BuildJavaScript(string articleCode)
         {
-            return articles + 
+            return articleCode +
                 @"
                 function showModal(clicked_id)
                 {
@@ -146,21 +146,37 @@ namespace VATrainer.ViewModels
 
         public static string BuildJavaScriptArticles(ICollection<Article> articles)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("function getArticle(id){");
-            foreach (Article article in articles)
+            if (articles == null || articles.Count == 0)
             {
-                string s = "if (id == " + article.Id.ToString() + ") return " + "\"" + RemoveLineBreaks(article.Text) + "\"";
-                sb.AppendLine(s);
+                return string.Empty;
             }
-            sb.AppendLine("}");
-            return sb.ToString();
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("function getArticle(id)");
+                sb.AppendLine("{");
+                foreach (Article article in articles)
+                {
+                    string formattedText = RemoveLineBreaks(article.Text);
+                    string codeLine = "if (id == " + article.Id.ToString() + ") return " + "\"" + formattedText + "\"";
+                    sb.AppendLine(codeLine);
+                }
+                sb.AppendLine("}");
+                return sb.ToString();
+            }
         }
 
-        private static string RemoveLineBreaks(string s)
+        private static string RemoveLineBreaks(string text)
         {
-            string s1 = Regex.Replace(s, @"\t|\n|\r", "");
-            return Regex.Replace(s1, "\"", "\\\"");
+            if (text == null || text.Length == 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                string formattedText = Regex.Replace(text, @"\t|\n|\r", "");
+                return Regex.Replace(formattedText, "\"", "\\\"");
+            }
         }
     }
 }

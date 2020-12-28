@@ -12,17 +12,18 @@ namespace VATrainer.ViewModels
     {
         private event EventHandler OnAnimationFinished;
 
-        private readonly ISessionManager _sessionManager;
+        private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
+        private Question _currentQuestion;
         private string _counter;
         private bool _isButtonVisible;
         private FlipAnimationParams _flipAnimationParams;
 
-        public QAPageViewModel(ISessionManager sessionManager, IWebpageCreator webpageCreator)
+        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator)
         {
-            _sessionManager = sessionManager;
+            _repository = repository;
             _webpageCreator = webpageCreator;
             InitCommands();
             SetContent();
@@ -38,15 +39,16 @@ namespace VATrainer.ViewModels
 
         private void SetContent()
         {
+            _currentQuestion = _repository.GetQuestionForId(1).Result;
             Question = new HtmlWebViewSource
             {
-                Html = _webpageCreator.CreateQuestionWebpage(_sessionManager.Question)
+                Html = _webpageCreator.CreateQuestionWebpage(_currentQuestion)
             };
             Answer = new HtmlWebViewSource
             {
-                Html = _webpageCreator.CreateAnswerWebpage(_sessionManager.Question.Answer)
+                Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
             };
-            Counter = _sessionManager.Question.Id.ToString();
+            Counter = _currentQuestion.Id.ToString();
         }
 
         public FlipAnimationParams Flip
@@ -124,7 +126,7 @@ namespace VATrainer.ViewModels
         {
             if (btn.Equals("left") || btn.Equals("right"))
             {
-                _sessionManager.LoadNextQuestionAnswer();
+                LoadNextQuestion();
                 IsButtonVisible = false;
                 if (FlipDirection.Left == Flip.Direction)
                 {
@@ -137,6 +139,24 @@ namespace VATrainer.ViewModels
             }
         }
 
+        private async void LoadNextQuestion()
+        {
+            _currentQuestion = _repository.GetNextQuestionOfSameTheme(_currentQuestion).Result;
+            if (_currentQuestion == null)
+            {
+                _currentQuestion = _repository.GetQuestionForId(1).Result;
+            }
+            Question = new HtmlWebViewSource
+            {
+                Html = _webpageCreator.CreateQuestionWebpage(_currentQuestion)
+            };
+            Answer = new HtmlWebViewSource
+            {
+                Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
+            };
+            Counter = _currentQuestion.Id.ToString();
+        }
+
         private void OnFlipCallBackChanged(object sender, EventArgs eventArgs)
         {
             if (!((FlipAnimationEventArgs)eventArgs).IsFrontviewVisible)
@@ -145,7 +165,6 @@ namespace VATrainer.ViewModels
             }
             if (FlipStep.FirstQuarter == Flip.Step)
             {
-                SetContent();
                 if (FlipDirection.Left == Flip.Direction)
                 {
                     Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.SecondQuarter, OnAnimationFinished);

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using VATrainer.Models;
 
 namespace VATrainer.ViewModels
@@ -30,7 +31,23 @@ namespace VATrainer.ViewModels
 
         public string CreateContentWebpage(List<Question> questions)
         {
-            throw new System.NotImplementedException();
+            List<Article> allArticles = new List<Article>();
+            StringBuilder sb = new StringBuilder();
+            foreach (Question question in questions)
+            {
+                sb.AppendLine(question.Text);
+                sb.AppendLine();
+                sb.AppendLine(question.Answer.Text);
+                sb.AppendLine();
+                allArticles.AddRange(question.ArticleQuestions.Select(articleQuestion => articleQuestion.Article).ToList());
+                allArticles.AddRange(question.Answer.ArticleAnswers.Select(articleAnswer => articleAnswer.Article).ToList());
+            }
+            string javaScriptArticles = HtmlUtil.BuildJavaScriptArticles(allArticles);
+            string javaScript = HtmlUtil.BuildJavaScript(javaScriptArticles);
+            string body = HtmlUtil.BuildBody(sb.ToString(), javaScript);
+            string style = HtmlUtil.BuildStyle();
+            string html = HtmlUtil.BuildWebpage(style, body);
+            return html;
         }
     }
 }
