@@ -42,7 +42,7 @@ namespace VATrainer.ViewModels
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            throw new NotImplementedException();
+            //Currently not needed
         }
     }
 }
