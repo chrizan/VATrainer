@@ -9,12 +9,12 @@
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
-        <StackLayout Padding="20" BackgroundColor="Green">
-            <WebView
-                BackgroundColor="Red"
-                HeightRequest="500"
-                Source="{Binding Content, Mode=OneWay}" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <WebView Source="{Binding Content, Mode=OneWay}" />
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>
