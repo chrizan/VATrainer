@@ -39,7 +39,18 @@ namespace VATrainer.ViewModels
 
         private void SetContent()
         {
-            _currentQuestion = _repository.GetQuestionForId(1).Result;
+            if (_currentQuestion == null)
+            {
+                _currentQuestion = _repository.GetQuestionForId(1).Result;
+            }
+            else
+            {
+                _currentQuestion = _repository.GetNextQuestionOfSameTheme(_currentQuestion).Result;
+                if(_currentQuestion == null)
+                {
+                    _currentQuestion = _repository.GetQuestionForId(1).Result;
+                }
+            }
             Question = new HtmlWebViewSource
             {
                 Html = _webpageCreator.CreateQuestionWebpage(_currentQuestion)
@@ -122,11 +133,10 @@ namespace VATrainer.ViewModels
 
         public DelegateCommand<string> ButtonCommand { get; }
 
-        private async void ButtonCommanExecuted(string btn)
+        private void ButtonCommanExecuted(string btn)
         {
             if (btn.Equals("left") || btn.Equals("right"))
             {
-                LoadNextQuestion();
                 IsButtonVisible = false;
                 if (FlipDirection.Left == Flip.Direction)
                 {
@@ -139,24 +149,6 @@ namespace VATrainer.ViewModels
             }
         }
 
-        private async void LoadNextQuestion()
-        {
-            _currentQuestion = _repository.GetNextQuestionOfSameTheme(_currentQuestion).Result;
-            if (_currentQuestion == null)
-            {
-                _currentQuestion = _repository.GetQuestionForId(1).Result;
-            }
-            Question = new HtmlWebViewSource
-            {
-                Html = _webpageCreator.CreateQuestionWebpage(_currentQuestion)
-            };
-            Answer = new HtmlWebViewSource
-            {
-                Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
-            };
-            Counter = _currentQuestion.Id.ToString();
-        }
-
         private void OnFlipCallBackChanged(object sender, EventArgs eventArgs)
         {
             if (!((FlipAnimationEventArgs)eventArgs).IsFrontviewVisible)
@@ -165,6 +157,7 @@ namespace VATrainer.ViewModels
             }
             if (FlipStep.FirstQuarter == Flip.Step)
             {
+                SetContent();
                 if (FlipDirection.Left == Flip.Direction)
                 {
                     Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.SecondQuarter, OnAnimationFinished);

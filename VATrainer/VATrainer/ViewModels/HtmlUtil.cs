@@ -44,7 +44,7 @@ namespace VATrainer.ViewModels
 						    margin-left: auto;
 						    margin-right: auto;
 						    width: 80%;
-                            /*height: 60%;*/
+                            max-height: 80%;
 							padding: 20px;
 						    background-color: #fefefe;
 						    border: 1px solid #888;
