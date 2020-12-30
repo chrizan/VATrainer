@@ -24,32 +24,32 @@ namespace VATrainer.ViewModels
         {
             return @"<style>
 
-                        /* The Modal (background) */
-			            .modal
+                        /* The Modal */
+			            .modal-background
 			            {
-				            display: none; /* Hidden by default */
-				            position: fixed; /* Stay in place */
-				            z-index: 1; /* Sit on top */
-				            /*padding-top: 100px; /* Location of the box */*/
-                            padding-top: 0px; /* Location of the box */
-				            left: 0;
-				            top: 0;
-				            width: 100%; /* Full width */
-				            height: 100%; /* Full height */
-				            overflow: auto; /* Enable scroll if needed */
-				            background-color: rgb(0, 0, 0); /* Fallback color */
-				            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+						    display: none;
+						    position: fixed;
+						    top: 0;
+						    left: 0;
+						    height: 100%;
+						    width: 100%;
 			            }
-
-			            /* Modal Content */
-			            .modal-content
-			            {
-				            background-color: #fefefe;
-				            margin: auto;
-				            padding: 20px;
-				            border: 1px solid #888;
-				            width: 80%;
-			            }
+						
+						.modal-vertical-center {
+						    display: table-cell;
+						    vertical-align: middle;
+						}
+						
+						.modal-content {
+						    margin-left: auto;
+						    margin-right: auto;
+						    width: 80%;
+                            /*height: 60%;*/
+							padding: 20px;
+						    background-color: #fefefe;
+						    border: 1px solid #888;
+                            overflow: scroll;
+						}
 
 			            /* The Close Button (x)*/
 			            .close
@@ -102,12 +102,14 @@ namespace VATrainer.ViewModels
         {
             return htmlText +
                     @"
-                    <div id=""Modal"" class=""modal"">
-                        <div class=""modal-content"">
-				            <span class=""close"">&times;</span>
-				            <p id=""txt""></p>
-			            </div>
-		            </div>
+                    <div id=""modal"" class=""modal-background"">
+                        <div id=""verticalCenter"" class=""modal-vertical-center"">                    
+                            <div class=""modal-content"">
+				                <span class=""close"">&times;</span>
+				                <p id=""txt""></p>
+			                </div>
+                        </div>
+                    </div>
 		            <script>"
                         + javaScript +
                     @"</script>";
@@ -119,12 +121,12 @@ namespace VATrainer.ViewModels
                 @"
                 function showModal(clicked_id)
                 {
-                    modal.style.display = ""block"";
+                    modal.style.display = ""table"";
                     document.getElementById(""txt"").innerHTML = getArticle(clicked_id);
                 }
 
                 // Get the modal
-                var modal = document.getElementById(""Modal"")
+                var modal = document.getElementById(""modal"")
 
                 // Get the <span> element that closes the modal
                 var span = document.getElementsByClassName(""close"")[0];
@@ -138,7 +140,7 @@ namespace VATrainer.ViewModels
                 // When the user clicks anywhere outside of the modal, close it
                 window.onclick = function(event)
                 {
-                    if (event.target == modal)
+                    if (event.target == verticalCenter)
 			        {
                         modal.style.display = ""none"";
                     }
