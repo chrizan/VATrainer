@@ -22,9 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="DataLayer\" />
-    <Folder Include="Views\" />
+    <Folder Include="3_Models\" />
+    <Folder Include="4_DataLayer\" />
+    <Folder Include="1_Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VATrainer\VATrainer\VATrainer.csproj" />
   </ItemGroup>
 
 </Project>

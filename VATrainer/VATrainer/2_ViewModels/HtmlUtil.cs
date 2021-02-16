@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 using VATrainer.Models;
 
 namespace VATrainer.ViewModels
@@ -79,7 +78,7 @@ namespace VATrainer.ViewModels
 
                         p, li {
                             font-family: Calibri;
-                            font-size: medium;
+                            font-size: " + settings.FontSize + @";
                             color: #191970;
                         }
 
@@ -115,9 +114,19 @@ namespace VATrainer.ViewModels
                     @"</script>";
         }
 
+        public static string FormatQuestionForContentView(string question)
+        {
+            return "<b>" + question + "</b>";
+        }
+
+        public static string FormatAnswerForContentView(string answer)
+        {
+            return answer + "<br>";
+        }
+
         private static string BuildJavaScript(List<Article> articles)
         {
-            return BuildJavaScriptArticles(articles) +
+            return BuildArticleFunction(articles) +
                 @"
                 function showModal(clicked_id)
                 {
@@ -147,24 +156,17 @@ namespace VATrainer.ViewModels
                 }";
         }
 
-        private static string BuildJavaScriptArticles(IList<Article> articles)
+        private static string BuildArticleFunction(IList<Article> articles)
         {
-            if (articles == null || articles.Count == 0)
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("function getArticle(id)");
+            sb.AppendLine("{");
+            foreach (Article article in articles)
             {
-                return string.Empty;
+                sb.AppendLine($"if (id == {article.Id}) return \"{article.Text}\"");
             }
-            else
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine("function getArticle(id)");
-                sb.AppendLine("{");
-                foreach (Article article in articles)
-                {
-                    sb.AppendLine("if (id == " + article.Id.ToString() + ") return " + "\"" + article.Text + "\"");
-                }
-                sb.AppendLine("}");
-                return sb.ToString();
-            }
+            sb.AppendLine("}");
+            return sb.ToString();
         }
     }
 }

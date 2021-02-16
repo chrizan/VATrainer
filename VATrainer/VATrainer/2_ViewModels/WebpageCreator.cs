@@ -5,7 +5,6 @@ using VATrainer.Models;
 
 namespace VATrainer.ViewModels
 {
-    //TODO: consider " and ' in text
     public class WebpageCreator : IWebpageCreator
     {
         private readonly ISettings _settings;
@@ -43,10 +42,8 @@ namespace VATrainer.ViewModels
             StringBuilder sb = new StringBuilder();
             foreach (Question question in questions)
             {
-                sb.AppendLine(question.Text);
-                sb.AppendLine();
-                sb.AppendLine(question.Answer.Text);
-                sb.AppendLine();
+                sb.AppendLine(HtmlUtil.FormatQuestionForContentView(question.Text));
+                sb.AppendLine(HtmlUtil.FormatAnswerForContentView(question.Answer.Text));
                 articles.AddRange(question.ArticleQuestions.Select(articleQuestion => articleQuestion.Article).ToList());
                 articles.AddRange(question.Answer.ArticleAnswers.Select(articleAnswer => articleAnswer.Article).ToList());
             }
