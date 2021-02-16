@@ -20,7 +20,7 @@ namespace VATrainer.ViewModels
                     </html>";
         }
 
-        public static string BuildStyle()
+        public static string BuildStyle(ISettings settings)
         {
             return @"<style>
 
@@ -98,7 +98,7 @@ namespace VATrainer.ViewModels
                     </style>";
         }
 
-        public static string BuildBody(string htmlText, string javaScript)
+        public static string BuildBody(string htmlText, List<Article> articles)
         {
             return htmlText +
                     @"
@@ -111,13 +111,13 @@ namespace VATrainer.ViewModels
                         </div>
                     </div>
 		            <script>"
-                        + javaScript +
+                        + BuildJavaScript(articles) +
                     @"</script>";
         }
 
-        public static string BuildJavaScript(string articleCode)
+        private static string BuildJavaScript(List<Article> articles)
         {
-            return articleCode +
+            return BuildJavaScriptArticles(articles) +
                 @"
                 function showModal(clicked_id)
                 {
@@ -147,7 +147,7 @@ namespace VATrainer.ViewModels
                 }";
         }
 
-        public static string BuildJavaScriptArticles(ICollection<Article> articles)
+        private static string BuildJavaScriptArticles(IList<Article> articles)
         {
             if (articles == null || articles.Count == 0)
             {
@@ -160,25 +160,10 @@ namespace VATrainer.ViewModels
                 sb.AppendLine("{");
                 foreach (Article article in articles)
                 {
-                    string formattedText = RemoveLineBreaks(article.Text);
-                    string codeLine = "if (id == " + article.Id.ToString() + ") return " + "\"" + formattedText + "\"";
-                    sb.AppendLine(codeLine);
+                    sb.AppendLine("if (id == " + article.Id.ToString() + ") return " + "\"" + article.Text + "\"");
                 }
                 sb.AppendLine("}");
                 return sb.ToString();
-            }
-        }
-
-        private static string RemoveLineBreaks(string text)
-        {
-            if (text == null || text.Length == 0)
-            {
-                return string.Empty;
-            }
-            else
-            {
-                string formattedText = Regex.Replace(text, @"\t|\n|\r", "");
-                return Regex.Replace(formattedText, "\"", "\\\"");
             }
         }
     }

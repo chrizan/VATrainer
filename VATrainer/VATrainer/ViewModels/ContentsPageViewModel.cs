@@ -1,6 +1,5 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using VATrainer.Models;
 using Xamarin.Forms;
@@ -24,7 +23,7 @@ namespace VATrainer.ViewModels
         {
             int themeId = int.Parse(parameters.GetValue<string>("theme"));
             Content = new HtmlWebViewSource
-            {
+            { 
                 Html = GetContent(themeId)
             };
         }

@@ -5,33 +5,41 @@ using VATrainer.Models;
 
 namespace VATrainer.ViewModels
 {
+    //TODO: consider " and ' in text
     public class WebpageCreator : IWebpageCreator
     {
+        private readonly ISettings _settings;
+
+        public WebpageCreator(ISettings settings)
+        {
+            _settings = settings;
+        }
+
         public string CreateQuestionWebpage(Question question)
         {
-            List<Article> articles = question.ArticleQuestions.Select(articleQuestion => articleQuestion.Article).ToList();
-            string javaScriptArticles = HtmlUtil.BuildJavaScriptArticles(articles);
-            string javaScript = HtmlUtil.BuildJavaScript(javaScriptArticles);
-            string body = HtmlUtil.BuildBody(question.Text, javaScript);
-            string style = HtmlUtil.BuildStyle();
-            string html = HtmlUtil.BuildWebpage(style, body);
-            return html;
+            List<Article> articles = question.ArticleQuestions
+                .Select(articleQuestion => articleQuestion.Article)
+                .Distinct(new ArticleIdComparer())
+                .ToList();
+            string body = HtmlUtil.BuildBody(question.Text, articles);
+            string style = HtmlUtil.BuildStyle(_settings);
+            return HtmlUtil.BuildWebpage(style, body);
         }
 
         public string CreateAnswerWebpage(Answer answer)
         {
-            List<Article> articles = answer.ArticleAnswers.Select(articleAnswer => articleAnswer.Article).ToList();
-            string javaScriptArticles = HtmlUtil.BuildJavaScriptArticles(articles);
-            string javaScript = HtmlUtil.BuildJavaScript(javaScriptArticles);
-            string body = HtmlUtil.BuildBody(answer.Text, javaScript);
-            string style = HtmlUtil.BuildStyle();
-            string html = HtmlUtil.BuildWebpage(style, body);
-            return html;
+            List<Article> articles = answer.ArticleAnswers
+                .Select(articleAnswer => articleAnswer.Article)
+                .Distinct(new ArticleIdComparer())
+                .ToList();
+            string body = HtmlUtil.BuildBody(answer.Text, articles);
+            string style = HtmlUtil.BuildStyle(_settings);
+            return HtmlUtil.BuildWebpage(style, body);
         }
 
         public string CreateContentWebpage(List<Question> questions)
         {
-            List<Article> allArticles = new List<Article>();
+            List<Article> articles = new List<Article>();
             StringBuilder sb = new StringBuilder();
             foreach (Question question in questions)
             {
@@ -39,15 +47,26 @@ namespace VATrainer.ViewModels
                 sb.AppendLine();
                 sb.AppendLine(question.Answer.Text);
                 sb.AppendLine();
-                allArticles.AddRange(question.ArticleQuestions.Select(articleQuestion => articleQuestion.Article).ToList());
-                allArticles.AddRange(question.Answer.ArticleAnswers.Select(articleAnswer => articleAnswer.Article).ToList());
+                articles.AddRange(question.ArticleQuestions.Select(articleQuestion => articleQuestion.Article).ToList());
+                articles.AddRange(question.Answer.ArticleAnswers.Select(articleAnswer => articleAnswer.Article).ToList());
             }
-            string javaScriptArticles = HtmlUtil.BuildJavaScriptArticles(allArticles);
-            string javaScript = HtmlUtil.BuildJavaScript(javaScriptArticles);
-            string body = HtmlUtil.BuildBody(sb.ToString(), javaScript);
-            string style = HtmlUtil.BuildStyle();
-            string html = HtmlUtil.BuildWebpage(style, body);
-            return html;
+            articles = articles.Distinct(new ArticleIdComparer()).ToList();
+            string body = HtmlUtil.BuildBody(sb.ToString(), articles);
+            string style = HtmlUtil.BuildStyle(_settings);
+            return HtmlUtil.BuildWebpage(style, body);
+        }
+
+        private class ArticleIdComparer : IEqualityComparer<Article>
+        {
+            public bool Equals(Article x, Article y)
+            {
+                return x.Id == y.Id;
+            }
+
+            public int GetHashCode(Article obj)
+            {
+                return obj.GetHashCode();
+            }
         }
     }
 }
