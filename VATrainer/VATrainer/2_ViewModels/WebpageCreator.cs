@@ -8,10 +8,12 @@ namespace VATrainer.ViewModels
     public class WebpageCreator : IWebpageCreator
     {
         private readonly ISettings _settings;
+        private readonly IHtmlHelper _htmlHelper;
 
-        public WebpageCreator(ISettings settings)
+        public WebpageCreator(ISettings settings, IHtmlHelper htmlHelper)
         {
             _settings = settings;
+            _htmlHelper = htmlHelper;
         }
 
         public string CreateQuestionWebpage(Question question)
@@ -20,9 +22,9 @@ namespace VATrainer.ViewModels
                 .Select(articleQuestion => articleQuestion.Article)
                 .Distinct(new ArticleIdComparer())
                 .ToList();
-            string body = HtmlUtil.BuildBody(question.Text, articles);
-            string style = HtmlUtil.BuildStyle(_settings);
-            return HtmlUtil.BuildWebpage(style, body);
+            string body = _htmlHelper.BuildBody(question.Text, articles);
+            string style = _htmlHelper.BuildStyle(_settings);
+            return _htmlHelper.BuildWebpage(style, body);
         }
 
         public string CreateAnswerWebpage(Answer answer)
@@ -31,26 +33,26 @@ namespace VATrainer.ViewModels
                 .Select(articleAnswer => articleAnswer.Article)
                 .Distinct(new ArticleIdComparer())
                 .ToList();
-            string body = HtmlUtil.BuildBody(answer.Text, articles);
-            string style = HtmlUtil.BuildStyle(_settings);
-            return HtmlUtil.BuildWebpage(style, body);
+            string body = _htmlHelper.BuildBody(answer.Text, articles);
+            string style = _htmlHelper.BuildStyle(_settings);
+            return _htmlHelper.BuildWebpage(style, body);
         }
 
         public string CreateContentWebpage(List<Question> questions)
         {
             List<Article> articles = new List<Article>();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder content = new StringBuilder();
             foreach (Question question in questions)
             {
-                sb.AppendLine(HtmlUtil.FormatQuestionForContentView(question.Text));
-                sb.AppendLine(HtmlUtil.FormatAnswerForContentView(question.Answer.Text));
-                articles.AddRange(question.ArticleQuestions.Select(articleQuestion => articleQuestion.Article).ToList());
-                articles.AddRange(question.Answer.ArticleAnswers.Select(articleAnswer => articleAnswer.Article).ToList());
+                content.AppendLine(_htmlHelper.FormatQuestionForContentView(question.Text));
+                content.AppendLine(_htmlHelper.FormatAnswerForContentView(question.Answer.Text));
+                articles.AddRange(question.ArticleQuestions.Select(articleQuestion => articleQuestion.Article));
+                articles.AddRange(question.Answer.ArticleAnswers.Select(articleAnswer => articleAnswer.Article));
             }
             articles = articles.Distinct(new ArticleIdComparer()).ToList();
-            string body = HtmlUtil.BuildBody(sb.ToString(), articles);
-            string style = HtmlUtil.BuildStyle(_settings);
-            return HtmlUtil.BuildWebpage(style, body);
+            string body = _htmlHelper.BuildBody(content.ToString(), articles);
+            string style = _htmlHelper.BuildStyle(_settings);
+            return _htmlHelper.BuildWebpage(style, body);
         }
 
         private class ArticleIdComparer : IEqualityComparer<Article>
@@ -62,7 +64,7 @@ namespace VATrainer.ViewModels
 
             public int GetHashCode(Article obj)
             {
-                return obj.GetHashCode();
+                return 0;
             }
         }
     }

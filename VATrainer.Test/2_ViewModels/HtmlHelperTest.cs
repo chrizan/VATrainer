@@ -7,8 +7,10 @@ using Xunit;
 
 namespace VATrainer.Test.ViewModels
 {
-    public class HtmlUtilTest
+    public class HtmlHelperTest
     {
+        private readonly IHtmlHelper _htmlHelper = new HtmlHelper();
+
         [Fact]
         public void Test_BuildWebpage()
         {
@@ -17,7 +19,7 @@ namespace VATrainer.Test.ViewModels
             string body = "body";
 
             // Act
-            string webPage = HtmlUtil.BuildWebpage(style, body);
+            string webPage = _htmlHelper.BuildWebpage(style, body);
 
             // Assert 
             webPage.Should().Contain(style);
@@ -32,7 +34,7 @@ namespace VATrainer.Test.ViewModels
             ISettings settings = new Settings(repoMock.Object) { FontSize = "small" };
 
             // Act
-            string style = HtmlUtil.BuildStyle(settings);
+            string style = _htmlHelper.BuildStyle(settings);
 
             // Assert 
             style.Should().Contain("font-size: small;");
@@ -52,7 +54,7 @@ namespace VATrainer.Test.ViewModels
             };
 
             // Act
-            string body = HtmlUtil.BuildBody(html, articles);
+            string body = _htmlHelper.BuildBody(html, articles);
 
             // Assert 
             body.Should().Contain(html);
@@ -67,7 +69,7 @@ namespace VATrainer.Test.ViewModels
             string question = "question";
 
             // Act
-            string formattedQuestion = HtmlUtil.FormatQuestionForContentView(question);
+            string formattedQuestion = _htmlHelper.FormatQuestionForContentView(question);
 
             // Assert 
             formattedQuestion.Should().Be("<b>" + question + "</b>");
@@ -80,7 +82,7 @@ namespace VATrainer.Test.ViewModels
             string answer = "answer";
 
             // Act
-            string formattedAnswer = HtmlUtil.FormatAnswerForContentView(answer);
+            string formattedAnswer = _htmlHelper.FormatAnswerForContentView(answer);
 
             // Assert 
             formattedAnswer.Should().Be(answer + "<br>");

@@ -4,9 +4,9 @@ using VATrainer.Models;
 
 namespace VATrainer.ViewModels
 {
-    public static class HtmlUtil
+    public class HtmlHelper : IHtmlHelper
     {
-        public static string BuildWebpage(string style, string body)
+        public string BuildWebpage(string style, string body)
         {
             return @"<!DOCTYPE html>
                     <html>
@@ -19,7 +19,7 @@ namespace VATrainer.ViewModels
                     </html>";
         }
 
-        public static string BuildStyle(ISettings settings)
+        public string BuildStyle(ISettings settings)
         {
             return @"<style>
 
@@ -97,7 +97,7 @@ namespace VATrainer.ViewModels
                     </style>";
         }
 
-        public static string BuildBody(string htmlText, List<Article> articles)
+        public string BuildBody(string htmlText, List<Article> articles)
         {
             return htmlText +
                     @"
@@ -114,12 +114,12 @@ namespace VATrainer.ViewModels
                     @"</script>";
         }
 
-        public static string FormatQuestionForContentView(string question)
+        public string FormatQuestionForContentView(string question)
         {
             return "<b>" + question + "</b>";
         }
 
-        public static string FormatAnswerForContentView(string answer)
+        public string FormatAnswerForContentView(string answer)
         {
             return answer + "<br>";
         }
