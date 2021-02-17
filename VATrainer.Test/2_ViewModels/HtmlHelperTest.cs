@@ -30,11 +30,11 @@ namespace VATrainer.Test.ViewModels
         public void Test_BuildStyle()
         {
             // Arrange
-            var repoMock = new Mock<IRepository>();
-            ISettings settings = new Settings(repoMock.Object) { FontSize = "small" };
+            var settingsMock = new Mock<ISettings>();
+            settingsMock.SetupGet(m => m.FontSize).Returns("small");
 
             // Act
-            string style = _htmlHelper.BuildStyle(settings);
+            string style = _htmlHelper.BuildStyle(settingsMock.Object);
 
             // Assert 
             style.Should().Contain("font-size: small;");

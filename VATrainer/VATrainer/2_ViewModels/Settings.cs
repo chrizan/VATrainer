@@ -1,22 +1,26 @@
-﻿using VATrainer.Models;
+﻿using Xamarin.Essentials;
 
 namespace VATrainer.ViewModels
 {
     public class Settings : ISettings
     {
-        private readonly IRepository _repository;
+        public const string FontSizeSmall = "small";
+        public const string FontSizeMedium = "medium";
+        public const string FontSizeLarge = "large";
 
-        public Settings(IRepository repository)
+        private const string FontSizeKey = "fontSizeKey";
+        private const string DisplayInstructionKey = "displayInstructionKey";
+
+        public string FontSize
         {
-            _repository = repository;
-            Init();
+            get => Preferences.Get(FontSizeKey, FontSizeMedium);
+            set => Preferences.Set(FontSizeKey, value);
         }
 
-        private void Init()
+        public bool DisplayInstruction
         {
-            FontSize = "medium";
+            get => Preferences.Get(DisplayInstructionKey, true);
+            set => Preferences.Set(DisplayInstructionKey, value);
         }
-
-        public string FontSize { get; set; }
     }
 }
