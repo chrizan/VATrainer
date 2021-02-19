@@ -28,5 +28,12 @@ namespace VATrainer.Models
         /// <param name="themeId"></param>
         /// <returns></returns>
         Task<List<Question>> GetAllQuestionsOfTheme(int themeId);
+
+        /// <summary>
+        /// Returns the article with the given id
+        /// </summary>
+        /// <param name="articleId">The primary key of the article</param>
+        /// <returns></returns>
+        Task<Article> GetArticleForId(int articleId);
     }
 }

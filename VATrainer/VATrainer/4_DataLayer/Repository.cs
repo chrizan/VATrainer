@@ -51,5 +51,14 @@ namespace VATrainer.DataLayer
                 .ToListAsync();
             return questions;
         }
+
+        public async Task<Article> GetArticleForId(int articleId)
+        {
+            using var context = new VATrainerContext();
+            Article article = await context.Article
+                .Where(article => article.Id == articleId)
+                .FirstOrDefaultAsync();
+            return article;
+        }
     }
 }
