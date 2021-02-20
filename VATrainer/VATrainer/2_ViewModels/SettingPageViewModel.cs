@@ -8,8 +8,8 @@ namespace VATrainer.ViewModels
     public class SettingPageViewModel : BindableBase
     {
         private const string FontSizeUnit = "px";
-        private const string FontSizeMin = "12";
-        private const string FontSizeMax = "20";
+        private const double FontSizeMin = 12;
+        private const double FontSizeMax = 20;
 
         private readonly ISettings _settings;
         private readonly Article _article;
@@ -27,19 +27,20 @@ namespace VATrainer.ViewModels
 
         public double SliderValueMin
         {
-            get => Convert.ToDouble(FontSizeMin);
+            get => FontSizeMin;
         }
 
         public double SliderValueMax
         {
-            get => Convert.ToDouble(FontSizeMax);
+            get => FontSizeMax;
         }
 
         public double SliderValue { 
             get => Convert.ToDouble(_settings.FontSize.Replace(FontSizeUnit, string.Empty));
             set
             {
-                _settings.FontSize = ((int)value).ToString() + FontSizeUnit;
+                _settings.FontSize = Math.Round(value).ToString() + FontSizeUnit;
+                RaisePropertyChanged(nameof(SliderValue));
                 RaisePropertyChanged(nameof(Article));
             }
         }
