@@ -9,19 +9,19 @@
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width=".1*" />
+                <ColumnDefinition Width=".8*" />
+                <ColumnDefinition Width=".1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Button
@@ -29,18 +29,25 @@
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="ModePage"
+                Style="{StaticResource ButtonStyle}"
                 Text="MWST Schweiz (1)" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="on top" />
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="ModePage"
+                Style="{StaticResource ButtonStyle}"
                 Text="MWST EU RL (2)" />
             <Button
                 Grid.Row="5"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="ModePage"
+                Style="{StaticResource ButtonStyle}"
                 Text="OECD ROW (3)" />
         </Grid>
     </ContentPage.Content>

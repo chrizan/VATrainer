@@ -6,7 +6,28 @@
     xmlns:prism="http://prismlibrary.com">
     <Application.Resources>
 
-        <!--  Application resource dictionary  -->
+        <ResourceDictionary>
+            <!--  Primary Color  -->
+            <Color x:Key="PrimaryColor">#673ab7</Color>
+            <Color x:Key="PrimaryColorLight">#9a67ea</Color>
+            <Color x:Key="PrimaryColorDark">#320b86</Color>
+            <!--  Secondary Color  -->
+            <Color x:Key="SecondaryColor">#00bcd4</Color>
+            <Color x:Key="SecondaryColorLight">#62efff</Color>
+            <Color x:Key="SecondaryColorDark">#008ba3</Color>
+            <!--  Background Color  -->
+            <Color x:Key="BackgroundColorLight">#f5f5f5</Color>
+            <Color x:Key="BackgroundColorDark">#e0e0e0</Color>
+            <!--  Button  -->
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <!--<Setter Property="BorderColor" Value="{StaticResource PrimaryColor}" />-->
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+                <!--<Setter Property="BorderWidth" Value="3" />-->
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColorLight}" />
+            </Style>
+        </ResourceDictionary>
 
     </Application.Resources>
 </prism:PrismApplication>
