@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
+    xmlns:views="clr-namespace:VATrainer.Views"
     Title="{x:Static resx:AppResources.Title_HomeDetail}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
@@ -24,17 +25,16 @@
                 <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button
+            <views:FrameButton
                 Grid.Row="1"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="ModePage"
-                Style="{StaticResource ButtonStyle}"
-                Text="MWST Schweiz (1)" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
-                Text="on top" />
+                CommandParameter="ModePage">
+                <StackLayout>
+                    <Label FontSize="25" Text="didledum" />
+                    <Label FontSize="50" Text="didledei" />
+                </StackLayout>
+            </views:FrameButton>
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
