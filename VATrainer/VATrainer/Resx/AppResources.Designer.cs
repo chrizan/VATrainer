@@ -61,6 +61,42 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consumption Tax.
+        /// </summary>
+        public static string ConsumptionTax {
+            get {
+                return ResourceManager.GetString("ConsumptionTax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EU Directive.
+        /// </summary>
+        public static string EU_Directive {
+            get {
+                return ResourceManager.GetString("EU_Directive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OECD - ROW.
+        /// </summary>
+        public static string OECD_ROW {
+            get {
+                return ResourceManager.GetString("OECD_ROW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switzerland.
+        /// </summary>
+        public static string Switzerland {
+            get {
+                return ResourceManager.GetString("Switzerland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browsing.
         /// </summary>
         public static string Title_Browsing {
@@ -138,6 +174,15 @@ namespace VATrainer.Resx {
         public static string Title_Training {
             get {
                 return ResourceManager.GetString("Title_Training", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value Added Tax.
+        /// </summary>
+        public static string VAT {
+            get {
+                return ResourceManager.GetString("VAT", resourceCulture);
             }
         }
     }

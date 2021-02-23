@@ -9,6 +9,20 @@
     Title="{x:Static resx:AppResources.Title_HomeDetail}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
+    <ContentPage.Resources>
+        <Style x:Key="LabelStyleSmall" TargetType="Label">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+        </Style>
+        <Style x:Key="LabelStyleLarge" TargetType="Label">
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
@@ -29,26 +43,74 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="ModePage">
-                <StackLayout>
-                    <Label FontSize="25" Text="didledum" />
-                    <Label FontSize="50" Text="didledei" />
-                </StackLayout>
+                CommandParameter="ModePage"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="1"
+                        Style="{StaticResource LabelStyleSmall}"
+                        Text="{x:Static resx:AppResources.VAT}" />
+                    <Label
+                        Grid.Row="3"
+                        Style="{StaticResource LabelStyleLarge}"
+                        Text="{x:Static resx:AppResources.Switzerland}" />
+                </Grid>
             </views:FrameButton>
-            <Button
+            <views:FrameButton
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="ModePage"
-                Style="{StaticResource ButtonStyle}"
-                Text="MWST EU RL (2)" />
-            <Button
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="1"
+                        Style="{StaticResource LabelStyleSmall}"
+                        Text="{x:Static resx:AppResources.VAT}" />
+                    <Label
+                        Grid.Row="3"
+                        Style="{StaticResource LabelStyleLarge}"
+                        Text="{x:Static resx:AppResources.EU_Directive}" />
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
                 Grid.Row="5"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="ModePage"
-                Style="{StaticResource ButtonStyle}"
-                Text="OECD ROW (3)" />
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="1"
+                        Style="{StaticResource LabelStyleSmall}"
+                        Text="{x:Static resx:AppResources.ConsumptionTax}" />
+                    <Label
+                        Grid.Row="3"
+                        Style="{StaticResource LabelStyleLarge}"
+                        Text="{x:Static resx:AppResources.OECD_ROW}" />
+                </Grid>
+            </views:FrameButton>
         </Grid>
     </ContentPage.Content>
 
