@@ -46,7 +46,7 @@ namespace VATrainer.ViewModels
             else
             {
                 _currentQuestion = _repository.GetNextQuestionOfSameTheme(_currentQuestion).Result;
-                if(_currentQuestion == null)
+                if (_currentQuestion == null)
                 {
                     _currentQuestion = _repository.GetQuestionForId(1).Result;
                 }
@@ -169,9 +169,23 @@ namespace VATrainer.ViewModels
             }
         }
 
+        ~QAPageViewModel()
+        {
+            Dispose(false);
+        }
+
         public void Dispose()
         {
-            OnAnimationFinished -= OnFlipCallBackChanged;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                OnAnimationFinished -= OnFlipCallBackChanged;
+            }
         }
     }
 }

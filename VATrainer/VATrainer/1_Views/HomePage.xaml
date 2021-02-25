@@ -11,14 +11,14 @@
 
     <ContentPage.Resources>
         <Style x:Key="LabelStyleSmall" TargetType="Label">
-            <Setter Property="FontSize" Value="20" />
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
             <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
         </Style>
         <Style x:Key="LabelStyleLarge" TargetType="Label">
-            <Setter Property="FontSize" Value="35" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
             <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
         </Style>
     </ContentPage.Resources>
@@ -47,20 +47,15 @@
                 Style="{StaticResource FrameButtonStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="5*" />
                     </Grid.RowDefinitions>
-                    <Label
-                        Grid.Row="1"
-                        Style="{StaticResource LabelStyleSmall}"
-                        Text="{x:Static resx:AppResources.VAT}" />
-                    <Label
-                        Grid.Row="3"
-                        Style="{StaticResource LabelStyleLarge}"
-                        Text="{x:Static resx:AppResources.Switzerland}" />
+                    <views:SelfAdaptiveLabel Grid.Row="0">
+                        <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.VAT}" />
+                    </views:SelfAdaptiveLabel>
+                    <views:SelfAdaptiveLabel Grid.Row="1">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Switzerland}" />
+                    </views:SelfAdaptiveLabel>
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
@@ -71,20 +66,15 @@
                 Style="{StaticResource FrameButtonStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="5*" />
                     </Grid.RowDefinitions>
-                    <Label
-                        Grid.Row="1"
-                        Style="{StaticResource LabelStyleSmall}"
-                        Text="{x:Static resx:AppResources.VAT}" />
-                    <Label
-                        Grid.Row="3"
-                        Style="{StaticResource LabelStyleLarge}"
-                        Text="{x:Static resx:AppResources.EU_Directive}" />
+                    <views:SelfAdaptiveLabel Grid.Row="0">
+                        <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.VAT}" />
+                    </views:SelfAdaptiveLabel>
+                    <views:SelfAdaptiveLabel Grid.Row="1">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.EU_Directive}" />
+                    </views:SelfAdaptiveLabel>
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
@@ -95,20 +85,15 @@
                 Style="{StaticResource FrameButtonStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="5*" />
                     </Grid.RowDefinitions>
-                    <Label
-                        Grid.Row="1"
-                        Style="{StaticResource LabelStyleSmall}"
-                        Text="{x:Static resx:AppResources.ConsumptionTax}" />
-                    <Label
-                        Grid.Row="3"
-                        Style="{StaticResource LabelStyleLarge}"
-                        Text="{x:Static resx:AppResources.OECD_ROW}" />
+                    <views:SelfAdaptiveLabel Grid.Row="0">
+                        <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.ConsumptionTax}" />
+                    </views:SelfAdaptiveLabel>
+                    <views:SelfAdaptiveLabel Grid.Row="1">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.OECD_ROW}" />
+                    </views:SelfAdaptiveLabel>
                 </Grid>
             </views:FrameButton>
         </Grid>
