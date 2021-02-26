@@ -61,6 +61,24 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browsing.
+        /// </summary>
+        public static string Browsing {
+            get {
+                return ResourceManager.GetString("Browsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse the content as you like.
+        /// </summary>
+        public static string Browsing_Explanation {
+            get {
+                return ResourceManager.GetString("Browsing_Explanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consumption Tax.
         /// </summary>
         public static string ConsumptionTax {
@@ -75,6 +93,24 @@ namespace VATrainer.Resx {
         public static string EU_Directive {
             get {
                 return ResourceManager.GetString("EU_Directive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guided Learning.
+        /// </summary>
+        public static string Guided_Learning {
+            get {
+                return ResourceManager.GetString("Guided_Learning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prepare yourself for an exam.
+        /// </summary>
+        public static string Guided_Learning_Explanation {
+            get {
+                return ResourceManager.GetString("Guided_Learning_Explanation", resourceCulture);
             }
         }
         

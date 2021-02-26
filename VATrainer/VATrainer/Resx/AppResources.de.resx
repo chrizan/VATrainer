@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Browsing" xml:space="preserve">
+    <value>Stöbern</value>
+  </data>
+  <data name="Browsing_Explanation" xml:space="preserve">
+    <value>Stöbere frei durch den Inhalt</value>
+  </data>
   <data name="ConsumptionTax" xml:space="preserve">
     <value>Verbrauchssteuern</value>
   </data>
   <data name="EU_Directive" xml:space="preserve">
     <value>EU Richtlinie</value>
+  </data>
+  <data name="Guided_Learning_Explanation" xml:space="preserve">
+    <value>Lerne gezielt für eine Prüfung</value>
+  </data>
+  <data name="Learning" xml:space="preserve">
+    <value>Geführtes Lernen</value>
   </data>
   <data name="OECD_ROW" xml:space="preserve">
     <value>OECD - ROW</value>

@@ -5,35 +5,62 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
+    xmlns:views="clr-namespace:VATrainer.Views"
     Title="{x:Static resx:AppResources.Title_Mode}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width=".1*" />
+                <ColumnDefinition Width=".8*" />
+                <ColumnDefinition Width=".1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="2.33*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="2.33*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="2.33*" />
             </Grid.RowDefinitions>
-            <Button
+            <views:FrameButton
                 Grid.Row="1"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="TrainingPage"
-                Text="Lernen" />
-            <Button
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+                    <views:SelfAdaptiveLabel Grid.Row="0">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Guided_Learning}" />
+                    </views:SelfAdaptiveLabel>
+                    <views:SelfAdaptiveLabel Grid.Row="1">
+                        <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Guided_Learning_Explanation}" />
+                    </views:SelfAdaptiveLabel>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="BrowsingPage"
-                Text="Stöbern" />
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+                    <views:SelfAdaptiveLabel Grid.Row="0">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Browsing}" />
+                    </views:SelfAdaptiveLabel>
+                    <views:SelfAdaptiveLabel Grid.Row="1">
+                        <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Browsing_Explanation}" />
+                    </views:SelfAdaptiveLabel>
+                </Grid>
+            </views:FrameButton>
         </Grid>
     </ContentPage.Content>
 

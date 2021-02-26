@@ -9,20 +9,6 @@
     Title="{x:Static resx:AppResources.Title_HomeDetail}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
-    <ContentPage.Resources>
-        <Style x:Key="LabelStyleSmall" TargetType="Label">
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-        </Style>
-        <Style x:Key="LabelStyleLarge" TargetType="Label">
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
-        </Style>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>

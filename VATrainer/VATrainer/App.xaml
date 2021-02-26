@@ -25,6 +25,19 @@
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="BackgroundColor" Value="White" />
             </Style>
+            <!--  FrameButton Label small  -->
+            <Style x:Key="LabelStyleSmall" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
+            <!--  FrameButton Label large  -->
+            <Style x:Key="LabelStyleLarge" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>
