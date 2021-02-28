@@ -24,6 +24,7 @@
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Padding" Value="0" />
             </Style>
             <!--  FrameButton Label small  -->
             <Style x:Key="LabelStyleSmall" TargetType="Label">

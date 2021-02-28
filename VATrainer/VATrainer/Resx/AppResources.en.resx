@@ -129,14 +129,23 @@
   <data name="EU_Directive" xml:space="preserve">
     <value>EU Directive</value>
   </data>
-  <data name="Guided_Learning" xml:space="preserve">
-    <value>Guided Learning</value>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
   </data>
-  <data name="Guided_Learning_Explanation" xml:space="preserve">
+  <data name="Learning" xml:space="preserve">
+    <value>Learning</value>
+  </data>
+  <data name="Learning_Explanation" xml:space="preserve">
     <value>Prepare yourself for an exam</value>
   </data>
   <data name="OECD_ROW" xml:space="preserve">
     <value>OECD - ROW</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="Switzerland" xml:space="preserve">
     <value>Switzerland</value>

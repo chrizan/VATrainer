@@ -31,14 +31,21 @@
                 Style="{StaticResource FrameButtonStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
                         <RowDefinition Height="5*" />
                         <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <views:SelfAdaptiveLabel Grid.Row="0">
-                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Guided_Learning}" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.9*" />
+                        <ColumnDefinition Width="0.05*" />
+                    </Grid.ColumnDefinitions>
+                    <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Learning}" />
                     </views:SelfAdaptiveLabel>
-                    <views:SelfAdaptiveLabel Grid.Row="1">
-                        <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Guided_Learning_Explanation}" />
+                    <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                        <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Learning_Explanation}" />
                     </views:SelfAdaptiveLabel>
                 </Grid>
             </views:FrameButton>
@@ -50,13 +57,20 @@
                 Style="{StaticResource FrameButtonStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
                         <RowDefinition Height="5*" />
                         <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <views:SelfAdaptiveLabel Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.9*" />
+                        <ColumnDefinition Width="0.05*" />
+                    </Grid.ColumnDefinitions>
+                    <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
                         <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Browsing}" />
                     </views:SelfAdaptiveLabel>
-                    <views:SelfAdaptiveLabel Grid.Row="1">
+                    <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
                         <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Browsing_Explanation}" />
                     </views:SelfAdaptiveLabel>
                 </Grid>

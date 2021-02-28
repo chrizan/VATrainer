@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resx="clr-namespace:VATrainer.Resx"
+    xmlns:views="clr-namespace:VATrainer.Views"
     x:Name="page"
     Title="{x:Static resx:AppResources.Title_HomeMaster}">
 
@@ -12,26 +13,60 @@
             Title="Menu"
             Padding="{OnPlatform Default='20',
                                  iOS='20,40'}"
+            BackgroundColor="{StaticResource BackgroundColorDark}"
             IconImageSource="{OnPlatform iOS='hamburger.png'}">
-            <StackLayout>
-                <Label
-                    Margin="0,20"
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    Text="Master Detail Demo" />
-                <Button
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".05*" />
+                    <ColumnDefinition Width=".9*" />
+                    <ColumnDefinition Width=".05*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40*" />
+                </Grid.RowDefinitions>
+                <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                    <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Title_HomeMaster}" />
+                </views:SelfAdaptiveLabel>
+                <views:FrameButton
+                    Grid.Row="3"
+                    Grid.Column="1"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="HomePage"
-                    Text="Home Page" />
-                <Button
+                    Style="{StaticResource FrameButtonStyle}">
+                    <views:SelfAdaptiveLabel Grid.Row="0">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Home}" />
+                    </views:SelfAdaptiveLabel>
+                </views:FrameButton>
+                <views:FrameButton
+                    Grid.Row="5"
+                    Grid.Column="1"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="ResourcePage"
-                    Text="Resource Page" />
-                <Button
+                    Style="{StaticResource FrameButtonStyle}">
+                    <views:SelfAdaptiveLabel Grid.Row="0">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Resources}" />
+                    </views:SelfAdaptiveLabel>
+                </views:FrameButton>
+                <views:FrameButton
+                    Grid.Row="7"
+                    Grid.Column="1"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="SettingPage"
-                    Text="Setting Page" />
-            </StackLayout>
+                    Style="{StaticResource FrameButtonStyle}">
+                    <views:SelfAdaptiveLabel Grid.Row="1">
+                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Settings}" />
+                    </views:SelfAdaptiveLabel>
+                </views:FrameButton>
+            </Grid>
         </ContentPage>
     </MasterDetailPage.Master>
 

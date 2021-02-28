@@ -129,14 +129,23 @@
   <data name="EU_Directive" xml:space="preserve">
     <value>EU Richtlinie</value>
   </data>
-  <data name="Guided_Learning_Explanation" xml:space="preserve">
-    <value>Lerne gezielt für eine Prüfung</value>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
   </data>
   <data name="Learning" xml:space="preserve">
     <value>Geführtes Lernen</value>
   </data>
+  <data name="Learning_Explanation" xml:space="preserve">
+    <value>Lerne gezielt für eine Prüfung</value>
+  </data>
   <data name="OECD_ROW" xml:space="preserve">
     <value>OECD - ROW</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Ressourcen</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="Switzerland" xml:space="preserve">
     <value>Schweiz</value>

@@ -97,20 +97,29 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guided Learning.
+        ///   Looks up a localized string similar to Home.
         /// </summary>
-        public static string Guided_Learning {
+        public static string Home {
             get {
-                return ResourceManager.GetString("Guided_Learning", resourceCulture);
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learning.
+        /// </summary>
+        public static string Learning {
+            get {
+                return ResourceManager.GetString("Learning", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Prepare yourself for an exam.
         /// </summary>
-        public static string Guided_Learning_Explanation {
+        public static string Learning_Explanation {
             get {
-                return ResourceManager.GetString("Guided_Learning_Explanation", resourceCulture);
+                return ResourceManager.GetString("Learning_Explanation", resourceCulture);
             }
         }
         
@@ -120,6 +129,24 @@ namespace VATrainer.Resx {
         public static string OECD_ROW {
             get {
                 return ResourceManager.GetString("OECD_ROW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        public static string Resources {
+            get {
+                return ResourceManager.GetString("Resources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
