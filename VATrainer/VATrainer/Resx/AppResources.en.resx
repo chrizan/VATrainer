@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Adjective_law" xml:space="preserve">
+    <value>Adjective law</value>
+  </data>
   <data name="Browsing" xml:space="preserve">
     <value>Browsing</value>
   </data>
@@ -126,11 +129,26 @@
   <data name="ConsumptionTax" xml:space="preserve">
     <value>Consumption Tax</value>
   </data>
+  <data name="Criminal_law" xml:space="preserve">
+    <value>Criminal law</value>
+  </data>
   <data name="EU_Directive" xml:space="preserve">
     <value>EU Directive</value>
   </data>
+  <data name="Expense_side" xml:space="preserve">
+    <value>Expense side</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="International_VAT_law" xml:space="preserve">
+    <value>International VAT law</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="Last_seen_:_" xml:space="preserve">
+    <value>Last seen: </value>
   </data>
   <data name="Learning" xml:space="preserve">
     <value>Learning</value>
@@ -144,11 +162,17 @@
   <data name="Resources" xml:space="preserve">
     <value>Resources</value>
   </data>
+  <data name="Revenue_side" xml:space="preserve">
+    <value>Revenue side</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="Switzerland" xml:space="preserve">
     <value>Switzerland</value>
+  </data>
+  <data name="Taxpayer" xml:space="preserve">
+    <value>Taxpayer</value>
   </data>
   <data name="Title_Browsing" xml:space="preserve">
     <value>Browsing</value>
@@ -179,5 +203,8 @@
   </data>
   <data name="VAT" xml:space="preserve">
     <value>Value Added Tax</value>
+  </data>
+  <data name="VAT_and_accounting" xml:space="preserve">
+    <value>VAT and accounting</value>
   </data>
 </root>

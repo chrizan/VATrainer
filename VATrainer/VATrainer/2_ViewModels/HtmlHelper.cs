@@ -6,6 +6,13 @@ namespace VATrainer.ViewModels
 {
     public class HtmlHelper : IHtmlHelper
     {
+        private const string PrimaryColorDark = "#320b86";
+
+        private const string SecondaryColorDark = "#008ba3";
+        private const string SecondaryColorLight = "#62efff";
+        
+        private const string BackgroundColorLight = "#f5f5f5";
+
         public string BuildWebpage(string style, string body)
         {
             return @"<!DOCTYPE html>
@@ -45,15 +52,15 @@ namespace VATrainer.ViewModels
 						    width: 80%;
                             max-height: 80%;
 							padding: 20px;
-						    background-color: #fefefe;
-						    border: 1px solid #888;
+						    background-color: " + BackgroundColorLight + @";
+						    border: 1px solid " + PrimaryColorDark + @";
                             overflow: scroll;
 						}
 
 			            /* The Close Button (x)*/
 			            .close
 			            {
-				            color: #000;
+				            color: " + PrimaryColorDark + @";
 				            float: right;
 				            font-size: 28px;
 				            font-weight: bold; 
@@ -62,24 +69,24 @@ namespace VATrainer.ViewModels
 			            /* The Link */
 			            .link
 			            {
-				            color: blue;
+				            color: " + SecondaryColorDark + @";
 				            font-weight: bold;
 			            }
 
                         /* The Textmarker */
                         .textmarker
                         {
-                            background-color: yellow;
+                            background-color: " + SecondaryColorLight + @";
                         }
 
                         html {
-                            background-color: #F0FFFF
+                            background-color: " + BackgroundColorLight + @";
                         }
 
                         p, li {
                             font-family: Calibri;
                             font-size: " + settings.FontSize + @";
-                            color: #191970;
+                            color: " + PrimaryColorDark + @";
                         }
 
                         ul {

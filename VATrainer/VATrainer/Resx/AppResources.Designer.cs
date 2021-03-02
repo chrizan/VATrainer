@@ -61,6 +61,15 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjective law.
+        /// </summary>
+        public static string Adjective_law {
+            get {
+                return ResourceManager.GetString("Adjective_law", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browsing.
         /// </summary>
         public static string Browsing {
@@ -88,6 +97,15 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Criminal law.
+        /// </summary>
+        public static string Criminal_law {
+            get {
+                return ResourceManager.GetString("Criminal_law", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EU Directive.
         /// </summary>
         public static string EU_Directive {
@@ -97,11 +115,47 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expense side.
+        /// </summary>
+        public static string Expense_side {
+            get {
+                return ResourceManager.GetString("Expense_side", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to International VAT law.
+        /// </summary>
+        public static string International_VAT_law {
+            get {
+                return ResourceManager.GetString("International_VAT_law", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Introduction.
+        /// </summary>
+        public static string Introduction {
+            get {
+                return ResourceManager.GetString("Introduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last seen: .
+        /// </summary>
+        public static string Last_seen___ {
+            get {
+                return ResourceManager.GetString("Last_seen_:_", resourceCulture);
             }
         }
         
@@ -142,6 +196,15 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revenue side.
+        /// </summary>
+        public static string Revenue_side {
+            get {
+                return ResourceManager.GetString("Revenue_side", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
@@ -156,6 +219,15 @@ namespace VATrainer.Resx {
         public static string Switzerland {
             get {
                 return ResourceManager.GetString("Switzerland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taxpayer.
+        /// </summary>
+        public static string Taxpayer {
+            get {
+                return ResourceManager.GetString("Taxpayer", resourceCulture);
             }
         }
         
@@ -246,6 +318,15 @@ namespace VATrainer.Resx {
         public static string VAT {
             get {
                 return ResourceManager.GetString("VAT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT and accounting.
+        /// </summary>
+        public static string VAT_and_accounting {
+            get {
+                return ResourceManager.GetString("VAT_and_accounting", resourceCulture);
             }
         }
     }

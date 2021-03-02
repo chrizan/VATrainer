@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Adjective_law" xml:space="preserve">
+    <value>Verfahrensrecht</value>
+  </data>
   <data name="Browsing" xml:space="preserve">
     <value>Stöbern</value>
   </data>
@@ -126,11 +129,26 @@
   <data name="ConsumptionTax" xml:space="preserve">
     <value>Verbrauchssteuern</value>
   </data>
+  <data name="Criminal_law" xml:space="preserve">
+    <value>Strafrecht</value>
+  </data>
   <data name="EU_Directive" xml:space="preserve">
     <value>EU Richtlinie</value>
   </data>
+  <data name="Expense_side" xml:space="preserve">
+    <value>Ausgabenseite</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="International_VAT_law" xml:space="preserve">
+    <value>Überblick über das internationale Mehrwertsteuerrecht</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>Einleitung</value>
+  </data>
+  <data name="Last_seen_:_" xml:space="preserve">
+    <value>Zuletzt gesehen: </value>
   </data>
   <data name="Learning" xml:space="preserve">
     <value>Geführtes Lernen</value>
@@ -144,11 +162,17 @@
   <data name="Resources" xml:space="preserve">
     <value>Ressourcen</value>
   </data>
+  <data name="Revenue_side" xml:space="preserve">
+    <value>Einnahmenseite</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
   <data name="Switzerland" xml:space="preserve">
     <value>Schweiz</value>
+  </data>
+  <data name="Taxpayer" xml:space="preserve">
+    <value>Steuersubjekt</value>
   </data>
   <data name="Title_Browsing" xml:space="preserve">
     <value>Stöbern</value>
@@ -179,5 +203,8 @@
   </data>
   <data name="VAT" xml:space="preserve">
     <value>Mehrwertsteuer</value>
+  </data>
+  <data name="VAT_and_accounting" xml:space="preserve">
+    <value>MWST und Buchhaltung</value>
   </data>
 </root>

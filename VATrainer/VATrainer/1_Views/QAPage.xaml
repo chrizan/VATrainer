@@ -15,22 +15,8 @@
         </OnPlatform>
     </ContentPage.Padding>-->
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="flipView">
-                #F0FFFF
-            </Color>
-            <Color x:Key="page">
-                #5CACEE
-            </Color>
-            <Color x:Key="text">
-                #551A8B
-            </Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource page}">
+        <StackLayout BackgroundColor="{StaticResource BackgroundColorDark}">
 
             <flip:FlipView
                 Flip="{Binding Flip}"
@@ -84,32 +70,32 @@
                 <Button
                     Grid.Column="0"
                     Padding="0"
-                    BackgroundColor="{StaticResource flipView}"
+                    BackgroundColor="{StaticResource BackgroundColorLight}"
                     Command="{Binding ButtonCommand}"
                     CommandParameter="left"
                     CornerRadius="10"
                     FontSize="Large"
                     IsVisible="{Binding IsButtonVisible}"
                     Text="Got it"
-                    TextColor="{StaticResource text}" />
+                    TextColor="{StaticResource PrimaryColorDark}" />
                 <Label
                     Grid.Column="1"
                     FontSize="Large"
                     HorizontalOptions="Center"
                     Text="{Binding Counter}"
-                    TextColor="{StaticResource text}"
+                    TextColor="{StaticResource PrimaryColorDark}"
                     VerticalOptions="Center" />
                 <Button
                     Grid.Column="2"
                     Padding="0"
-                    BackgroundColor="{StaticResource flipView}"
+                    BackgroundColor="{StaticResource BackgroundColorLight}"
                     Command="{Binding ButtonCommand}"
                     CommandParameter="right"
                     CornerRadius="10"
                     FontSize="Large"
                     IsVisible="{Binding IsButtonVisible}"
                     Text="Again"
-                    TextColor="{StaticResource text}" />
+                    TextColor="{StaticResource PrimaryColorDark}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

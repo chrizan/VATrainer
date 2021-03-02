@@ -9,7 +9,7 @@
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource BackgroundColorLight}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>

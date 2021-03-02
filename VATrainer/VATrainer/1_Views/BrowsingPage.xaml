@@ -5,43 +5,380 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
+    xmlns:views="clr-namespace:VATrainer.Views"
     Title="{x:Static resx:AppResources.Title_Browsing}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="0.1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height=".5*" />
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height=".1*" />
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height=".1*" />
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height=".5*" />
             </Grid.RowDefinitions>
-            <Button
+            <views:FrameButton
                 Grid.Row="1"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
-                Text="Browsing Einleitung (1)" />
-            <Button
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Introduction}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="2"
-                Text="Browsing Steuersubjekt (2)" />
-            <Button
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Revenue_side}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
                 Grid.Row="5"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
-                CommandParameter="3"
-                Text="Browsing Steuerobjekt (3)" />
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Expense_side}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
+                Grid.Row="7"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Taxpayer}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
+                Grid.Row="9"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.VAT_and_accounting}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
+                Grid.Row="11"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Adjective_law}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
+                Grid.Row="13"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Criminal_law}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+            <views:FrameButton
+                Grid.Row="15"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.International_VAT_law}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
         </Grid>
     </ContentPage.Content>
 
