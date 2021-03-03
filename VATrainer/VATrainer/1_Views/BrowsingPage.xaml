@@ -9,6 +9,17 @@
     Title="{x:Static resx:AppResources.Title_Browsing}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="LabelStyleLargeBrowsing"
+                BasedOn="{StaticResource LabelStyleLarge}"
+                TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -18,21 +29,21 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height=".5*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="0" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height=".1*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height=".1*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height=".1*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height=".1*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height=".1*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height=".1*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height=".1*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height=".5*" />
             </Grid.RowDefinitions>
             <views:FrameButton
@@ -53,12 +64,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Introduction}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.Introduction}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -68,12 +79,16 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
@@ -96,12 +111,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Revenue_side}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.Revenue_side}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -111,12 +126,16 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="--/--/--" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
@@ -139,12 +158,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Expense_side}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.Expense_side}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -154,12 +173,16 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
@@ -182,12 +205,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Taxpayer}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.Taxpayer}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -197,12 +220,16 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
@@ -225,12 +252,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.VAT_and_accounting}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.VAT_and_accounting}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -240,12 +267,16 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
@@ -268,12 +299,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Adjective_law}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.Adjective_law}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -283,12 +314,16 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
@@ -311,12 +346,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Criminal_law}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.Criminal_law}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -326,12 +361,16 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
@@ -354,12 +393,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.International_VAT_law}" />
+                            <Label Style="{StaticResource LabelStyleLargeBrowsing}" Text="{x:Static resx:AppResources.International_VAT_law}" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -369,12 +408,12 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen: 01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen 01/03/21" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
