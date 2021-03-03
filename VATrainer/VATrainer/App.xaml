@@ -8,15 +8,15 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <!--  Primary Color  -->
+            <!--  Primary Color -> see also HtmlHelper  -->
             <Color x:Key="PrimaryColor">#673ab7</Color>
             <Color x:Key="PrimaryColorLight">#9a67ea</Color>
             <Color x:Key="PrimaryColorDark">#320b86</Color>
-            <!--  Secondary Color  -->
+            <!--  Secondary Color -> see also HtmlHelper  -->
             <Color x:Key="SecondaryColor">#00bcd4</Color>
             <Color x:Key="SecondaryColorLight">#62efff</Color>
             <Color x:Key="SecondaryColorDark">#008ba3</Color>
-            <!--  Background Color  -->
+            <!--  Background Color -> see also HtmlHelper  -->
             <Color x:Key="BackgroundColorLight">#f5f5f5</Color>
             <Color x:Key="BackgroundColorDark">#e0e0e0</Color>
             <!--  FrameButton  -->

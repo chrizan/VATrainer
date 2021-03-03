@@ -12,6 +12,8 @@ namespace VATrainer.ViewModels
         private const string SecondaryColorLight = "#62efff";
         
         private const string BackgroundColorLight = "#f5f5f5";
+        
+        private const string PaddingText = "15px";
 
         public string BuildWebpage(string style, string body)
         {
@@ -81,6 +83,8 @@ namespace VATrainer.ViewModels
 
                         html {
                             background-color: " + BackgroundColorLight + @";
+                            padding-left: " + PaddingText + @";
+                            padding-right: " + PaddingText + @";
                         }
 
                         p, li {
