@@ -14,7 +14,7 @@ namespace VATrainer.ViewModels
         private const string BackgroundColorLight = "#f5f5f5";
         
         private const string PaddingText = "10px";
-        private const string MarginBottomAnswer = "35px";
+        private const string PaddingBottomAnswer = "5px";
 
         public string BuildWebpage(string style, string body)
         {
@@ -133,7 +133,7 @@ namespace VATrainer.ViewModels
 
         public string FormatAnswerForContentView(string answer)
         {
-            return @"<div style=""margin-bottom: " + MarginBottomAnswer + @""";>" + answer + "</div>";
+            return @"<div style=""padding-bottom: " + PaddingBottomAnswer + @""";>" + answer + "</div>";
         }
 
         private static string BuildJavaScript(List<Article> articles)
