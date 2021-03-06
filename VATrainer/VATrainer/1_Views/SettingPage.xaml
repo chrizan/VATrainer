@@ -8,8 +8,9 @@
     Title="{x:Static resx:AppResources.Title_Settings}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
-    <Grid>
+    <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
@@ -21,12 +22,12 @@
         </Grid.ColumnDefinitions>
 
         <WebView
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Source="{Binding Article, Mode=OneWay}" />
 
         <Slider
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             Maximum="{Binding SliderValueMax}"
             Minimum="{Binding SliderValueMin}"

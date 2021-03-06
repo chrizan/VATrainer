@@ -5,15 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
+    xmlns:views="clr-namespace:VATrainer.Views"
     Title="{x:Static resx:AppResources.Title_Training}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -24,24 +25,162 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button
+
+
+            <views:FrameButton
                 Grid.Row="1"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="QAPage"
-                Text="Training Einleitung (1)" />
-            <Button
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="0">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Introduction}" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="Last seen: --/--/--" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1" BackgroundColor="{StaticResource BackgroundColorDark}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="0">
+                            <Label Text="9" TextColor="Red" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label
+                                BackgroundColor="Black"
+                                HorizontalOptions="Center"
+                                Text="5"
+                                TextColor="Yellow" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="2">
+                            <Label Text="1" TextColor="Green" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label
+                                Rotation="90"
+                                Style="{StaticResource LabelStyleSmall}"
+                                Text="&#8635;" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+
+            <views:FrameButton
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="QAPage"
-                Text="Training Steuersubjekt (2)" />
-            <Button
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="0">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Introduction}" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="1">
+                            <Label Style="{StaticResource LabelStyleLarge}" Text="Last seen: --/--/--" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="0">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="9"
+                                TextColor="{StaticResource PrimaryColorDark}" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="5"
+                                TextColor="{StaticResource PrimaryColor}" />
+                        </views:SelfAdaptiveLabel>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="2">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="1"
+                                TextColor="{StaticResource PrimaryColorLight}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label
+                                Rotation="90"
+                                Style="{StaticResource LabelStyleLarge}"
+                                Text="&#8635;" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+
+            <Path
                 Grid.Row="5"
                 Grid.Column="1"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="QAPage"
-                Text="Training Steuerobjekt (3)" />
+                Data="{Binding Path}"
+                StrokeThickness="2">
+                <Path.Stroke>
+                    <SolidColorBrush Color="{StaticResource PrimaryColorDark}" />
+                </Path.Stroke>
+            </Path>
         </Grid>
     </ContentPage.Content>
 

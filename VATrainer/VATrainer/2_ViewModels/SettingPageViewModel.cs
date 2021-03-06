@@ -11,6 +11,9 @@ namespace VATrainer.ViewModels
         private const double FontSizeMin = 12;
         private const double FontSizeMax = 20;
 
+        private const string PrimaryColorDark = "#320b86";
+        private const string BackgroundColorLight = "#f5f5f5";
+
         private readonly ISettings _settings;
         private readonly Article _article;
 
@@ -22,7 +25,12 @@ namespace VATrainer.ViewModels
 
         public HtmlWebViewSource Article
         {
-            get => new HtmlWebViewSource() { Html = $"<div style=font-size:{_settings.FontSize}>{_article.Text}</div>" };
+            get => new HtmlWebViewSource() { 
+                Html = $"<html style=background-color:{BackgroundColorLight};>" +
+                $"<div style=color:{PrimaryColorDark};" +
+                $"font-size:{_settings.FontSize}>" +
+                $"{_article.Text}</div></html>"
+            };
         }
 
         public double SliderValueMin

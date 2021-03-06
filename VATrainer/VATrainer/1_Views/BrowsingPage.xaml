@@ -21,7 +21,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*" />
                 <ColumnDefinition Width="0.8*" />

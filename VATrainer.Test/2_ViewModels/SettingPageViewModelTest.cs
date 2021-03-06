@@ -29,7 +29,7 @@ namespace VATrainer.Test.ViewModels
             var articleWebViewSource = settingPageViewModel.Article;
 
             // Assert
-            articleWebViewSource.Html.Should().Be($"<div style=font-size:{fontSize}>{articleText}</div>");
+            articleWebViewSource.Html.Should().Be($"<html style=background-color:#f5f5f5;><div style=color:#320b86;font-size:{fontSize}>{articleText}</div></html>");
         }
     }
 }

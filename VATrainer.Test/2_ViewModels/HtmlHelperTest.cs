@@ -72,7 +72,7 @@ namespace VATrainer.Test.ViewModels
             string formattedQuestion = _htmlHelper.FormatQuestionForContentView(question);
 
             // Assert 
-            formattedQuestion.Should().Be("<b>" + question + "</b>");
+            formattedQuestion.Should().Be(@"<div style=""font-weight:bold;"">" + question + "</div>");
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace VATrainer.Test.ViewModels
             string formattedAnswer = _htmlHelper.FormatAnswerForContentView(answer);
 
             // Assert 
-            formattedAnswer.Should().Be(answer + "<br>");
+            formattedAnswer.Should().Be(@"<div style=""padding-bottom: 5px"";>" + answer + "</div>");
         }
     }
 }
