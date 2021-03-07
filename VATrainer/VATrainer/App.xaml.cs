@@ -39,6 +39,7 @@ namespace VATrainer
             containerRegistry.RegisterSingleton<ISettings, Settings>();
             containerRegistry.RegisterSingleton<IHtmlHelper, HtmlHelper>();
             containerRegistry.RegisterSingleton<IWebpageCreator, WebpageCreator>();
+            containerRegistry.RegisterSingleton<IDeckGeometryCalc, DeckGeometryCalc>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();

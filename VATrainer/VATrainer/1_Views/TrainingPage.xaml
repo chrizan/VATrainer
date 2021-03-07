@@ -172,15 +172,27 @@
                 </Grid>
             </views:FrameButton>
 
-            <Path
+            <StackLayout
                 Grid.Row="5"
                 Grid.Column="1"
-                Data="{Binding Path}"
-                StrokeThickness="2">
-                <Path.Stroke>
-                    <SolidColorBrush Color="{StaticResource PrimaryColorDark}" />
-                </Path.Stroke>
-            </Path>
+                BackgroundColor="AliceBlue"
+                Spacing="0">
+                <Label
+                    BackgroundColor="Aquamarine"
+                    FontSize="Small"
+                    Text="15"
+                    TextColor="{StaticResource PrimaryColorDark}" />
+                <Path
+                    Aspect="Uniform"
+                    BackgroundColor="Bisque"
+                    Data="{Binding Path}"
+                    HorizontalOptions="Start"
+                    StrokeThickness="1">
+                    <Path.Stroke>
+                        <SolidColorBrush Color="{StaticResource PrimaryColorDark}" />
+                    </Path.Stroke>
+                </Path>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 
