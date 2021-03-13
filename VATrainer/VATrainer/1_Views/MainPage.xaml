@@ -3,6 +3,7 @@
     x:Class="VATrainer.Views.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:image="clr-namespace:VATrainer.Images"
     xmlns:resx="clr-namespace:VATrainer.Resx"
     xmlns:views="clr-namespace:VATrainer.Views"
     x:Name="page"
@@ -17,53 +18,91 @@
             IconImageSource="{OnPlatform iOS='hamburger.png'}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".05*" />
-                    <ColumnDefinition Width=".9*" />
-                    <ColumnDefinition Width=".05*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="3*" />
                     <RowDefinition Height="4*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="4*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="4*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="4*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="40*" />
+                    <RowDefinition Height="30*" />
                 </Grid.RowDefinitions>
-                <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                    <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Title_HomeMaster}" />
-                </views:SelfAdaptiveLabel>
-                <views:FrameButton
+                <Line
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    StrokeThickness="8"
+                    VerticalOptions="Center"
+                    X1="0"
+                    X2="1000"
+                    Y1="0"
+                    Y2="0">
+                    <Line.Stroke>
+                        <SolidColorBrush Color="White" />
+                    </Line.Stroke>
+                </Line>
+                <Image
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Source="{image:ImageResource VATrainer.Images.splash.png}" />
+                <Line
                     Grid.Row="3"
                     Grid.Column="1"
-                    Command="{Binding NavigateCommand}"
-                    CommandParameter="HomePage"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <views:SelfAdaptiveLabel Grid.Row="0">
-                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Home}" />
-                    </views:SelfAdaptiveLabel>
-                </views:FrameButton>
+                    StrokeThickness="8"
+                    VerticalOptions="Center"
+                    X1="0"
+                    X2="1000"
+                    Y1="0"
+                    Y2="0">
+                    <Line.Stroke>
+                        <SolidColorBrush Color="White" />
+                    </Line.Stroke>
+                </Line>
                 <views:FrameButton
                     Grid.Row="5"
                     Grid.Column="1"
                     Command="{Binding NavigateCommand}"
-                    CommandParameter="ResourcePage"
+                    CommandParameter="HomePage"
                     Style="{StaticResource FrameButtonStyle}">
-                    <views:SelfAdaptiveLabel Grid.Row="0">
-                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Resources}" />
+                    <views:SelfAdaptiveLabel>
+                        <Label
+                            Padding="2"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="{x:Static resx:AppResources.Home}" />
                     </views:SelfAdaptiveLabel>
                 </views:FrameButton>
                 <views:FrameButton
                     Grid.Row="7"
                     Grid.Column="1"
                     Command="{Binding NavigateCommand}"
+                    CommandParameter="ResourcePage"
+                    Style="{StaticResource FrameButtonStyle}">
+                    <views:SelfAdaptiveLabel>
+                        <Label
+                            Padding="2"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="{x:Static resx:AppResources.Resources}" />
+                    </views:SelfAdaptiveLabel>
+                </views:FrameButton>
+                <views:FrameButton
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
                     CommandParameter="SettingPage"
                     Style="{StaticResource FrameButtonStyle}">
-                    <views:SelfAdaptiveLabel Grid.Row="1">
-                        <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Settings}" />
+                    <views:SelfAdaptiveLabel>
+                        <Label
+                            Padding="2"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="{x:Static resx:AppResources.Settings}" />
                     </views:SelfAdaptiveLabel>
                 </views:FrameButton>
             </Grid>
