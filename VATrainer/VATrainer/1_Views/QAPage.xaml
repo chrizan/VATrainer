@@ -3,9 +3,9 @@
     x:Class="VATrainer.Views.QAPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:flip="clr-namespace:VATrainer.Views;assembly=VATrainer"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
+    xmlns:views="clr-namespace:VATrainer.Views;assembly=VATrainer"
     Title="{x:Static resx:AppResources.Title_QA}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
@@ -15,48 +15,48 @@
         </OnPlatform>
     </ContentPage.Padding>-->
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--  FlipView  -->
+            <Style x:Key="FlipViewStyle" TargetType="views:FlipView">
+                <Setter Property="HeightRequest" Value="1000" />
+                <Setter Property="WidthRequest" Value="1000" />
+            </Style>
+            <!--  FlashCard  -->
+            <Style x:Key="FlashCardStyle" TargetType="Frame">
+                <Setter Property="Margin" Value="15,15,15,0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource BackgroundColorDark}">
 
-            <flip:FlipView
-                Flip="{Binding Flip}"
-                HeightRequest="1000"
-                WidthRequest="1000">
-                <flip:FlipView.FrontView>
-                    <Frame
-                        Margin="15,15,15,0"
-                        Padding="0"
-                        CornerRadius="10"
-                        HasShadow="True">
-                        <flip:CustomWebView PannedCommand="{Binding PannedCommand}" Source="{Binding Question, Mode=OneWay}">
+            <views:FlipView Flip="{Binding Flip}" Style="{StaticResource FlipViewStyle}">
+                <views:FlipView.FrontView>
+                    <Frame Style="{StaticResource FlashCardStyle}">
+                        <views:CustomWebView Source="{Binding Question, Mode=OneWay}" SwipedCommand="{Binding SwipedCommand}">
                             <WebView.GestureRecognizers>
                                 <SwipeGestureRecognizer Command="{Binding SwipeCommand}" Direction="Left" />
                                 <SwipeGestureRecognizer Command="{Binding SwipeCommand}" Direction="Right" />
                             </WebView.GestureRecognizers>
-                        </flip:CustomWebView>
+                        </views:CustomWebView>
                     </Frame>
-                </flip:FlipView.FrontView>
-                <flip:FlipView.BackView>
-                    <Frame
-                        Margin="15,15,15,0"
-                        Padding="0"
-                        CornerRadius="10"
-                        HasShadow="True">
-                        <flip:CustomWebView PannedCommand="{Binding PannedCommand}" Source="{Binding Answer, Mode=OneWay}">
+                </views:FlipView.FrontView>
+                <views:FlipView.BackView>
+                    <Frame Style="{StaticResource FlashCardStyle}">
+                        <views:CustomWebView Source="{Binding Answer, Mode=OneWay}" SwipedCommand="{Binding SwipedCommand}">
                             <WebView.GestureRecognizers>
-                                <SwipeGestureRecognizer
-                                    Command="{Binding SwipeCommand}"
-                                    CommandParameter="Left"
-                                    Direction="Left" />
-                                <SwipeGestureRecognizer
-                                    Command="{Binding SwipeCommand}"
-                                    CommandParameter="Right"
-                                    Direction="Right" />
+                                <SwipeGestureRecognizer Command="{Binding SwipeCommand}" Direction="Left" />
+                                <SwipeGestureRecognizer Command="{Binding SwipeCommand}" Direction="Right" />
                             </WebView.GestureRecognizers>
-                        </flip:CustomWebView>
+                        </views:CustomWebView>
                     </Frame>
-                </flip:FlipView.BackView>
-            </flip:FlipView>
+                </views:FlipView.BackView>
+            </views:FlipView>
 
             <Grid Margin="15,0,15,5">
                 <Grid.ColumnDefinitions>
@@ -65,7 +65,7 @@
                     <ColumnDefinition Width="1.5*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Button
                     Grid.Column="0"
@@ -78,6 +78,24 @@
                     IsVisible="{Binding IsButtonVisible}"
                     Text="Got it"
                     TextColor="{StaticResource PrimaryColorDark}" />
+                <Polygon
+                    Grid.Column="0"
+                    Aspect="Fill"
+                    HorizontalOptions="Center"
+                    Points="{Binding ArrowPoints}"
+                    StrokeLineJoin="Round"
+                    StrokeThickness="3">
+                    <Polygon.Stroke>
+                        <SolidColorBrush Color="{StaticResource SecondaryColorDark}" />
+                    </Polygon.Stroke>
+                </Polygon>
+                <Label
+                    Grid.Column="0"
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    Text="Nochmals"
+                    TextColor="{StaticResource PrimaryColorDark}"
+                    VerticalOptions="Center" />
                 <Label
                     Grid.Column="1"
                     FontSize="Large"
@@ -95,7 +113,26 @@
                     FontSize="Large"
                     IsVisible="{Binding IsButtonVisible}"
                     Text="Again"
-                    TextColor="{StaticResource PrimaryColorDark}" />
+                    TextColor="{StaticResource SecondaryColorDark}" />
+                <Polygon
+                    Grid.Column="2"
+                    Aspect="Fill"
+                    HorizontalOptions="Center"
+                    Points="{Binding ArrowPoints}"
+                    Rotation="180"
+                    StrokeLineJoin="Round"
+                    StrokeThickness="3">
+                    <Polygon.Stroke>
+                        <SolidColorBrush Color="{StaticResource SecondaryColorDark}" />
+                    </Polygon.Stroke>
+                </Polygon>
+                <Label
+                    Grid.Column="2"
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    Text="Gelernt"
+                    TextColor="{StaticResource SecondaryColorDark}"
+                    VerticalOptions="Center" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

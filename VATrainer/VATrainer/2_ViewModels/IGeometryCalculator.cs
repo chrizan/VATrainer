@@ -2,8 +2,10 @@
 
 namespace VATrainer.ViewModels
 {
-    public interface IDeckGeometryCalc
+    public interface IGeometryCalculator
     {
         PathGeometry GetDeckGeometry(int numberOfCards);
+
+        PointCollection GetArrowPoints();
     }
 }

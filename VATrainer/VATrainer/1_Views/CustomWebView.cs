@@ -3,18 +3,19 @@ using Xamarin.Forms;
 
 namespace VATrainer.Views
 {
-    public enum PannedDirection
+    public enum SwipedDirection
     {
         Left,
         Right
     }
+
     public class CustomWebView : WebView
     {
-        public ICommand PannedCommand
+        public ICommand SwipedCommand
         {
-            set { SetValue(PannedCommandProperty, value); }
-            get { return (ICommand)GetValue(PannedCommandProperty); }
+            set { SetValue(SwipedCommandProperty, value); }
+            get { return (ICommand)GetValue(SwipedCommandProperty); }
         }
-        public static readonly BindableProperty PannedCommandProperty = BindableProperty.Create(nameof(PannedCommand), typeof(ICommand), typeof(CustomWebView));
+        public static readonly BindableProperty SwipedCommandProperty = BindableProperty.Create(nameof(SwipedCommand), typeof(ICommand), typeof(CustomWebView));
     }
 }

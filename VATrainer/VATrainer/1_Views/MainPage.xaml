@@ -74,7 +74,7 @@
                     Style="{StaticResource FrameButtonStyle}">
                     <views:SelfAdaptiveLabel>
                         <Label
-                            Padding="2"
+                            Padding="4"
                             Style="{StaticResource LabelStyleSmall}"
                             Text="{x:Static resx:AppResources.Home}" />
                     </views:SelfAdaptiveLabel>
@@ -87,7 +87,7 @@
                     Style="{StaticResource FrameButtonStyle}">
                     <views:SelfAdaptiveLabel>
                         <Label
-                            Padding="2"
+                            Padding="4"
                             Style="{StaticResource LabelStyleSmall}"
                             Text="{x:Static resx:AppResources.Resources}" />
                     </views:SelfAdaptiveLabel>
@@ -100,7 +100,7 @@
                     Style="{StaticResource FrameButtonStyle}">
                     <views:SelfAdaptiveLabel>
                         <Label
-                            Padding="2"
+                            Padding="4"
                             Style="{StaticResource LabelStyleSmall}"
                             Text="{x:Static resx:AppResources.Settings}" />
                     </views:SelfAdaptiveLabel>

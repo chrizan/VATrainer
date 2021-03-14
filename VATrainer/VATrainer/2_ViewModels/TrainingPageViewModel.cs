@@ -9,16 +9,16 @@ namespace VATrainer.ViewModels
     public class TrainingPageViewModel : BindableBase
     {
         private readonly INavigationService _navigationService;
-        private readonly IDeckGeometryCalc _deckGeometryCalc;
+        private readonly IGeometryCalculator _geometryCalculator;
 
-        public TrainingPageViewModel(INavigationService navigationService, IDeckGeometryCalc deckGeometryCalc)
+        public TrainingPageViewModel(INavigationService navigationService, IGeometryCalculator geometryCalculator)
         {
             _navigationService = navigationService;
-            _deckGeometryCalc = deckGeometryCalc;
+            _geometryCalculator = geometryCalculator;
             NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);
         }
 
-        public PathGeometry Path => _deckGeometryCalc.GetDeckGeometry(15);
+        public PathGeometry DeckGeometry => _geometryCalculator.GetDeckGeometry(15);
 
         public DelegateCommand<string> NavigateCommand { get; }
 

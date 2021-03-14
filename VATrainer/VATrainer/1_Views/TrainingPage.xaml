@@ -132,24 +132,64 @@
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="0">
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Spacing="0">
                             <Label
-                                HorizontalOptions="Center"
-                                Text="9"
+                                FontSize="Small"
+                                Text="15"
                                 TextColor="{StaticResource PrimaryColorDark}" />
-                        </views:SelfAdaptiveLabel>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Path
+                                Aspect="Uniform"
+                                Data="{Binding DeckGeometry}"
+                                HorizontalOptions="Start"
+                                StrokeThickness="1">
+                                <Path.Stroke>
+                                    <SolidColorBrush Color="{StaticResource PrimaryColorDark}" />
+                                </Path.Stroke>
+                            </Path>
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Spacing="0">
                             <Label
-                                HorizontalOptions="Center"
-                                Text="5"
+                                FontSize="Small"
+                                Text="15"
                                 TextColor="{StaticResource PrimaryColor}" />
-                        </views:SelfAdaptiveLabel>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="2">
+                            <Path
+                                Aspect="Uniform"
+                                Data="{Binding DeckGeometry}"
+                                HorizontalOptions="Start"
+                                StrokeThickness="1">
+                                <Path.Stroke>
+                                    <SolidColorBrush Color="{StaticResource PrimaryColor}" />
+                                </Path.Stroke>
+                            </Path>
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Spacing="0">
                             <Label
-                                HorizontalOptions="Center"
-                                Text="1"
+                                FontSize="Small"
+                                Text="15"
                                 TextColor="{StaticResource PrimaryColorLight}" />
-                        </views:SelfAdaptiveLabel>
+                            <Path
+                                Aspect="Uniform"
+                                Data="{Binding DeckGeometry}"
+                                HorizontalOptions="Start"
+                                StrokeThickness="1">
+                                <Path.Stroke>
+                                    <SolidColorBrush Color="{StaticResource PrimaryColorLight}" />
+                                </Path.Stroke>
+                            </Path>
+                        </StackLayout>
+
                     </Grid>
                     <Grid Grid.Column="2">
                         <Grid.ColumnDefinitions>
@@ -185,7 +225,7 @@
                 <Path
                     Aspect="Uniform"
                     BackgroundColor="Bisque"
-                    Data="{Binding Path}"
+                    Data="{Binding DeckGeometry}"
                     HorizontalOptions="Start"
                     StrokeThickness="1">
                     <Path.Stroke>

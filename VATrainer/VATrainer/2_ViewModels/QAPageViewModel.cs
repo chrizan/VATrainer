@@ -5,6 +5,8 @@ using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Shapes;
+using SwipedDirection = VATrainer.Views.SwipedDirection;
 
 namespace VATrainer.ViewModels
 {
@@ -14,6 +16,7 @@ namespace VATrainer.ViewModels
 
         private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
+        private readonly IGeometryCalculator _geometryCalculator;
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
         private Question _currentQuestion;
@@ -21,10 +24,11 @@ namespace VATrainer.ViewModels
         private bool _isButtonVisible;
         private FlipAnimationParams _flipAnimationParams;
 
-        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator)
+        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator, IGeometryCalculator geometryCalculator)
         {
             _repository = repository;
             _webpageCreator = webpageCreator;
+            _geometryCalculator = geometryCalculator;
             InitCommands();
             SetContent();
             OnAnimationFinished += OnFlipCallBackChanged;
@@ -33,8 +37,8 @@ namespace VATrainer.ViewModels
 
         private void InitCommands()
         {
+            SwipedCommand = new Command<SwipedDirection>(ExecuteSwipedCommand);
             SwipeCommand = new Command<SwipedEventArgs>(ExecuteSwipeCommand);
-            PannedCommand = new Command<PannedDirection>(ExecutePannedCommand);
         }
 
         private void SetContent()
@@ -94,6 +98,20 @@ namespace VATrainer.ViewModels
 
         public ICommand SwipeCommand { private set; get; }
 
+        public ICommand SwipedCommand { private set; get; }
+
+        private void ExecuteSwipedCommand(SwipedDirection direction)
+        {
+            if (direction == SwipedDirection.Left)
+            {
+                FlipLeft();
+            }
+            if (direction == SwipedDirection.Right)
+            {
+                FlipRight();
+            }
+        }
+
         private void ExecuteSwipeCommand(SwipedEventArgs swipedEventArgs)
         {
             if (swipedEventArgs.Direction == SwipeDirection.Left)
@@ -106,19 +124,6 @@ namespace VATrainer.ViewModels
             }
         }
 
-        public ICommand PannedCommand { private set; get; }
-
-        private void ExecutePannedCommand(PannedDirection direction)
-        {
-            if (direction == PannedDirection.Left)
-            {
-                FlipLeft();
-            }
-            if (direction == PannedDirection.Right)
-            {
-                FlipRight();
-            }
-        }
         private void FlipLeft()
         {
             IsButtonVisible = false;
@@ -168,6 +173,8 @@ namespace VATrainer.ViewModels
                 }
             }
         }
+
+        public PointCollection ArrowPoints => _geometryCalculator.GetArrowPoints();
 
         ~QAPageViewModel()
         {
