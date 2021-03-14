@@ -1,6 +1,5 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using System;
 using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
@@ -8,18 +7,17 @@ using Xamarin.Forms;
 
 namespace VATrainer.ViewModels
 {
-    public class QAPageViewModel : BindableBase, IDisposable
+    public class QAPageViewModel : BindableBase
     {
-        private event EventHandler OnAnimationFinished;
-
         private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
-       
+
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
         private Question _currentQuestion;
-        
-        private FlipAnimationParams _flipAnimationParams;
+
+        private FlipParams _flipAnimationParams;
+        private NextAnimationParams _nextAnimationParams;
 
         public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator)
         {
@@ -30,15 +28,11 @@ namespace VATrainer.ViewModels
 
         private void Init()
         {
-            SetContent();
-            OnAnimationFinished += OnFlipCallBackChanged;
             SwipedCommand = new Command<SwipedDirection>(ExecuteSwipedCommand);
             SwipeCommand = new Command<SwipedEventArgs>(ExecuteSwipeCommand);
             ConfidentCommand = new DelegateCommand(ConfidentCommanExecuted);
             UnconfidentCommand = new DelegateCommand(UnconfidentCommanExecuted);
-            
-            //TODO -> proper solution
-            Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstAndSecondQuarter, null);
+            SetContent();
         }
 
         private void SetContent()
@@ -55,6 +49,7 @@ namespace VATrainer.ViewModels
                     _currentQuestion = _repository.GetQuestionForId(1).Result;
                 }
             }
+
             Question = new HtmlWebViewSource
             {
                 Html = _webpageCreator.CreateQuestionWebpage(_currentQuestion)
@@ -65,10 +60,16 @@ namespace VATrainer.ViewModels
             };
         }
 
-        public FlipAnimationParams Flip
+        public FlipParams Flip
         {
             get { return _flipAnimationParams; }
             set { SetProperty(ref _flipAnimationParams, value); }
+        }
+
+        public NextAnimationParams Next
+        {
+            get { return _nextAnimationParams; }
+            set { SetProperty(ref _nextAnimationParams, value); }
         }
 
         public HtmlWebViewSource Question
@@ -113,12 +114,12 @@ namespace VATrainer.ViewModels
 
         private void FlipLeft()
         {
-            Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstAndSecondQuarter, OnAnimationFinished);
+            Flip = new FlipParams(FlipDirection.Left);
         }
 
         private void FlipRight()
         {
-            Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstAndSecondQuarter, OnAnimationFinished);
+            Flip = new FlipParams(FlipDirection.Right);
         }
 
         public DelegateCommand ConfidentCommand { get; private set; }
@@ -127,64 +128,20 @@ namespace VATrainer.ViewModels
 
         private void ConfidentCommanExecuted()
         {
-            if (FlipDirection.Left == Flip.Direction)
-            {
-                Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstQuarter, OnAnimationFinished);
-            }
-            else
-            {
-                Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstQuarter, OnAnimationFinished);
-            }
+            Next = new NextAnimationParams(NextStep.One, NextFinishedCallback);
         }
 
         private void UnconfidentCommanExecuted()
         {
-            if (FlipDirection.Left == Flip.Direction)
-            {
-                Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstQuarter, OnAnimationFinished);
-            }
-            else
-            {
-                Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstQuarter, OnAnimationFinished);
-            }
+            Next = new NextAnimationParams(NextStep.One, NextFinishedCallback);
         }
 
-        private void OnFlipCallBackChanged(object sender, EventArgs eventArgs)
+        private void NextFinishedCallback()
         {
-            if (!((FlipAnimationEventArgs)eventArgs).IsFrontviewVisible)
+            if (NextStep.One == Next.NextStep)
             {
-                //
-            }
-            if (FlipStep.FirstQuarter == Flip.Step)
-            {
+                Next = new NextAnimationParams(NextStep.Two, NextFinishedCallback);
                 SetContent();
-                if (FlipDirection.Left == Flip.Direction)
-                {
-                    Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.SecondQuarter, OnAnimationFinished);
-                }
-                else
-                {
-                    Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.SecondQuarter, OnAnimationFinished);
-                }
-            }
-        }
-
-        ~QAPageViewModel()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                OnAnimationFinished -= OnFlipCallBackChanged;
             }
         }
     }

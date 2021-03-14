@@ -30,19 +30,23 @@
                 <Setter Property="HasShadow" Value="True" />
             </Style>
             <!--  Button  -->
+            <!--
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-            </Style>
+            </Style>-->
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource BackgroundColorDark}">
 
-            <views:FlipView Flip="{Binding Flip}" Style="{StaticResource FlipViewStyle}">
+            <views:FlipView
+                Flip="{Binding Flip}"
+                Next="{Binding Next}"
+                Style="{StaticResource FlipViewStyle}">
                 <views:FlipView.FrontView>
                     <Frame Style="{StaticResource FlashCardStyle}">
                         <views:CustomWebView Source="{Binding Question, Mode=OneWay}" SwipedCommand="{Binding SwipedCommand}">
@@ -74,11 +78,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <Button
+                <views:FrameButton
                     Grid.Column="0"
                     Command="{Binding UnconfidentCommand}"
-                    Style="{StaticResource ButtonStyle}"
-                    Text="{x:Static resx:AppResources.Unconfident}" />
+                    Style="{StaticResource FrameButtonStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Unconfident}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </views:FrameButton>
                 <Label
                     Grid.Column="1"
                     FontSize="Large"
@@ -86,11 +105,26 @@
                     Text="TODO"
                     TextColor="{StaticResource PrimaryColor}"
                     VerticalOptions="Center" />
-                <Button
+                <views:FrameButton
                     Grid.Column="2"
                     Command="{Binding ConfidentCommand}"
-                    Style="{StaticResource ButtonStyle}"
-                    Text="{x:Static resx:AppResources.Confident}" />
+                    Style="{StaticResource FrameButtonStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".1*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height=".1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="0.05*" />
+                        </Grid.ColumnDefinitions>
+                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Confident}" />
+                        </views:SelfAdaptiveLabel>
+                    </Grid>
+                </views:FrameButton>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
