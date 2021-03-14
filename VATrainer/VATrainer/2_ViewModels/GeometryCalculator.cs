@@ -8,11 +8,6 @@ namespace VATrainer.ViewModels
         private const double DeckWidth = 20;
         private const double DeckSpacing = 2;
 
-        private const double ArrowLenght = 100;
-        private const double ArrowWidth = 20;
-        private const double ArrowTipLenght = 40;
-        private const double ArrowTipWidth = 40;
-
         public PathGeometry GetDeckGeometry(int numberOfCards)
         {
             PathGeometry pathGeometry = new PathGeometry();
@@ -29,21 +24,6 @@ namespace VATrainer.ViewModels
             }
 
             return pathGeometry;
-        }
-
-        public PointCollection GetArrowPoints()
-        {
-            PointCollection pointCollection = new PointCollection
-            {
-                new Point(0, 0),
-                new Point(ArrowTipLenght, ArrowTipWidth / 2),
-                new Point(ArrowTipLenght, ArrowWidth / 2),
-                new Point(ArrowLenght, ArrowWidth / 2),
-                new Point(ArrowLenght, -ArrowWidth / 2),
-                new Point(ArrowTipLenght, -ArrowWidth / 2),
-                new Point(ArrowTipLenght, -ArrowTipWidth / 2)
-            };
-            return pointCollection;
         }
     }
 }

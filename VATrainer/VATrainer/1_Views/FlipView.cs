@@ -8,13 +8,14 @@ namespace VATrainer.Views
     public class FlipView : ContentView
     {
         private const uint FlipTime = 800;
-        private readonly RelativeLayout contentHolder;
-        private readonly double scaleFactor = 0.5;
+        private const double ScaleFactor = 0.5;
+        
+        private readonly RelativeLayout _contentHolder;
 
         public FlipView()
         {
-            contentHolder = new RelativeLayout();
-            Content = contentHolder;
+            _contentHolder = new RelativeLayout();
+            Content = _contentHolder;
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace VATrainer.Views
             if (newValue != null)
             {
                 ((FlipView)bindable)
-                    .contentHolder
+                    ._contentHolder
                     .Children
                     .Add(((FlipView)bindable).FrontView,
                         Constraint.Constant(0),
@@ -79,7 +80,7 @@ namespace VATrainer.Views
             if (newvalue != null)
             {
                 ((FlipView)bindable)
-                    .contentHolder
+                    ._contentHolder
                     .Children
                     .Add(((FlipView)bindable).BackView,
                         Constraint.Constant(0),
@@ -160,7 +161,7 @@ namespace VATrainer.Views
                 //await Task.Delay((int)FlipTime / 2);
 
                 RotationY = 0;
-                await this.ScaleTo(scaleFactor, 2 * FlipTime / 16, Easing.Linear);
+                await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
                 await this.RotateYTo(90, 6 * FlipTime / 16, Easing.Linear);
 
                 FrontView.IsVisible = !FrontView.IsVisible;
@@ -180,7 +181,7 @@ namespace VATrainer.Views
             else if (FlipDirection.Left == flipAnimationParams.Direction)
             {
                 RotationY = 360;
-                await this.ScaleTo(scaleFactor, 2 * FlipTime / 16, Easing.Linear);
+                await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
                 await this.RotateYTo(270, 6 * FlipTime / 16, Easing.Linear);
 
                 FrontView.IsVisible = !FrontView.IsVisible;
@@ -201,7 +202,7 @@ namespace VATrainer.Views
             if (FlipDirection.Right == flipAnimationParams.Direction)
             {
                 RotationY = 0;
-                await this.ScaleTo(scaleFactor, 2 * FlipTime / 16, Easing.Linear);
+                await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
                 await this.RotateYTo(90, 6 * FlipTime / 16, Easing.Linear);
                 FrontView.IsVisible = !FrontView.IsVisible;
                 BackView.IsVisible = !BackView.IsVisible;
@@ -209,7 +210,7 @@ namespace VATrainer.Views
             else if (FlipDirection.Left == flipAnimationParams.Direction)
             {
                 RotationY = 360;
-                await this.ScaleTo(scaleFactor, 2 * FlipTime / 16, Easing.Linear);
+                await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
                 await this.RotateYTo(270, 6 * FlipTime / 16, Easing.Linear);
                 FrontView.IsVisible = !FrontView.IsVisible;
                 BackView.IsVisible = !BackView.IsVisible;

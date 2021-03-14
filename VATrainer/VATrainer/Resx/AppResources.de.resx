@@ -126,6 +126,9 @@
   <data name="Browsing_Explanation" xml:space="preserve">
     <value>Stöbere frei durch den Inhalt</value>
   </data>
+  <data name="Confident" xml:space="preserve">
+    <value>Sicher</value>
+  </data>
   <data name="ConsumptionTax" xml:space="preserve">
     <value>Verbrauchssteuern</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="Title_Training" xml:space="preserve">
     <value>Lernen</value>
+  </data>
+  <data name="Unconfident" xml:space="preserve">
+    <value>Unsicher</value>
   </data>
   <data name="VAT" xml:space="preserve">
     <value>Mehrwertsteuer</value>

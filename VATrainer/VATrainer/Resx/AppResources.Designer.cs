@@ -88,6 +88,15 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confident.
+        /// </summary>
+        public static string Confident {
+            get {
+                return ResourceManager.GetString("Confident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consumption Tax.
         /// </summary>
         public static string ConsumptionTax {
@@ -309,6 +318,15 @@ namespace VATrainer.Resx {
         public static string Title_Training {
             get {
                 return ResourceManager.GetString("Title_Training", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unconfident.
+        /// </summary>
+        public static string Unconfident {
+            get {
+                return ResourceManager.GetString("Unconfident", resourceCulture);
             }
         }
         

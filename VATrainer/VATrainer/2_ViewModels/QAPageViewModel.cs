@@ -5,8 +5,6 @@ using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Shapes;
-using SwipedDirection = VATrainer.Views.SwipedDirection;
 
 namespace VATrainer.ViewModels
 {
@@ -16,29 +14,31 @@ namespace VATrainer.ViewModels
 
         private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
-        private readonly IGeometryCalculator _geometryCalculator;
+       
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
         private Question _currentQuestion;
-        private string _counter;
-        private bool _isButtonVisible;
+        
         private FlipAnimationParams _flipAnimationParams;
 
-        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator, IGeometryCalculator geometryCalculator)
+        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator)
         {
             _repository = repository;
             _webpageCreator = webpageCreator;
-            _geometryCalculator = geometryCalculator;
-            InitCommands();
-            SetContent();
-            OnAnimationFinished += OnFlipCallBackChanged;
-            ButtonCommand = new DelegateCommand<string>(ButtonCommanExecuted);
+            Init();
         }
 
-        private void InitCommands()
+        private void Init()
         {
+            SetContent();
+            OnAnimationFinished += OnFlipCallBackChanged;
             SwipedCommand = new Command<SwipedDirection>(ExecuteSwipedCommand);
             SwipeCommand = new Command<SwipedEventArgs>(ExecuteSwipeCommand);
+            ConfidentCommand = new DelegateCommand(ConfidentCommanExecuted);
+            UnconfidentCommand = new DelegateCommand(UnconfidentCommanExecuted);
+            
+            //TODO -> proper solution
+            Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstAndSecondQuarter, null);
         }
 
         private void SetContent()
@@ -63,7 +63,6 @@ namespace VATrainer.ViewModels
             {
                 Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
             };
-            Counter = _currentQuestion.Id.ToString();
         }
 
         public FlipAnimationParams Flip
@@ -82,18 +81,6 @@ namespace VATrainer.ViewModels
         {
             get { return _answer; }
             private set { SetProperty(ref _answer, value); }
-        }
-
-        public string Counter
-        {
-            get { return _counter; }
-            private set { SetProperty(ref _counter, value); }
-        }
-
-        public bool IsButtonVisible
-        {
-            get { return _isButtonVisible; }
-            private set { SetProperty(ref _isButtonVisible, value); }
         }
 
         public ICommand SwipeCommand { private set; get; }
@@ -126,31 +113,39 @@ namespace VATrainer.ViewModels
 
         private void FlipLeft()
         {
-            IsButtonVisible = false;
             Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstAndSecondQuarter, OnAnimationFinished);
         }
 
         private void FlipRight()
         {
-            IsButtonVisible = false;
             Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstAndSecondQuarter, OnAnimationFinished);
         }
 
-        public DelegateCommand<string> ButtonCommand { get; }
+        public DelegateCommand ConfidentCommand { get; private set; }
 
-        private void ButtonCommanExecuted(string btn)
+        public DelegateCommand UnconfidentCommand { get; private set; }
+
+        private void ConfidentCommanExecuted()
         {
-            if (btn.Equals("left") || btn.Equals("right"))
+            if (FlipDirection.Left == Flip.Direction)
             {
-                IsButtonVisible = false;
-                if (FlipDirection.Left == Flip.Direction)
-                {
-                    Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstQuarter, OnAnimationFinished);
-                }
-                else
-                {
-                    Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstQuarter, OnAnimationFinished);
-                }
+                Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstQuarter, OnAnimationFinished);
+            }
+            else
+            {
+                Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstQuarter, OnAnimationFinished);
+            }
+        }
+
+        private void UnconfidentCommanExecuted()
+        {
+            if (FlipDirection.Left == Flip.Direction)
+            {
+                Flip = new FlipAnimationParams(FlipDirection.Left, FlipStep.FirstQuarter, OnAnimationFinished);
+            }
+            else
+            {
+                Flip = new FlipAnimationParams(FlipDirection.Right, FlipStep.FirstQuarter, OnAnimationFinished);
             }
         }
 
@@ -158,7 +153,7 @@ namespace VATrainer.ViewModels
         {
             if (!((FlipAnimationEventArgs)eventArgs).IsFrontviewVisible)
             {
-                IsButtonVisible = true;
+                //
             }
             if (FlipStep.FirstQuarter == Flip.Step)
             {
@@ -173,8 +168,6 @@ namespace VATrainer.ViewModels
                 }
             }
         }
-
-        public PointCollection ArrowPoints => _geometryCalculator.GetArrowPoints();
 
         ~QAPageViewModel()
         {

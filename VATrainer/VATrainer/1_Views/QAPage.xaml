@@ -29,6 +29,13 @@
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="HasShadow" Value="True" />
             </Style>
+            <!--  Button  -->
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -60,79 +67,30 @@
 
             <Grid Margin="15,0,15,5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.5*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Button
                     Grid.Column="0"
-                    Padding="0"
-                    BackgroundColor="{StaticResource BackgroundColorLight}"
-                    Command="{Binding ButtonCommand}"
-                    CommandParameter="left"
-                    CornerRadius="10"
-                    FontSize="Large"
-                    IsVisible="{Binding IsButtonVisible}"
-                    Text="Got it"
-                    TextColor="{StaticResource PrimaryColorDark}" />
-                <Polygon
-                    Grid.Column="0"
-                    Aspect="Fill"
-                    HorizontalOptions="Center"
-                    Points="{Binding ArrowPoints}"
-                    StrokeLineJoin="Round"
-                    StrokeThickness="3">
-                    <Polygon.Stroke>
-                        <SolidColorBrush Color="{StaticResource SecondaryColorDark}" />
-                    </Polygon.Stroke>
-                </Polygon>
-                <Label
-                    Grid.Column="0"
-                    FontSize="Small"
-                    HorizontalOptions="Center"
-                    Text="Nochmals"
-                    TextColor="{StaticResource PrimaryColorDark}"
-                    VerticalOptions="Center" />
+                    Command="{Binding UnconfidentCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="{x:Static resx:AppResources.Unconfident}" />
                 <Label
                     Grid.Column="1"
                     FontSize="Large"
                     HorizontalOptions="Center"
-                    Text="{Binding Counter}"
-                    TextColor="{StaticResource PrimaryColorDark}"
+                    Text="TODO"
+                    TextColor="{StaticResource PrimaryColor}"
                     VerticalOptions="Center" />
                 <Button
                     Grid.Column="2"
-                    Padding="0"
-                    BackgroundColor="{StaticResource BackgroundColorLight}"
-                    Command="{Binding ButtonCommand}"
-                    CommandParameter="right"
-                    CornerRadius="10"
-                    FontSize="Large"
-                    IsVisible="{Binding IsButtonVisible}"
-                    Text="Again"
-                    TextColor="{StaticResource SecondaryColorDark}" />
-                <Polygon
-                    Grid.Column="2"
-                    Aspect="Fill"
-                    HorizontalOptions="Center"
-                    Points="{Binding ArrowPoints}"
-                    Rotation="180"
-                    StrokeLineJoin="Round"
-                    StrokeThickness="3">
-                    <Polygon.Stroke>
-                        <SolidColorBrush Color="{StaticResource SecondaryColorDark}" />
-                    </Polygon.Stroke>
-                </Polygon>
-                <Label
-                    Grid.Column="2"
-                    FontSize="Small"
-                    HorizontalOptions="Center"
-                    Text="Gelernt"
-                    TextColor="{StaticResource SecondaryColorDark}"
-                    VerticalOptions="Center" />
+                    Command="{Binding ConfidentCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="{x:Static resx:AppResources.Confident}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

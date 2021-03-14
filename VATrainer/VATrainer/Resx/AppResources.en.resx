@@ -126,6 +126,9 @@
   <data name="Browsing_Explanation" xml:space="preserve">
     <value>Browse the content as you like</value>
   </data>
+  <data name="Confident" xml:space="preserve">
+    <value>Confident</value>
+  </data>
   <data name="ConsumptionTax" xml:space="preserve">
     <value>Consumption Tax</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="Title_Training" xml:space="preserve">
     <value>Training</value>
+  </data>
+  <data name="Unconfident" xml:space="preserve">
+    <value>Unconfident</value>
   </data>
   <data name="VAT" xml:space="preserve">
     <value>Value Added Tax</value>
