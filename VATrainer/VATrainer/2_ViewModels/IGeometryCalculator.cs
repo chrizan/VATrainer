@@ -4,6 +4,6 @@ namespace VATrainer.ViewModels
 {
     public interface IGeometryCalculator
     {
-        PathGeometry GetDeckGeometry(int numberOfCards);
+        GeometryGroup GetDeckGeometry(int numberOfCards);
     }
 }

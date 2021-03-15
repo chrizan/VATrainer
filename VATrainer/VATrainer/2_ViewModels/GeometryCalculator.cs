@@ -7,23 +7,24 @@ namespace VATrainer.ViewModels
     {
         private const double DeckWidth = 20;
         private const double DeckSpacing = 2;
+        //If set to 0, single line (numberOfCards = 1) does not render
+        private const double Spacer = 1;
 
-        public PathGeometry GetDeckGeometry(int numberOfCards)
+        public GeometryGroup GetDeckGeometry(int numberOfCards)
         {
-            PathGeometry pathGeometry = new PathGeometry();
+            GeometryGroup geometryGroup = new GeometryGroup();
 
             for (int i = 0; i < numberOfCards; i++)
             {
-                PathFigure pathFigure = new PathFigure
-                {
-                    StartPoint = new Point(0, i * DeckSpacing)
+                LineGeometry lineGeometry = new LineGeometry() 
+                { 
+                    StartPoint = new Point(0, Spacer + i * DeckSpacing), 
+                    EndPoint = new Point(DeckWidth, Spacer + i * DeckSpacing) 
                 };
-                PathSegment pathSegment = new LineSegment(new Point(DeckWidth, i * DeckSpacing));
-                pathFigure.Segments.Add(pathSegment);
-                pathGeometry.Figures.Add(pathFigure);
+                geometryGroup.Children.Add(lineGeometry);
             }
 
-            return pathGeometry;
+            return geometryGroup;
         }
     }
 }

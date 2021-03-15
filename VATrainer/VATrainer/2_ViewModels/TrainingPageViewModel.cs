@@ -1,7 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 
 namespace VATrainer.ViewModels
@@ -18,7 +17,7 @@ namespace VATrainer.ViewModels
             NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);
         }
 
-        public PathGeometry DeckGeometry => _geometryCalculator.GetDeckGeometry(15);
+        public GeometryGroup DeckGeometry => _geometryCalculator.GetDeckGeometry(15);
 
         public DelegateCommand<string> NavigateCommand { get; }
 

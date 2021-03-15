@@ -4,6 +4,7 @@ using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Shapes;
 
 namespace VATrainer.ViewModels
 {
@@ -11,6 +12,7 @@ namespace VATrainer.ViewModels
     {
         private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
+        private readonly IGeometryCalculator _geometryCalculator;
 
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
@@ -19,10 +21,11 @@ namespace VATrainer.ViewModels
         private FlipParams _flipAnimationParams;
         private NextAnimationParams _nextAnimationParams;
 
-        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator)
+        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator, IGeometryCalculator geometryCalculator)
         {
             _repository = repository;
             _webpageCreator = webpageCreator;
+            _geometryCalculator = geometryCalculator;
             Init();
         }
 
@@ -121,6 +124,12 @@ namespace VATrainer.ViewModels
         {
             Flip = new FlipParams(FlipDirection.Right);
         }
+
+        public GeometryGroup DeckUnconfident => _geometryCalculator.GetDeckGeometry(15);
+
+        public GeometryGroup DeckSemiConfident => _geometryCalculator.GetDeckGeometry(1);
+
+        public GeometryGroup DeckConfident => _geometryCalculator.GetDeckGeometry(2);
 
         public DelegateCommand ConfidentCommand { get; private set; }
 

@@ -37,12 +37,19 @@
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
             </Style>-->
+            <!--  Label  -->
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColorDark}" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource BackgroundColorDark}">
-
+            <!--  FlipView  -->
             <views:FlipView
                 Flip="{Binding Flip}"
                 Next="{Binding Next}"
@@ -68,7 +75,7 @@
                     </Frame>
                 </views:FlipView.BackView>
             </views:FlipView>
-
+            <!--  Footer  -->
             <Grid Margin="15,0,15,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -76,54 +83,90 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="55" />
                 </Grid.RowDefinitions>
                 <views:FrameButton
                     Grid.Column="0"
                     Command="{Binding UnconfidentCommand}"
                     Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height=".1*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.9*" />
-                            <ColumnDefinition Width="0.05*" />
-                        </Grid.ColumnDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Unconfident}" />
-                        </views:SelfAdaptiveLabel>
-                    </Grid>
+                    <Label Style="{StaticResource LabelStyle}" Text="{x:Static resx:AppResources.Unconfident}" />
                 </views:FrameButton>
-                <Label
+                <Frame
                     Grid.Column="1"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    Text="TODO"
-                    TextColor="{StaticResource PrimaryColor}"
-                    VerticalOptions="Center" />
+                    Padding="0"
+                    BackgroundColor="White"
+                    CornerRadius="10"
+                    HasShadow="True">
+                    <Grid Padding="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="End"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Label
+                                FontSize="Small"
+                                HorizontalOptions="Center"
+                                Text="15"
+                                TextColor="{StaticResource PrimaryColorDark}" />
+                            <Path
+                                Aspect="Uniform"
+                                Data="{Binding DeckUnconfident}"
+                                StrokeThickness="1">
+                                <Path.Stroke>
+                                    <SolidColorBrush Color="{StaticResource PrimaryColorDark}" />
+                                </Path.Stroke>
+                            </Path>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Label
+                                FontSize="Small"
+                                HorizontalOptions="Center"
+                                Text="1"
+                                TextColor="{StaticResource PrimaryColor}" />
+                            <Path
+                                Aspect="Uniform"
+                                Data="{Binding DeckSemiConfident}"
+                                StrokeThickness="1">
+                                <Path.Stroke>
+                                    <SolidColorBrush Color="{StaticResource PrimaryColor}" />
+                                </Path.Stroke>
+                            </Path>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="2"
+                            HorizontalOptions="Start"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Label
+                                FontSize="Small"
+                                HorizontalOptions="Center"
+                                Text="2"
+                                TextColor="{StaticResource PrimaryColorLight}" />
+                            <Path
+                                Aspect="Uniform"
+                                Data="{Binding DeckConfident}"
+                                StrokeThickness="1">
+                                <Path.Stroke>
+                                    <SolidColorBrush Color="{StaticResource PrimaryColorLight}" />
+                                </Path.Stroke>
+                            </Path>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
                 <views:FrameButton
                     Grid.Column="2"
                     Command="{Binding ConfidentCommand}"
                     Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height=".1*" />
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height=".1*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.9*" />
-                            <ColumnDefinition Width="0.05*" />
-                        </Grid.ColumnDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="{x:Static resx:AppResources.Confident}" />
-                        </views:SelfAdaptiveLabel>
-                    </Grid>
+                    <Label Style="{StaticResource LabelStyle}" Text="{x:Static resx:AppResources.Confident}" />
                 </views:FrameButton>
             </Grid>
         </StackLayout>
