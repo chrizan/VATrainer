@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
@@ -13,6 +14,7 @@ namespace VATrainer.ViewModels
         private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
         private readonly IGeometryCalculator _geometryCalculator;
+        private readonly INavigationService _navigationService;
 
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
@@ -21,11 +23,12 @@ namespace VATrainer.ViewModels
         private FlipParams _flipAnimationParams;
         private NextAnimationParams _nextAnimationParams;
 
-        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator, IGeometryCalculator geometryCalculator)
+        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator, IGeometryCalculator geometryCalculator, INavigationService navigationService)
         {
             _repository = repository;
             _webpageCreator = webpageCreator;
             _geometryCalculator = geometryCalculator;
+            _navigationService = navigationService;
             Init();
         }
 
@@ -61,6 +64,7 @@ namespace VATrainer.ViewModels
             {
                 Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
             };
+            _navigationService.NavigateAsync("InstructionPopUp");
         }
 
         public FlipParams Flip

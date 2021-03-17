@@ -51,6 +51,7 @@ namespace VATrainer
             containerRegistry.RegisterForNavigation<ContentsPage, ContentsPageViewModel>();
             containerRegistry.RegisterForNavigation<TrainingPage, TrainingPageViewModel>();
             containerRegistry.RegisterForNavigation<QAPage, QAPageViewModel>();
+            containerRegistry.RegisterForNavigation<InstructionPopUp, InstructionPopUpViewModel>();
         }
     }
 }
