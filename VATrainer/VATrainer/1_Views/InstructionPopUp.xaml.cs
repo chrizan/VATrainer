@@ -10,5 +10,10 @@ namespace VATrainer.Views
         {
             InitializeComponent();
         }
+
+        protected override bool OnBackgroundClicked()
+        {
+            return false;
+        }
     }
 }

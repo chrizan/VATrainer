@@ -52,7 +52,11 @@ namespace VATrainer.ViewModels
 
         private async void NavigateCommandExecuted(string view)
         {
-            await _navigationService.NavigateAsync(view, parameters: null, useModalNavigation: true, animated: false);
+            var result = await _navigationService.NavigateAsync(view, parameters: null, useModalNavigation: true, animated: false);
+            if (!result.Success)
+            {
+                System.Diagnostics.Debugger.Break();
+            }
         }
 
         private void SetContent()
