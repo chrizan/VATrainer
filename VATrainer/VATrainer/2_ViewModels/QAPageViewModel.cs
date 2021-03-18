@@ -23,7 +23,10 @@ namespace VATrainer.ViewModels
         private FlipParams _flipAnimationParams;
         private NextAnimationParams _nextAnimationParams;
 
-        public QAPageViewModel(IRepository repository, IWebpageCreator webpageCreator, IGeometryCalculator geometryCalculator, INavigationService navigationService)
+        public QAPageViewModel(IRepository repository, 
+            IWebpageCreator webpageCreator, 
+            IGeometryCalculator geometryCalculator, 
+            INavigationService navigationService)
         {
             _repository = repository;
             _webpageCreator = webpageCreator;
@@ -39,6 +42,17 @@ namespace VATrainer.ViewModels
             ConfidentCommand = new DelegateCommand(ConfidentCommanExecuted);
             UnconfidentCommand = new DelegateCommand(UnconfidentCommanExecuted);
             SetContent();
+            ShowInstructionPopUp();
+        }
+
+        private void ShowInstructionPopUp()
+        {
+            NavigateCommandExecuted("InstructionPopUp");
+        }
+
+        private async void NavigateCommandExecuted(string view)
+        {
+            await _navigationService.NavigateAsync(view, parameters: null, useModalNavigation: true, animated: false);
         }
 
         private void SetContent()
@@ -64,7 +78,6 @@ namespace VATrainer.ViewModels
             {
                 Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
             };
-            _navigationService.NavigateAsync("InstructionPopUp");
         }
 
         public FlipParams Flip
