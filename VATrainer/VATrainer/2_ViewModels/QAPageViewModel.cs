@@ -15,6 +15,7 @@ namespace VATrainer.ViewModels
         private readonly IWebpageCreator _webpageCreator;
         private readonly IGeometryCalculator _geometryCalculator;
         private readonly INavigationService _navigationService;
+        private readonly ISettings _settings;
 
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
@@ -23,15 +24,17 @@ namespace VATrainer.ViewModels
         private FlipParams _flipAnimationParams;
         private NextAnimationParams _nextAnimationParams;
 
-        public QAPageViewModel(IRepository repository, 
-            IWebpageCreator webpageCreator, 
-            IGeometryCalculator geometryCalculator, 
-            INavigationService navigationService)
+        public QAPageViewModel(IRepository repository,
+            IWebpageCreator webpageCreator,
+            IGeometryCalculator geometryCalculator,
+            INavigationService navigationService,
+            ISettings settings)
         {
             _repository = repository;
             _webpageCreator = webpageCreator;
             _geometryCalculator = geometryCalculator;
             _navigationService = navigationService;
+            _settings = settings;
             Init();
         }
 
@@ -42,20 +45,14 @@ namespace VATrainer.ViewModels
             ConfidentCommand = new DelegateCommand(ConfidentCommanExecuted);
             UnconfidentCommand = new DelegateCommand(UnconfidentCommanExecuted);
             SetContent();
-            ShowInstructionPopUp();
+            DisplayInstructionAsync();
         }
 
-        private void ShowInstructionPopUp()
+        private async void DisplayInstructionAsync()
         {
-            NavigateCommandExecuted("InstructionPopUp");
-        }
-
-        private async void NavigateCommandExecuted(string view)
-        {
-            var result = await _navigationService.NavigateAsync(view, parameters: null, useModalNavigation: true, animated: false);
-            if (!result.Success)
+            if (_settings.DisplayInstruction)
             {
-                System.Diagnostics.Debugger.Break();
+                await _navigationService.NavigateAsync("InstructionPopUp");
             }
         }
 
