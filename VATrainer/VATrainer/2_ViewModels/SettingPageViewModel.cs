@@ -52,5 +52,11 @@ namespace VATrainer.ViewModels
                 RaisePropertyChanged(nameof(Article));
             }
         }
+
+        public bool DisplayInstruction
+        {
+            get => _settings.DisplayInstruction;
+            set => _settings.DisplayInstruction = value;
+        }
     }
 }

@@ -2,14 +2,15 @@
 <ContentPage
     x:Class="VATrainer.Views.SettingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resx="clr-namespace:VATrainer.Resx"
     Title="{x:Static resx:AppResources.Title_Settings}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
@@ -21,13 +22,18 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <Label FontSize="Medium" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" Text="{x:Static resx:AppResources.DisplayInstruction}"/>
+            <CheckBox VerticalOptions="Center" IsChecked="{Binding DisplayInstruction}"/>
+        </StackLayout>
+
         <WebView
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             Source="{Binding Article, Mode=OneWay}" />
 
         <Slider
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             Maximum="{Binding SliderValueMax}"
             Minimum="{Binding SliderValueMin}"

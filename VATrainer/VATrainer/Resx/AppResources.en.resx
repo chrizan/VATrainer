@@ -135,6 +135,9 @@
   <data name="Criminal_law" xml:space="preserve">
     <value>Criminal law</value>
   </data>
+  <data name="DisplayInstruction" xml:space="preserve">
+    <value>Display instruction</value>
+  </data>
   <data name="EU_Directive" xml:space="preserve">
     <value>EU Directive</value>
   </data>
