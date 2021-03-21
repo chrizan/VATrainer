@@ -1,5 +1,6 @@
 using Prism;
 using Prism.Ioc;
+using System.Threading.Tasks;
 using VATrainer.DataLayer;
 using VATrainer.Models;
 using VATrainer.ViewModels;
@@ -21,6 +22,7 @@ namespace VATrainer
         {
             InitializeComponent();
             SetupDatabase();
+            await WarmUpEntityFramework();
             await NavigationService.NavigateAsync("MainPage/NavigationPage/HomePage");
         }
 
@@ -29,6 +31,11 @@ namespace VATrainer
             IDatabaseService databaseService = DependencyService.Get<IDatabaseService>();
             databaseService.CopyDbToInternalStorage();
             databaseService.InitializeDbProvider();
+        }
+
+        private async static Task WarmUpEntityFramework()
+        {
+            await new Repository().GetArticleForId(1);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

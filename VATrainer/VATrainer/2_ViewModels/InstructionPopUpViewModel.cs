@@ -22,6 +22,16 @@ namespace VATrainer.ViewModels
             set => _settings.DisplayInstruction = !value;
         }
 
+        public string Instruction
+        {
+            get => Resx.AppResources.Instruction;
+        }
+
+        public string Greetings
+        {
+            get => Resx.AppResources.Greetings;
+        }
+
         private async void OkCommandExecuted()
         {
             await PopupNavigation.Instance.PopAsync(true);

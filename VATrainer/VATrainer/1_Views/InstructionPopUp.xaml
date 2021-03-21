@@ -25,14 +25,17 @@
         VerticalOptions="Center">
         <StackLayout>
             <Frame BackgroundColor="{StaticResource BackgroundColorLight}">
-                <Label Text="Wische über die Lernkarte um zwischen Frage und Antwort zu wechseln. Wähle den Button Confident wenn du die Frage sicher beantworten kannst. Wähle den Button Unconfident wenn du dir bei der Antwort noch unsicher bist. Dein Lernfortschritt wird dir zwischen den Buttons angezeigt. Wenn du eine Frage als Confident einstufst, wandert sie auf den mittleren Stapel. Wenn du die Frage ein weiteres Mal mit Confident bewertest, wird sie dir nicht mehr angezeigt.&#10;&#10;Viel Spass und viel Erfolg!" TextColor="{StaticResource PrimaryColorDark}" />
+                <StackLayout Orientation="Vertical">
+                    <Label Text="{Binding Instruction}" TextColor="{StaticResource PrimaryColorDark}" />
+                    <Label Text="{Binding Greetings}" TextColor="{StaticResource PrimaryColorDark}" />
+                </StackLayout>
             </Frame>
             <StackLayout Padding="0,10,0,0" Orientation="Horizontal">
                 <CheckBox IsChecked="{Binding DontShowAgain}" VerticalOptions="Center" />
                 <Label
                     FontSize="Small"
                     Text="{x:Static resx:AppResources.DontShowAgain}"
-                    TextColor="{StaticResource PrimaryColorLight}"
+                    TextColor="{StaticResource SecondaryColor}"
                     VerticalOptions="Center" />
                 <views:FrameButton
                     Command="{Binding OkCommand}"

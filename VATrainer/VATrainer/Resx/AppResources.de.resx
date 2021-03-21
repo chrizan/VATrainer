@@ -147,8 +147,14 @@
   <data name="Expense_side" xml:space="preserve">
     <value>Ausgabenseite</value>
   </data>
+  <data name="Greetings" xml:space="preserve">
+    <value>Viel Spass und viel Erfolg!</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Instruction" xml:space="preserve">
+    <value>Wische über die Lernkarte um zwischen Frage und Antwort zu wechseln. Wähle den Button "Sicher" wenn du die Frage beantworten kannst. Wähle "Unsicher" wenn du dir bei der Antwort noch nicht sicher bist. Wenn du eine Frage als sicher einstufst, wandert sie vom linken auf den mittleren Stapel. Wenn du die Frage ein weiteres Mal mit sicher bewertest, wandert sie auf den rechten Stapel und wird dir nicht mehr vorgelegt."</value>
   </data>
   <data name="International_VAT_law" xml:space="preserve">
     <value>Überblick über das internationale Mehrwertsteuerrecht</value>

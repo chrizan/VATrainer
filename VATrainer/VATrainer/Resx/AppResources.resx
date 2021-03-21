@@ -147,8 +147,14 @@
   <data name="Expense_side" xml:space="preserve">
     <value>Expense side</value>
   </data>
+  <data name="Greetings" xml:space="preserve">
+    <value>Have fun and good luck!</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Instruction" xml:space="preserve">
+    <value>Swipe over the flash card to switch between question and answer. Choose the Button “Confident” if you know the answer. Choose “Unconfident” if you are still uncertain. If you classify a question as confident, it moves from the left to the middle stack. If you classify the question as confident again, it moves to the right stack and you won’t be asked again.</value>
   </data>
   <data name="International_VAT_law" xml:space="preserve">
     <value>International VAT law</value>

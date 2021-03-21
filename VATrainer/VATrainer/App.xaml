@@ -46,7 +46,7 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="{StaticResource SecondaryColorDark}" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
             </Style>
         </ResourceDictionary>
 

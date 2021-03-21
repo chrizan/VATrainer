@@ -151,11 +151,29 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Have fun and good luck!.
+        /// </summary>
+        public static string Greetings {
+            get {
+                return ResourceManager.GetString("Greetings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swipe over the flash card to switch between question and answer. Choose the Button “Confident” if you know the answer. Choose “Unconfident” if you are still uncertain. If you classify a question as confident, it moves from the left to the middle stack. If you classify the question as confident again, it moves to the right stack and you won’t be asked again..
+        /// </summary>
+        public static string Instruction {
+            get {
+                return ResourceManager.GetString("Instruction", resourceCulture);
             }
         }
         
