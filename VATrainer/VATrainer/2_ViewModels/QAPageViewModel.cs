@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
+using System;
 using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
@@ -152,20 +153,24 @@ namespace VATrainer.ViewModels
 
         private void ConfidentCommanExecuted()
         {
-            Next = new NextAnimationParams(NextStep.Out, Confidence.Confident, NextFinishedCallback);
+            Next = new NextAnimationParams(Card.MoveOut, Confidence.Confident, NextFinishedCallback);
         }
 
         private void UnconfidentCommanExecuted()
         {
-            Next = new NextAnimationParams(NextStep.Out, Confidence.Unconfident, NextFinishedCallback);
+            Next = new NextAnimationParams(Card.MoveOut, Confidence.Unconfident, NextFinishedCallback);
         }
 
         private void NextFinishedCallback()
         {
-            if (NextStep.Out == Next.NextStep)
+            if (Card.MoveOut == Next.Card)
             {
                 SetContent();
-                Next = new NextAnimationParams(NextStep.In, Confidence.None, NextFinishedCallback);
+                Next = new NextAnimationParams(Card.SetContent, Confidence.None, NextFinishedCallback);
+            }
+            else if (Card.SetContent == Next.Card)
+            {
+                Next = new NextAnimationParams(Card.MoveIn, Confidence.None, NextFinishedCallback);
             }
         }
     }

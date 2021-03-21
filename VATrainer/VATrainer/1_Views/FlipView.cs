@@ -115,14 +115,19 @@ namespace VATrainer.Views
             //TODO: ExecuteNext is called after navigating back (<-) with parameter null
             if (nextAnimationParams != null)
             {
-                if (nextAnimationParams.NextStep == NextStep.Out)
+                if(nextAnimationParams.Card == Card.MoveOut)
                 {
-                    await ExecuteNextOut(nextAnimationParams);
+                    await ExecuteMoveOut(nextAnimationParams);
                     nextAnimationParams.TriggerCallback();
                 }
-                else if (nextAnimationParams.NextStep == NextStep.In)
+                else if (nextAnimationParams.Card == Card.SetContent)
                 {
-                    await ExecuteNextIn();
+                    await ExecuteSetContent();
+                    nextAnimationParams.TriggerCallback();
+                }
+                else if (nextAnimationParams.Card == Card.MoveIn)
+                {
+                    await ExecuteMoveIn();
                     nextAnimationParams.TriggerCallback();
                 }
                 else
@@ -132,7 +137,7 @@ namespace VATrainer.Views
             }
         }
 
-        private async Task ExecuteNextOut(NextAnimationParams nextAnimationParams)
+        private async Task ExecuteMoveOut(NextAnimationParams nextAnimationParams)
         {
             await this.ScaleTo(ScaleFactor, FlipTime / 2, Easing.Linear);
             if (Confidence.Confident == nextAnimationParams.Confidence)
@@ -143,13 +148,17 @@ namespace VATrainer.Views
             {
                 await this.TranslateTo(-_screenWidth, 0, FlipTime / 2, Easing.Linear);
             }
-            FrontView.IsVisible = true;
-            BackView.IsVisible = false;
         }
 
-        private async Task ExecuteNextIn()
+        private async Task ExecuteSetContent()
         {
+            FrontView.IsVisible = true;
+            BackView.IsVisible = false;
             await this.TranslateTo(0, 0, 0, Easing.Linear);
+        }
+
+        private async Task ExecuteMoveIn()
+        {
             await this.ScaleTo(1, 1, Easing.Linear);
         }
 

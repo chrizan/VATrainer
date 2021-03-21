@@ -1,9 +1,10 @@
 ﻿namespace VATrainer.ViewModels
 {
-    public enum NextStep
+    public enum Card
     {
-        Out,
-        In
+        MoveOut,
+        SetContent,
+        MoveIn
     }
 
     public enum Confidence
@@ -19,14 +20,14 @@
     {
         public readonly NextFinishedCallback _callback;
 
-        public NextAnimationParams(NextStep nextStep, Confidence confidence, NextFinishedCallback callback)
+        public NextAnimationParams(Card card, Confidence confidence, NextFinishedCallback callback)
         {
-            NextStep = nextStep;
+            Card = card;
             Confidence = confidence;
             _callback = callback;
         }
 
-        public NextStep NextStep { get; set; }
+        public Card Card { get; set; }
 
         public Confidence Confidence { get; set; }
 
