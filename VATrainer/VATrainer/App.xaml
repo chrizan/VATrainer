@@ -40,6 +40,14 @@
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
             </Style>
+            <!--  FrameButton Label Medium  -->
+            <Style x:Key="LabelStyleMedium" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColorDark}" />
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

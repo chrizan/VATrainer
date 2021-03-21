@@ -138,6 +138,9 @@
   <data name="DisplayInstruction" xml:space="preserve">
     <value>Anleitung anzeigen</value>
   </data>
+  <data name="DontShowAgain" xml:space="preserve">
+    <value>Nicht mehr anzeigen</value>
+  </data>
   <data name="EU_Directive" xml:space="preserve">
     <value>EU Richtlinie</value>
   </data>

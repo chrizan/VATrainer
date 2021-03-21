@@ -29,21 +29,6 @@
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="HasShadow" Value="True" />
             </Style>
-            <!--  Button  -->
-            <!--
-            <Style x:Key="ButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-            </Style>-->
-            <!--  Label  -->
-            <Style x:Key="LabelStyle" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="TextColor" Value="{StaticResource SecondaryColorDark}" />
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -89,7 +74,7 @@
                     Grid.Column="0"
                     Command="{Binding UnconfidentCommand}"
                     Style="{StaticResource FrameButtonStyle}">
-                    <Label Style="{StaticResource LabelStyle}" Text="{x:Static resx:AppResources.Unconfident}" />
+                    <Label Style="{StaticResource LabelStyleMedium}" Text="{x:Static resx:AppResources.Unconfident}" />
                 </views:FrameButton>
                 <Frame
                     Grid.Column="1"
@@ -166,7 +151,7 @@
                     Grid.Column="2"
                     Command="{Binding ConfidentCommand}"
                     Style="{StaticResource FrameButtonStyle}">
-                    <Label Style="{StaticResource LabelStyle}" Text="{x:Static resx:AppResources.Confident}" />
+                    <Label Style="{StaticResource LabelStyleMedium}" Text="{x:Static resx:AppResources.Confident}" />
                 </views:FrameButton>
             </Grid>
         </StackLayout>

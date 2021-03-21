@@ -2,8 +2,8 @@
 <ContentPage
     x:Class="VATrainer.Views.BrowsingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resx="clr-namespace:VATrainer.Resx"
     xmlns:views="clr-namespace:VATrainer.Views"
     Title="{x:Static resx:AppResources.Title_Browsing}"
@@ -21,30 +21,23 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid BackgroundColor="{StaticResource BackgroundColorDark}" RowSpacing="2">
+        <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*" />
-                <ColumnDefinition Width="0.8*" />
-                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="0.05*" />
+                <ColumnDefinition Width="0.9*" />
+                <ColumnDefinition Width="0.05*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height=".5*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height="0" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height=".1*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height=".1*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height=".1*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height=".1*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height=".1*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height=".1*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height=".5*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <views:FrameButton
                 Grid.Row="1"
@@ -94,7 +87,7 @@
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
-                Grid.Row="3"
+                Grid.Row="2"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
@@ -141,7 +134,7 @@
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
-                Grid.Row="5"
+                Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
@@ -182,13 +175,13 @@
                             <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
                         </views:SelfAdaptiveLabel>
                         <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="--/--/--" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
-                Grid.Row="7"
+                Grid.Row="4"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
@@ -229,13 +222,13 @@
                             <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen" />
                         </views:SelfAdaptiveLabel>
                         <views:SelfAdaptiveLabel Grid.Row="2" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="01/03/21" />
+                            <Label Style="{StaticResource LabelStyleSmall}" Text="--/--/--" />
                         </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
-                Grid.Row="9"
+                Grid.Row="5"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
@@ -282,7 +275,7 @@
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
-                Grid.Row="11"
+                Grid.Row="6"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
@@ -329,7 +322,7 @@
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
-                Grid.Row="13"
+                Grid.Row="7"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
@@ -376,7 +369,7 @@
                 </Grid>
             </views:FrameButton>
             <views:FrameButton
-                Grid.Row="15"
+                Grid.Row="8"
                 Grid.Column="1"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="1"
@@ -408,13 +401,21 @@
                             <ColumnDefinition Width="0.05*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="0.1*" />
                             <RowDefinition Height="5*" />
-                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource LabelStyleSmall}" Text="Last seen 01/03/21" />
-                        </views:SelfAdaptiveLabel>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="Last seen" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="01/03/21" />
                     </Grid>
                 </Grid>
             </views:FrameButton>

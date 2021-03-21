@@ -1,6 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
+using Rg.Plugins.Popup.Services;
 using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
@@ -14,7 +14,6 @@ namespace VATrainer.ViewModels
         private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
         private readonly IGeometryCalculator _geometryCalculator;
-        private readonly INavigationService _navigationService;
         private readonly ISettings _settings;
 
         private HtmlWebViewSource _question;
@@ -27,13 +26,11 @@ namespace VATrainer.ViewModels
         public QAPageViewModel(IRepository repository,
             IWebpageCreator webpageCreator,
             IGeometryCalculator geometryCalculator,
-            INavigationService navigationService,
             ISettings settings)
         {
             _repository = repository;
             _webpageCreator = webpageCreator;
             _geometryCalculator = geometryCalculator;
-            _navigationService = navigationService;
             _settings = settings;
             Init();
         }
@@ -52,7 +49,7 @@ namespace VATrainer.ViewModels
         {
             if (_settings.DisplayInstruction)
             {
-                await _navigationService.NavigateAsync("InstructionPopUp");
+                await PopupNavigation.Instance.PushAsync(new InstructionPopUp(), true);
             }
         }
 

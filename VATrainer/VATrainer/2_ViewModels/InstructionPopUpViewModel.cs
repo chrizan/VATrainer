@@ -1,24 +1,30 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
+using Rg.Plugins.Popup.Services;
 
 namespace VATrainer.ViewModels
 {
     public class InstructionPopUpViewModel : BindableBase
     {
-        private INavigationService _navigationService { get; }
+        private readonly ISettings _settings;
 
-        public InstructionPopUpViewModel(INavigationService navigationService)
+        public InstructionPopUpViewModel(ISettings settings)
         {
-            _navigationService = navigationService;
-            NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);
+            _settings = settings;
+            OkCommand = new DelegateCommand(OkCommandExecuted);
         }
 
-        public DelegateCommand<string> NavigateCommand { get; }
+        public DelegateCommand OkCommand { get; }
 
-        private async void NavigateCommandExecuted(string view)
+        public bool DontShowAgain
         {
-            await _navigationService.NavigateAsync(view);
+            get => false;
+            set => _settings.DisplayInstruction = !value;
+        }
+
+        private async void OkCommandExecuted()
+        {
+            await PopupNavigation.Instance.PopAsync(true);
         }
     }
 }

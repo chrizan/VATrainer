@@ -1,6 +1,5 @@
 using Prism;
 using Prism.Ioc;
-using Prism.Plugin.Popups;
 using VATrainer.DataLayer;
 using VATrainer.Models;
 using VATrainer.ViewModels;
@@ -34,8 +33,6 @@ namespace VATrainer
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterPopupDialogService();
-
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
             containerRegistry.RegisterSingleton<IRepository, Repository>();
@@ -43,7 +40,7 @@ namespace VATrainer
             containerRegistry.RegisterSingleton<IHtmlHelper, HtmlHelper>();
             containerRegistry.RegisterSingleton<IWebpageCreator, WebpageCreator>();
             containerRegistry.RegisterSingleton<IGeometryCalculator, GeometryCalculator>();
-
+            
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();

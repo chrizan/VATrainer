@@ -2,8 +2,8 @@
 <ContentPage
     x:Class="VATrainer.Views.SettingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:prism="http://prismlibrary.com"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
     Title="{x:Static resx:AppResources.Title_Settings}"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -22,9 +22,16 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <Label FontSize="Medium" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" Text="{x:Static resx:AppResources.DisplayInstruction}"/>
-            <CheckBox VerticalOptions="Center" IsChecked="{Binding DisplayInstruction}"/>
+        <StackLayout
+            Grid.Row="0"
+            Grid.Column="1"
+            Orientation="Horizontal">
+            <Label
+                FontSize="Medium"
+                Text="{x:Static resx:AppResources.DisplayInstruction}"
+                TextColor="{StaticResource PrimaryColor}"
+                VerticalOptions="Center" />
+            <CheckBox IsChecked="{Binding DisplayInstruction}" VerticalOptions="Center" />
         </StackLayout>
 
         <WebView
