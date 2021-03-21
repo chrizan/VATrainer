@@ -11,10 +11,12 @@ namespace VATrainer.Views
         private const double ScaleFactor = 0.5;
 
         private readonly RelativeLayout _contentHolder;
+        private readonly double _screenWidth;
 
         public FlipView()
         {
             _contentHolder = new RelativeLayout();
+            _screenWidth = Application.Current.MainPage.Width;
             Content = _contentHolder;
         }
 
@@ -108,6 +110,49 @@ namespace VATrainer.Views
             ((FlipView)bindable).ExecuteNext((NextAnimationParams)newValue);
         }
 
+        private async void ExecuteNext(NextAnimationParams nextAnimationParams)
+        {
+            //TODO: ExecuteNext is called after navigating back (<-) with parameter null
+            if (nextAnimationParams != null)
+            {
+                if (nextAnimationParams.NextStep == NextStep.Out)
+                {
+                    await ExecuteNextOut(nextAnimationParams);
+                    nextAnimationParams.TriggerCallback();
+                }
+                else if (nextAnimationParams.NextStep == NextStep.In)
+                {
+                    await ExecuteNextIn();
+                    nextAnimationParams.TriggerCallback();
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
+        private async Task ExecuteNextOut(NextAnimationParams nextAnimationParams)
+        {
+            await this.ScaleTo(ScaleFactor, FlipTime / 2, Easing.Linear);
+            if (Confidence.Confident == nextAnimationParams.Confidence)
+            {
+                await this.TranslateTo(_screenWidth, 0, FlipTime / 2, Easing.Linear);
+            }
+            else
+            {
+                await this.TranslateTo(-_screenWidth, 0, FlipTime / 2, Easing.Linear);
+            }
+            FrontView.IsVisible = true;
+            BackView.IsVisible = false;
+        }
+
+        private async Task ExecuteNextIn()
+        {
+            await this.TranslateTo(0, 0, 0, Easing.Linear);
+            await this.ScaleTo(1, 1, Easing.Linear);
+        }
+
         public FlipParams Flip
         {
             get { return (FlipParams)GetValue(FlipProperty); }
@@ -129,20 +174,18 @@ namespace VATrainer.Views
             ((FlipView)bindable).ExecuteFlip((FlipParams)newValue);
         }
 
-        private async void ExecuteNext(NextAnimationParams nextAnimationParams)
+        private async void ExecuteFlip(FlipParams flipAnimationParams)
         {
-            //TODO: ExecuteNext is called after navigating back (<-) with parameter null
-            if (nextAnimationParams != null)
+            //TODO: ExecuteFlip is called after navigating back (<-) with parameter null
+            if (flipAnimationParams != null)
             {
-                if (nextAnimationParams.NextStep == NextStep.One)
+                if (FlipDirection.Right == flipAnimationParams.Direction)
                 {
-                    await ExecuteNextOne();
-                    nextAnimationParams.TriggerCallback();
+                    await FlipRight();
                 }
-                else if (nextAnimationParams.NextStep == NextStep.Two)
+                else if (FlipDirection.Left == flipAnimationParams.Direction)
                 {
-                    await ExecuteNextTwo();
-                    nextAnimationParams.TriggerCallback();
+                    await FlipLeft();
                 }
                 else
                 {
@@ -151,60 +194,32 @@ namespace VATrainer.Views
             }
         }
 
-        private async void ExecuteFlip(FlipParams flipAnimationParams)
+        private async Task FlipRight()
         {
-            //TODO: ExecuteFlip is called after navigating back (<-) with parameter null
-            if (flipAnimationParams != null)
-            {
-                await ExecuteFullFlip(flipAnimationParams);
-            }
+            RotationY = 0;
+            await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
+            await this.RotateYTo(90, 6 * FlipTime / 16, Easing.Linear);
+
+            FrontView.IsVisible = !FrontView.IsVisible;
+            BackView.IsVisible = !BackView.IsVisible;
+
+            RotationY = 270;
+            await this.RotateYTo(360, 6 * FlipTime / 16, Easing.Linear);
+            await this.ScaleTo(1, 2 * FlipTime / 16, Easing.Linear);
         }
 
-        private async Task ExecuteNextOne()
+        private async Task FlipLeft()
         {
-            await this.ScaleTo(0, FlipTime / 2, Easing.Linear);
-        }
+            RotationY = 360;
+            await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
+            await this.RotateYTo(270, 6 * FlipTime / 16, Easing.Linear);
 
-        private async Task ExecuteNextTwo()
-        {
-            FrontView.IsVisible = true;
-            BackView.IsVisible = false;
-            await this.ScaleTo(1, FlipTime / 2, Easing.Linear);
+            FrontView.IsVisible = !FrontView.IsVisible;
+            BackView.IsVisible = !BackView.IsVisible;
 
-        }
-
-        private async Task ExecuteFullFlip(FlipParams flipAnimationParams)
-        {
-            if (FlipDirection.Right == flipAnimationParams.Direction)
-            {
-                RotationY = 0;
-                await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
-                await this.RotateYTo(90, 6 * FlipTime / 16, Easing.Linear);
-
-                FrontView.IsVisible = !FrontView.IsVisible;
-                BackView.IsVisible = !BackView.IsVisible;
-
-                RotationY = 270;
-                await this.RotateYTo(360, 6 * FlipTime / 16, Easing.Linear);
-                await this.ScaleTo(1, 2 * FlipTime / 16, Easing.Linear);
-            }
-            else if (FlipDirection.Left == flipAnimationParams.Direction)
-            {
-                RotationY = 360;
-                await this.ScaleTo(ScaleFactor, 2 * FlipTime / 16, Easing.Linear);
-                await this.RotateYTo(270, 6 * FlipTime / 16, Easing.Linear);
-
-                FrontView.IsVisible = !FrontView.IsVisible;
-                BackView.IsVisible = !BackView.IsVisible;
-
-                RotationY = 90;
-                await this.RotateYTo(0, 6 * FlipTime / 16, Easing.Linear);
-                await this.ScaleTo(1, 2 * FlipTime / 16, Easing.Linear);
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
+            RotationY = 90;
+            await this.RotateYTo(0, 6 * FlipTime / 16, Easing.Linear);
+            await this.ScaleTo(1, 2 * FlipTime / 16, Easing.Linear);
         }
     }
 }

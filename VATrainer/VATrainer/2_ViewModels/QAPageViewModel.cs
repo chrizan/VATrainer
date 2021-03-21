@@ -45,14 +45,6 @@ namespace VATrainer.ViewModels
             DisplayInstructionAsync();
         }
 
-        private async void DisplayInstructionAsync()
-        {
-            if (_settings.DisplayInstruction)
-            {
-                await PopupNavigation.Instance.PushAsync(new InstructionPopUp(), true);
-            }
-        }
-
         private void SetContent()
         {
             if (_currentQuestion == null)
@@ -76,6 +68,14 @@ namespace VATrainer.ViewModels
             {
                 Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
             };
+        }
+
+        private async void DisplayInstructionAsync()
+        {
+            if (_settings.DisplayInstruction)
+            {
+                await PopupNavigation.Instance.PushAsync(new InstructionPopUp(), true);
+            }
         }
 
         public FlipParams Flip
@@ -152,20 +152,20 @@ namespace VATrainer.ViewModels
 
         private void ConfidentCommanExecuted()
         {
-            Next = new NextAnimationParams(NextStep.One, NextFinishedCallback);
+            Next = new NextAnimationParams(NextStep.Out, Confidence.Confident, NextFinishedCallback);
         }
 
         private void UnconfidentCommanExecuted()
         {
-            Next = new NextAnimationParams(NextStep.One, NextFinishedCallback);
+            Next = new NextAnimationParams(NextStep.Out, Confidence.Unconfident, NextFinishedCallback);
         }
 
         private void NextFinishedCallback()
         {
-            if (NextStep.One == Next.NextStep)
+            if (NextStep.Out == Next.NextStep)
             {
-                Next = new NextAnimationParams(NextStep.Two, NextFinishedCallback);
                 SetContent();
+                Next = new NextAnimationParams(NextStep.In, Confidence.None, NextFinishedCallback);
             }
         }
     }
