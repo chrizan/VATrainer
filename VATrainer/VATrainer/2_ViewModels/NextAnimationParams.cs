@@ -3,7 +3,6 @@
     public enum Card
     {
         MoveOut,
-        SetContent,
         MoveIn
     }
 

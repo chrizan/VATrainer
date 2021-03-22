@@ -166,10 +166,6 @@ namespace VATrainer.ViewModels
             if (Card.MoveOut == Next.Card)
             {
                 SetContent();
-                Next = new NextAnimationParams(Card.SetContent, Confidence.None, NextFinishedCallback);
-            }
-            else if (Card.SetContent == Next.Card)
-            {
                 Next = new NextAnimationParams(Card.MoveIn, Confidence.None, NextFinishedCallback);
             }
         }
