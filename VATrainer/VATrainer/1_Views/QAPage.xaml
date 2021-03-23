@@ -36,6 +36,7 @@
         <StackLayout BackgroundColor="{StaticResource BackgroundColorDark}">
             <!--  FlipView  -->
             <views:FlipView
+                AnimationDuration="{Binding AnimationDuration}"
                 Flip="{Binding Flip}"
                 Next="{Binding Next}"
                 Style="{StaticResource FlipViewStyle}">

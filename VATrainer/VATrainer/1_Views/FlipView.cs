@@ -7,7 +7,6 @@ namespace VATrainer.Views
 {
     public class FlipView : ContentView
     {
-        private const uint AnimationDuration = 800;
         private const double AnimationScaleFactor = 0.5;
 
         private readonly RelativeLayout _contentHolder;
@@ -91,6 +90,20 @@ namespace VATrainer.Views
             }
         }
 
+        public uint AnimationDuration
+        {
+            get { return (uint)GetValue(AnimationDurationProperty); }
+            set { SetValue(AnimationDurationProperty, value); }
+        }
+
+        public static readonly BindableProperty AnimationDurationProperty =
+            BindableProperty.Create(
+                nameof(AnimationDuration),
+                typeof(uint),
+                typeof(FlipView),
+                null,
+                BindingMode.Default);
+
         public NextAnimationParams Next
         {
             get { return (NextAnimationParams)GetValue(NextProperty); }
@@ -117,7 +130,7 @@ namespace VATrainer.Views
             //TODO: ExecuteNext is called after navigating back (<-) with parameter null
             if (nextAnimationParams != null)
             {
-                if(nextAnimationParams.Card == Card.MoveOut)
+                if (nextAnimationParams.Card == Card.MoveOut)
                 {
                     await ExecuteMoveOut(nextAnimationParams);
                     nextAnimationParams.TriggerCallback();
@@ -136,17 +149,17 @@ namespace VATrainer.Views
 
         private async Task ExecuteMoveOut(NextAnimationParams nextAnimationParams)
         {
-            await this.ScaleTo(AnimationScaleFactor, AnimationDuration / 2, Easing.Linear);
+            await this.ScaleTo(AnimationScaleFactor, 2 * AnimationDuration / 16, Easing.Linear);
             if (Confidence.Confident == nextAnimationParams.Confidence)
             {
-                await this.TranslateTo(_screenWidth, 0, AnimationDuration / 2, Easing.Linear);
+                await this.TranslateTo(_screenWidth, 0, 6 * AnimationDuration / 16, Easing.Linear);
                 await this.TranslateTo(_screenWidth, -_screenHeight, 0, Easing.Linear);
                 await this.TranslateTo(0, -_screenHeight, 0, Easing.Linear);
 
             }
             else
             {
-                await this.TranslateTo(-_screenWidth, 0, AnimationDuration / 2, Easing.Linear);
+                await this.TranslateTo(-_screenWidth, 0, 6 * AnimationDuration / 16, Easing.Linear);
                 await this.TranslateTo(-_screenWidth, -_screenHeight, 0, Easing.Linear);
                 await this.TranslateTo(0, -_screenHeight, 0, Easing.Linear);
             }
@@ -156,8 +169,8 @@ namespace VATrainer.Views
 
         private async Task ExecuteMoveIn()
         {
-            await this.TranslateTo(0, 0, AnimationDuration / 2, Easing.Linear);
-            await this.ScaleTo(1, AnimationDuration / 2, Easing.Linear);
+            await this.TranslateTo(0, 0, 6 * AnimationDuration / 16, Easing.Linear);
+            await this.ScaleTo(1, 2 * AnimationDuration / 16, Easing.Linear);
         }
 
         public FlipParams Flip

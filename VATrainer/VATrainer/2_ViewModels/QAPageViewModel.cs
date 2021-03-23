@@ -1,7 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
-using System;
 using System.Windows.Input;
 using VATrainer.Models;
 using VATrainer.Views;
@@ -77,6 +76,11 @@ namespace VATrainer.ViewModels
             {
                 await PopupNavigation.Instance.PushAsync(new InstructionPopUp(), true);
             }
+        }
+
+        public uint AnimationDuration
+        {
+            get => (uint)_settings.AnimationDuration;
         }
 
         public FlipParams Flip
