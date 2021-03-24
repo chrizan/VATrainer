@@ -23,11 +23,12 @@ namespace VATrainer.ViewModels
         {
             _settings = settings;
             _article = repository.GetArticleForId(3).Result;
-        } 
+        }
 
         public HtmlWebViewSource Article
         {
-            get => new HtmlWebViewSource() { 
+            get => new HtmlWebViewSource()
+            {
                 Html = $"<html style=background-color:{BackgroundColorLight};>" +
                 $"<div style=color:{PrimaryColorDark};" +
                 $"font-size:{_settings.FontSize}>" +
@@ -45,7 +46,8 @@ namespace VATrainer.ViewModels
             get => FontSizeMax;
         }
 
-        public double SliderValue { 
+        public double SliderValue
+        {
             get => Convert.ToDouble(_settings.FontSize.Replace(FontSizeUnit, string.Empty));
             set
             {
@@ -61,16 +63,60 @@ namespace VATrainer.ViewModels
             set => _settings.DisplayInstruction = value;
         }
 
-        public uint AnimationDuration
-        {
-            get => (uint)_settings.AnimationDuration;
-            set => _settings.AnimationDuration = (int)value;
-        }
-
         public FlipParams Flip
         {
             get { return _flipAnimationParams; }
             set { SetProperty(ref _flipAnimationParams, value); }
+        }
+
+        public uint AnimationDuration
+        {
+            get => (uint)_settings.AnimationDuration;
+        }
+
+        public string AnimationSpeed
+        {
+            get => MapToString(_settings.AnimationDuration);
+            set
+            {
+                _settings.AnimationDuration = MapToInt(value);
+                Flip = new FlipParams(FlipDirection.Left);
+                RaisePropertyChanged(nameof(AnimationDuration));
+            }
+        }
+
+        private static string MapToString(int speed)
+        {
+            if (speed == 500)
+            {
+                return "Fast";
+            }
+            else if (speed == 750)
+            {
+                return "Medium";
+            }
+            else if (speed == 1000)
+            {
+                return "Slow";
+            }
+            else throw new NotImplementedException();
+        }
+
+        private static int MapToInt(string speed)
+        {
+            if (speed == "Fast")
+            {
+                return 500;
+            }
+            else if (speed == "Medium")
+            {
+                return 750;
+            }
+            else if (speed == "Slow")
+            {
+                return 1000;
+            }
+            else throw new NotImplementedException();
         }
     }
 }

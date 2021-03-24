@@ -70,6 +70,15 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Answer.
+        /// </summary>
+        public static string Answer {
+            get {
+                return ResourceManager.GetString("Answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browsing.
         /// </summary>
         public static string Browsing {
@@ -151,6 +160,15 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fast.
+        /// </summary>
+        public static string Fast {
+            get {
+                return ResourceManager.GetString("Fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Have fun and good luck!.
         /// </summary>
         public static string Greetings {
@@ -223,11 +241,29 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        public static string Medium {
+            get {
+                return ResourceManager.GetString("Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OECD - ROW.
         /// </summary>
         public static string OECD_ROW {
             get {
                 return ResourceManager.GetString("OECD_ROW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question.
+        /// </summary>
+        public static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         
@@ -255,6 +291,15 @@ namespace VATrainer.Resx {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slow.
+        /// </summary>
+        public static string Slow {
+            get {
+                return ResourceManager.GetString("Slow", resourceCulture);
             }
         }
         

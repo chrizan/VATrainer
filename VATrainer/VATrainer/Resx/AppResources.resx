@@ -120,6 +120,9 @@
   <data name="Adjective_law" xml:space="preserve">
     <value>Adjective law</value>
   </data>
+  <data name="Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
   <data name="Browsing" xml:space="preserve">
     <value>Browsing</value>
   </data>
@@ -147,6 +150,9 @@
   <data name="Expense_side" xml:space="preserve">
     <value>Expense side</value>
   </data>
+  <data name="Fast" xml:space="preserve">
+    <value>Fast</value>
+  </data>
   <data name="Greetings" xml:space="preserve">
     <value>Have fun and good luck!</value>
   </data>
@@ -171,8 +177,14 @@
   <data name="Learning_Explanation" xml:space="preserve">
     <value>Prepare yourself for an exam</value>
   </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
   <data name="OECD_ROW" xml:space="preserve">
     <value>OECD - ROW</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
   </data>
   <data name="Resources" xml:space="preserve">
     <value>Resources</value>
@@ -182,6 +194,9 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Slow" xml:space="preserve">
+    <value>Slow</value>
   </data>
   <data name="Switzerland" xml:space="preserve">
     <value>Switzerland</value>
