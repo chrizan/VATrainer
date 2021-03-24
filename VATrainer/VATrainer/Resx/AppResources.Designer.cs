@@ -306,9 +306,9 @@ namespace VATrainer.Resx {
         /// <summary>
         ///   Looks up a localized string similar to VATrainer.
         /// </summary>
-        public static string Title_HomeMaster {
+        public static string Title_HomeMain {
             get {
-                return ResourceManager.GetString("Title_HomeMaster", resourceCulture);
+                return ResourceManager.GetString("Title_HomeMain", resourceCulture);
             }
         }
         

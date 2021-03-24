@@ -7,7 +7,7 @@
     xmlns:resx="clr-namespace:VATrainer.Resx"
     xmlns:views="clr-namespace:VATrainer.Views"
     x:Name="page"
-    Title="{x:Static resx:AppResources.Title_HomeMaster}">
+    Title="{x:Static resx:AppResources.Title_HomeMain}">
 
     <MasterDetailPage.Master>
         <ContentPage
@@ -39,16 +39,11 @@
                 <Line
                     Grid.Row="1"
                     Grid.Column="1"
-                    StrokeThickness="8"
-                    VerticalOptions="Center"
+                    Style="{StaticResource SeparationLineStyle}"
                     X1="0"
                     X2="1000"
                     Y1="0"
-                    Y2="0">
-                    <Line.Stroke>
-                        <SolidColorBrush Color="White" />
-                    </Line.Stroke>
-                </Line>
+                    Y2="0" />
                 <Image
                     Grid.Row="2"
                     Grid.Column="1"
@@ -56,16 +51,11 @@
                 <Line
                     Grid.Row="3"
                     Grid.Column="1"
-                    StrokeThickness="8"
-                    VerticalOptions="Center"
+                    Style="{StaticResource SeparationLineStyle}"
                     X1="0"
                     X2="1000"
                     Y1="0"
-                    Y2="0">
-                    <Line.Stroke>
-                        <SolidColorBrush Color="White" />
-                    </Line.Stroke>
-                </Line>
+                    Y2="0" />
                 <views:FrameButton
                     Grid.Row="5"
                     Grid.Column="1"

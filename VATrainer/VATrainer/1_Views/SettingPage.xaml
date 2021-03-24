@@ -5,46 +5,96 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resx="clr-namespace:VATrainer.Resx"
+    xmlns:views="clr-namespace:VATrainer.Views;assembly=VATrainer"
     Title="{x:Static resx:AppResources.Title_Settings}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
-    <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
+    <Grid BackgroundColor="{StaticResource BackgroundColorDark}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="8*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <StackLayout
             Grid.Row="0"
             Grid.Column="1"
-            Orientation="Horizontal">
+            BackgroundColor="Red"
+            Orientation="Horizontal"
+            VerticalOptions="Center">
+            <CheckBox IsChecked="{Binding DisplayInstruction}" VerticalOptions="Center" />
             <Label
                 FontSize="Medium"
                 Text="{x:Static resx:AppResources.DisplayInstruction}"
                 TextColor="{StaticResource PrimaryColor}"
                 VerticalOptions="Center" />
-            <CheckBox IsChecked="{Binding DisplayInstruction}" VerticalOptions="Center" />
         </StackLayout>
 
-        <WebView
+        <Line
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{StaticResource SeparationLineStyle}"
+            X1="0"
+            X2="1000"
+            Y1="0"
+            Y2="0" />
+
+        <StackLayout
+            Grid.Row="2"
+            Grid.Column="1"
+            Orientation="Horizontal">
+            <views:FlipView
+                AnimationDuration="{Binding AnimationDuration}"
+                Flip="{Binding Flip}"
+                Style="{StaticResource FlipViewStyle}">
+                <views:FlipView.FrontView>
+                    <Frame Style="{StaticResource FlashCardStyle}">
+                        <Label Text="FrontView" />
+                    </Frame>
+                </views:FlipView.FrontView>
+                <views:FlipView.BackView>
+                    <Frame Style="{StaticResource FlashCardStyle}">
+                        <Label Text="BackView" />
+                    </Frame>
+                </views:FlipView.BackView>
+            </views:FlipView>
+            <Stepper
+                Increment="1"
+                Maximum="3"
+                VerticalOptions="End" />
+        </StackLayout>
+
+        <Line
             Grid.Row="3"
             Grid.Column="1"
-            Source="{Binding Article, Mode=OneWay}" />
+            Style="{StaticResource SeparationLineStyle}"
+            X1="0"
+            X2="1000"
+            Y1="0"
+            Y2="0" />
 
-        <Slider
+        <StackLayout
             Grid.Row="4"
             Grid.Column="1"
-            Maximum="{Binding SliderValueMax}"
-            Minimum="{Binding SliderValueMin}"
-            Value="{Binding SliderValue}" />
+            Orientation="Vertical">
+            <WebView
+                HeightRequest="1000"
+                Source="{Binding Article, Mode=OneWay}"
+                WidthRequest="1000" />
+
+            <Slider
+                Margin="20"
+                Maximum="{Binding SliderValueMax}"
+                Minimum="{Binding SliderValueMin}"
+                Value="{Binding SliderValue}" />
+        </StackLayout>
 
     </Grid>
 </ContentPage>

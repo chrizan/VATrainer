@@ -48,6 +48,24 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
             </Style>
+            <!--  FlipView  -->
+            <Style x:Key="FlipViewStyle" TargetType="views:FlipView">
+                <Setter Property="HeightRequest" Value="1000" />
+                <Setter Property="WidthRequest" Value="1000" />
+            </Style>
+            <!--  FlashCard  -->
+            <Style x:Key="FlashCardStyle" TargetType="Frame">
+                <Setter Property="Margin" Value="15,15,15,0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+            <!--  Separation Line  -->
+            <Style x:Key="SeparationLineStyle" TargetType="Line">
+                <Setter Property="StrokeThickness" Value="8" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Stroke" Value="White" />
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

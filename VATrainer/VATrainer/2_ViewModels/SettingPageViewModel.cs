@@ -17,6 +17,8 @@ namespace VATrainer.ViewModels
         private readonly ISettings _settings;
         private readonly Article _article;
 
+        private FlipParams _flipAnimationParams;
+
         public SettingPageViewModel(IRepository repository, ISettings settings)
         {
             _settings = settings;
@@ -57,6 +59,18 @@ namespace VATrainer.ViewModels
         {
             get => _settings.DisplayInstruction;
             set => _settings.DisplayInstruction = value;
+        }
+
+        public uint AnimationDuration
+        {
+            get => (uint)_settings.AnimationDuration;
+            set => _settings.AnimationDuration = (int)value;
+        }
+
+        public FlipParams Flip
+        {
+            get { return _flipAnimationParams; }
+            set { SetProperty(ref _flipAnimationParams, value); }
         }
     }
 }
