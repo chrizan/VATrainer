@@ -79,9 +79,13 @@ namespace VATrainer.ViewModels
             get => MapToString(_settings.AnimationDuration);
             set
             {
-                _settings.AnimationDuration = MapToInt(value);
-                Flip = new FlipParams(FlipDirection.Left);
-                RaisePropertyChanged(nameof(AnimationDuration));
+                int animationDuration = MapToInt(value);
+                if (animationDuration != _settings.AnimationDuration)
+                {
+                    _settings.AnimationDuration = animationDuration;
+                    RaisePropertyChanged(nameof(AnimationDuration));
+                    Flip = new FlipParams(FlipDirection.Left);
+                }
             }
         }
 
