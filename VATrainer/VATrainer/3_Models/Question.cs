@@ -20,6 +20,9 @@ namespace VATrainer.Models
 
         [Required]
         public int Order { get; set; }
+        
+        [Required]
+        public int Stack { get; set; }
 
         [ForeignKey(nameof(AnswerId))]
         public virtual Answer Answer { get; set; }

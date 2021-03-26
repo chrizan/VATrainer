@@ -1,4 +1,4 @@
-﻿INSERT INTO VATrainerDB.Article
+INSERT INTO VATrainerDB.Article
 (Id, "Text")
 VALUES 
 (
