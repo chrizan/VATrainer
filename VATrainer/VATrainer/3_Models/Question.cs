@@ -24,6 +24,9 @@ namespace VATrainer.Models
         [Required]
         public int Stack { get; set; }
 
+        [Required]
+        public bool IsNext { get; set; }
+
         [ForeignKey(nameof(AnswerId))]
         public virtual Answer Answer { get; set; }
 
