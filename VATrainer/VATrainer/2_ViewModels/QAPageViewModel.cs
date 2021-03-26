@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Prism.AppModel;
+using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
 using System.Windows.Input;
@@ -9,7 +10,7 @@ using Xamarin.Forms.Shapes;
 
 namespace VATrainer.ViewModels
 {
-    public class QAPageViewModel : BindableBase
+    public class QAPageViewModel : BindableBase, IPageLifecycleAware, IApplicationLifecycleAware
     {
         private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
@@ -172,6 +173,26 @@ namespace VATrainer.ViewModels
                 SetContent();
                 Next = new NextAnimationParams(Card.MoveIn, Confidence.None, NextFinishedCallback);
             }
+        }
+
+        public void OnAppearing()
+        {
+            //TODO -> Save current state
+        }
+
+        public void OnDisappearing()
+        {
+            //TODO -> Load current state
+        }
+
+        public void OnResume()
+        {
+            //TODO -> maybe covered by OnAppearing()
+        }
+
+        public void OnSleep()
+        {
+            //TODO -> maybe covered by OnDisappearing()
         }
     }
 }
