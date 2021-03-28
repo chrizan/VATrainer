@@ -4,7 +4,6 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Services;
 using System.Windows.Input;
-using VATrainer.Models;
 using VATrainer.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
@@ -48,11 +47,11 @@ namespace VATrainer.ViewModels
         {
             int theme = parameters.GetValue<int>("theme");
             _flashCardManager.Init(theme);
-            SetContent();
+            SetNextQuestion();
             DisplayInstructionAsync();
         }
 
-        private void SetContent()
+        private void SetNextQuestion()
         {
             var nextQuestion = _flashCardManager.GetNextQuestion();
 
@@ -79,10 +78,10 @@ namespace VATrainer.ViewModels
                 };
             }
 
-            UpdateStackView();
+            UpdateFlashcardStacks();
         }
 
-        private void UpdateStackView()
+        private void UpdateFlashcardStacks()
         {
             RaisePropertyChanged(nameof(UnconfidentNumber));
             RaisePropertyChanged(nameof(UnconfidentStack));
@@ -183,13 +182,12 @@ namespace VATrainer.ViewModels
 
         public DelegateCommand ConfidentCommand { get; private set; }
 
-        public DelegateCommand UnconfidentCommand { get; private set; }
-
         private void ConfidentCommanExecuted()
         {
             _flashCardManager.ExecuteConfident();
             Next = new NextAnimationParams(Card.MoveOut, Confidence.Confident, NextFinishedCallback);
         }
+        public DelegateCommand UnconfidentCommand { get; private set; }
 
         private void UnconfidentCommanExecuted()
         {
@@ -201,7 +199,7 @@ namespace VATrainer.ViewModels
         {
             if (Card.MoveOut == Next.Card)
             {
-                SetContent();
+                SetNextQuestion();
                 Next = new NextAnimationParams(Card.MoveIn, Confidence.None, NextFinishedCallback);
             }
         }
