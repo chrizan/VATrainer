@@ -60,5 +60,18 @@ namespace VATrainer.DataLayer
                 .FirstOrDefaultAsync();
             return article;
         }
+
+        public async Task SaveChanges(List<Question> questions)
+        {
+            using var context = new VATrainerContext();
+            foreach (Question q1 in questions)
+            {
+                Question question = await context.Question.Where(q => q.Id == q1.Id).FirstAsync();
+                question.IsNext = q1.IsNext;
+                question.Order = q1.Order;
+                question.Stack = q1.Stack;
+            }
+            await context.SaveChangesAsync();
+        }
     }
 }

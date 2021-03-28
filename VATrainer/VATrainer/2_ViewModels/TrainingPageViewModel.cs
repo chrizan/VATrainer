@@ -23,7 +23,8 @@ namespace VATrainer.ViewModels
 
         private async void NavigateCommandExecuted(string view)
         {
-            await _navigationService.NavigateAsync(view);
+            var navigationParams = new NavigationParameters { { "theme", 1 } };
+            await _navigationService.NavigateAsync(view, navigationParams);
         }
     }
 }

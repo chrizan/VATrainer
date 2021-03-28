@@ -35,5 +35,12 @@ namespace VATrainer.Models
         /// <param name="articleId">The primary key of the article</param>
         /// <returns></returns>
         Task<Article> GetArticleForId(int articleId);
+
+        /// <summary>
+        /// Saves all changes
+        /// </summary>
+        /// <param name="questions">The altered questions</param>
+        /// <returns></returns>
+        Task SaveChanges(List<Question> questions);
     }
 }

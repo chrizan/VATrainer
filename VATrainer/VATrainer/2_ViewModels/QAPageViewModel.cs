@@ -1,6 +1,7 @@
 ﻿using Prism.AppModel;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using Rg.Plugins.Popup.Services;
 using System.Windows.Input;
 using VATrainer.Models;
@@ -10,29 +11,28 @@ using Xamarin.Forms.Shapes;
 
 namespace VATrainer.ViewModels
 {
-    public class QAPageViewModel : BindableBase, IPageLifecycleAware, IApplicationLifecycleAware
+    public class QAPageViewModel : BindableBase, IInitialize, IPageLifecycleAware, IApplicationLifecycleAware
     {
-        private readonly IRepository _repository;
         private readonly IWebpageCreator _webpageCreator;
         private readonly IGeometryCalculator _geometryCalculator;
         private readonly ISettings _settings;
+        private readonly IFlashCardManager _flashCardManager;
 
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
-        private Question _currentQuestion;
 
         private FlipParams _flipAnimationParams;
         private NextAnimationParams _nextAnimationParams;
 
-        public QAPageViewModel(IRepository repository,
-            IWebpageCreator webpageCreator,
+        public QAPageViewModel(IWebpageCreator webpageCreator,
             IGeometryCalculator geometryCalculator,
-            ISettings settings)
+            ISettings settings,
+            IFlashCardManager flashCardManager)
         {
-            _repository = repository;
             _webpageCreator = webpageCreator;
             _geometryCalculator = geometryCalculator;
             _settings = settings;
+            _flashCardManager = flashCardManager;
             Init();
         }
 
@@ -42,33 +42,56 @@ namespace VATrainer.ViewModels
             SwipeCommand = new Command<SwipedEventArgs>(ExecuteSwipeCommand);
             ConfidentCommand = new DelegateCommand(ConfidentCommanExecuted);
             UnconfidentCommand = new DelegateCommand(UnconfidentCommanExecuted);
+        }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            int theme = parameters.GetValue<int>("theme");
+            _flashCardManager.Init(theme);
             SetContent();
             DisplayInstructionAsync();
         }
 
         private void SetContent()
         {
-            if (_currentQuestion == null)
+            var nextQuestion = _flashCardManager.GetNextQuestion();
+
+            if (nextQuestion != null)
             {
-                _currentQuestion = _repository.GetQuestionForId(1).Result;
+                Question = new HtmlWebViewSource
+                {
+                    Html = _webpageCreator.CreateQuestionWebpage(nextQuestion)
+                };
+                Answer = new HtmlWebViewSource
+                {
+                    Html = _webpageCreator.CreateAnswerWebpage(nextQuestion.Answer)
+                };
             }
             else
             {
-                _currentQuestion = _repository.GetNextQuestionOfSameTheme(_currentQuestion).Result;
-                if (_currentQuestion == null)
+                Question = new HtmlWebViewSource
                 {
-                    _currentQuestion = _repository.GetQuestionForId(1).Result;
-                }
+                    Html = "<p>Congratulations!<p>"
+                };
+                Answer = new HtmlWebViewSource
+                {
+                    Html = "<p>You finished this chapter!<p>"
+                };
             }
 
-            Question = new HtmlWebViewSource
-            {
-                Html = _webpageCreator.CreateQuestionWebpage(_currentQuestion)
-            };
-            Answer = new HtmlWebViewSource
-            {
-                Html = _webpageCreator.CreateAnswerWebpage(_currentQuestion.Answer)
-            };
+            UpdateStackView();
+        }
+
+        private void UpdateStackView()
+        {
+            RaisePropertyChanged(nameof(UnconfidentNumber));
+            RaisePropertyChanged(nameof(UnconfidentStack));
+            
+            RaisePropertyChanged(nameof(SemiConfidentNumber));
+            RaisePropertyChanged(nameof(SemiConfidentStack));
+
+            RaisePropertyChanged(nameof(ConfidentNumber));
+            RaisePropertyChanged(nameof(ConfidentStack));
         }
 
         private async void DisplayInstructionAsync()
@@ -146,11 +169,17 @@ namespace VATrainer.ViewModels
             Flip = new FlipParams(FlipDirection.Right);
         }
 
-        public GeometryGroup DeckUnconfident => _geometryCalculator.GetDeckGeometry(15);
+        public int UnconfidentNumber => _flashCardManager.CardsOnUnconfidentStack;
 
-        public GeometryGroup DeckSemiConfident => _geometryCalculator.GetDeckGeometry(1);
+        public GeometryGroup UnconfidentStack => _geometryCalculator.GetDeckGeometry(_flashCardManager.CardsOnUnconfidentStack);
 
-        public GeometryGroup DeckConfident => _geometryCalculator.GetDeckGeometry(2);
+        public int SemiConfidentNumber => _flashCardManager.CardsOnSemiConfidentStack;
+
+        public GeometryGroup SemiConfidentStack => _geometryCalculator.GetDeckGeometry(_flashCardManager.CardsOnSemiConfidentStack);
+
+        public int ConfidentNumber => _flashCardManager.CardsOnConfidentStack;
+
+        public GeometryGroup ConfidentStack => _geometryCalculator.GetDeckGeometry(_flashCardManager.CardsOnConfidentStack);
 
         public DelegateCommand ConfidentCommand { get; private set; }
 
@@ -158,11 +187,13 @@ namespace VATrainer.ViewModels
 
         private void ConfidentCommanExecuted()
         {
+            _flashCardManager.ExecuteConfident();
             Next = new NextAnimationParams(Card.MoveOut, Confidence.Confident, NextFinishedCallback);
         }
 
         private void UnconfidentCommanExecuted()
         {
+            _flashCardManager.ExecuteUnconfident();
             Next = new NextAnimationParams(Card.MoveOut, Confidence.Unconfident, NextFinishedCallback);
         }
 
@@ -177,12 +208,12 @@ namespace VATrainer.ViewModels
 
         public void OnAppearing()
         {
-            //TODO -> Save current state
+            //TODO -> Load current state -> probably not needed
         }
 
         public void OnDisappearing()
         {
-            //TODO -> Load current state
+            _flashCardManager.SaveState();
         }
 
         public void OnResume()
