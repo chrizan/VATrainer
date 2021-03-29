@@ -20,9 +20,9 @@ namespace VATrainer.ViewModels
         public void Init(int theme)
         {
             List<Question> questions = _repository.GetAllQuestionsOfTheme(theme).Result;
-            _leftStack = new FlashCardStack(questions, 1);
-            _middleStack = new FlashCardStack(questions, 2);
-            _rightStack = new FlashCardStack(questions, 3);
+            _leftStack = new FlashCardStack(questions, CardStack.Left);
+            _middleStack = new FlashCardStack(questions, CardStack.Middle);
+            _rightStack = new FlashCardStack(questions, CardStack.Right);
             SetCurrentStack();
         }
 

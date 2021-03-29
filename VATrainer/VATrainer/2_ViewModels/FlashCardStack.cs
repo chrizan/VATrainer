@@ -21,17 +21,17 @@ namespace VATrainer.ViewModels
 
     public class FlashCardStack : List<Question>, IFlashCardStack
     {
-        public FlashCardStack(List<Question> questions, int stack)
+        public FlashCardStack(List<Question> questions, CardStack cardStack)
         {
-            Questions = questions.FindAll(q => q.Stack == stack);
+            Questions = questions.FindAll(q => q.Stack == (int)cardStack);
             Questions.Sort(new OrderComparer());
-            Stack = stack;
+            Stack = cardStack;
             CurrentQuestion = Questions.Find(q => q.IsNext);
         }
 
         public List<Question> Questions { get;}
 
-        public int Stack { get; }
+        public CardStack Stack { get; }
 
         public Question CurrentQuestion { get; private set; }
 
@@ -127,13 +127,13 @@ namespace VATrainer.ViewModels
             if (Questions.Count == 0)
             {
                 question.Order = 1;
-                question.Stack = Stack;
+                question.Stack = (int)Stack;
                 Questions.Add(question);
             }
             else
             {
                 question.Order = Questions[Questions.Count - 1].Order + 1;
-                question.Stack = Stack;
+                question.Stack = (int)Stack;
                 Questions.Add(question);
             }
         }
