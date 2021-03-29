@@ -52,7 +52,7 @@ namespace VATrainer.ViewModels
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
             }
-            if (_currentStack == _middleStack.Stack)
+            else if (_currentStack == _middleStack.Stack)
             {
                 var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
                 if (nextQuestion != null)
@@ -94,7 +94,7 @@ namespace VATrainer.ViewModels
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
             }
-            if (_currentStack == _middleStack.Stack)
+            else if (_currentStack == _middleStack.Stack)
             {
                 var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
                 if (nextQuestion != null)
@@ -123,7 +123,7 @@ namespace VATrainer.ViewModels
             }
             else
             {
-                throw new NotImplementedException("Unconfident Button should be locked at this stage!");
+                throw new NotImplementedException("Confident Button should be locked at this stage!");
             }
         }
 
