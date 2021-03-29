@@ -12,7 +12,7 @@ namespace VATrainer.ViewModels
 
         public int CardsOnConfidentStack { get; }
 
-        public Question GetNextQuestion();
+        public Question NextQuestion { get; }
 
         public void ExecuteUnconfident();
 

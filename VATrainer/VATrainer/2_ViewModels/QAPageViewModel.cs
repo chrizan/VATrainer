@@ -61,7 +61,7 @@ namespace VATrainer.ViewModels
 
         private void SetNextQuestion()
         {
-            var nextQuestion = _flashCardManager.GetNextQuestion();
+            var nextQuestion = _flashCardManager.NextQuestion;
 
             if (nextQuestion != null)
             {

@@ -16,14 +16,12 @@ namespace VATrainer.ViewModels
 
         CardStack Stack { get; }
 
-        Question CurrentQuestion { get; }
+        public Question GetNextQuestion(Question currentQuestion);
+
+        public Question GetFirstQuestion();
 
         public void AddQuestion(Question question);
 
         public void RemoveQuestion(Question question);
-
-        void ExecuteUnconfident(IFlashCardStack leftStack, IFlashCardStack middleStack, IFlashCardStack rightStack, IFlashCardStack currentStack);
-        
-        void ExecuteConfident(IFlashCardStack leftStack, IFlashCardStack middleStack, IFlashCardStack rightStack, IFlashCardStack currentStack);
     }
 }
