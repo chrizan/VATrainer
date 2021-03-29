@@ -84,9 +84,9 @@
                 <Frame Grid.Column="1" Style="{StaticResource FrameButtonStyle}">
                     <Grid Padding="3">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="20" />
-                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <StackLayout
                             Grid.Column="0"
