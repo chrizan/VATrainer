@@ -26,11 +26,11 @@ namespace VATrainer.ViewModels
             SetCurrentStack();
         }
 
-        public int CardsOnUnconfidentStack => _leftStack == null ? 0 : _leftStack.Questions.Count;
+        public int CardsOnUnconfidentStack => _leftStack.Questions.Count;
 
-        public int CardsOnSemiConfidentStack => _middleStack == null ? 0 : _middleStack.Questions.Count;
+        public int CardsOnSemiConfidentStack => _middleStack.Questions.Count;
 
-        public int CardsOnConfidentStack => _rightStack == null ? 0 : _rightStack.Questions.Count;
+        public int CardsOnConfidentStack => _rightStack.Questions.Count;
 
         public Question GetNextQuestion()
         {

@@ -20,7 +20,15 @@ namespace VATrainer.ViewModels
         private HtmlWebViewSource _question;
         private HtmlWebViewSource _answer;
 
+        private int _unconfidentNumber;
+        private GeometryGroup _unconfidentStack;
+        private int _semiConfidentNumber;
+        private GeometryGroup _semiConfidentStack;
+        private int _confidentNumber;
+        private GeometryGroup _confidentStack;
+        
         private FlipParams _flipAnimationParams;
+        
         private NextAnimationParams _nextAnimationParams;
 
         public QAPageViewModel(IWebpageCreator webpageCreator,
@@ -83,14 +91,14 @@ namespace VATrainer.ViewModels
 
         private void UpdateFlashcardStacks()
         {
-            RaisePropertyChanged(nameof(UnconfidentNumber));
-            RaisePropertyChanged(nameof(UnconfidentStack));
-            
-            RaisePropertyChanged(nameof(SemiConfidentNumber));
-            RaisePropertyChanged(nameof(SemiConfidentStack));
+            UnconfidentNumber = _flashCardManager.CardsOnUnconfidentStack;
+            UnconfidentStack = _geometryCalculator.GetDeckGeometry(UnconfidentNumber);
 
-            RaisePropertyChanged(nameof(ConfidentNumber));
-            RaisePropertyChanged(nameof(ConfidentStack));
+            SemiConfidentNumber = _flashCardManager.CardsOnSemiConfidentStack;
+            SemiConfidentStack = _geometryCalculator.GetDeckGeometry(SemiConfidentNumber);
+
+            ConfidentNumber = _flashCardManager.CardsOnConfidentStack;
+            ConfidentStack = _geometryCalculator.GetDeckGeometry(ConfidentNumber);
         }
 
         private async void DisplayInstructionAsync()
@@ -104,6 +112,42 @@ namespace VATrainer.ViewModels
         public uint AnimationDuration
         {
             get => (uint)_settings.AnimationDuration;
+        }
+
+        public int UnconfidentNumber
+        {
+            get { return _unconfidentNumber; }
+            set { SetProperty(ref _unconfidentNumber, value); }
+        }
+
+        public GeometryGroup UnconfidentStack
+        {
+            get { return _unconfidentStack; }
+            set { SetProperty(ref _unconfidentStack, value); }
+        }
+
+        public int SemiConfidentNumber
+        {
+            get { return _semiConfidentNumber; }
+            set { SetProperty(ref _semiConfidentNumber, value); }
+        }
+
+        public GeometryGroup SemiConfidentStack
+        {
+            get { return _semiConfidentStack; }
+            set { SetProperty(ref _semiConfidentStack, value); }
+        }
+
+        public int ConfidentNumber
+        {
+            get { return _confidentNumber; }
+            set { SetProperty(ref _confidentNumber, value); }
+        }
+
+        public GeometryGroup ConfidentStack
+        {
+            get { return _confidentStack; }
+            set { SetProperty(ref _confidentStack, value); }
         }
 
         public FlipParams Flip
@@ -167,18 +211,6 @@ namespace VATrainer.ViewModels
         {
             Flip = new FlipParams(FlipDirection.Right);
         }
-
-        public int UnconfidentNumber => _flashCardManager.CardsOnUnconfidentStack;
-
-        public GeometryGroup UnconfidentStack => _geometryCalculator.GetDeckGeometry(_flashCardManager.CardsOnUnconfidentStack);
-
-        public int SemiConfidentNumber => _flashCardManager.CardsOnSemiConfidentStack;
-
-        public GeometryGroup SemiConfidentStack => _geometryCalculator.GetDeckGeometry(_flashCardManager.CardsOnSemiConfidentStack);
-
-        public int ConfidentNumber => _flashCardManager.CardsOnConfidentStack;
-
-        public GeometryGroup ConfidentStack => _geometryCalculator.GetDeckGeometry(_flashCardManager.CardsOnConfidentStack);
 
         public DelegateCommand ConfidentCommand { get; private set; }
 
