@@ -39,6 +39,10 @@ namespace VATrainer.ViewModels
             {
                 return Questions[posCurrentQuestion + 1];
             }
+            else if (Questions.Count == 1)
+            {
+                return currentQuestion;
+            }
             else return null;
         }
 
@@ -65,94 +69,11 @@ namespace VATrainer.ViewModels
 
         public Question GetFirstQuestion()
         {
-            return Questions[0];
+            if (Questions.Count > 0)
+            {
+                return Questions[0];
+            }
+            return null;
         }
-
-        //public void ExecuteUnconfident(IFlashCardStack leftStack, IFlashCardStack middleStack, IFlashCardStack rightStack, IFlashCardStack currentStack)
-        //{
-        //    if(currentStack == leftStack)
-        //    {
-        //        if (HasMoreQuestions(currentStack))
-        //        {
-        //            SetNextQuestion(currentStack);
-        //        }
-        //        else
-        //        {
-        //            if(middleStack.Count > 0)
-        //            {
-        //                currentStack = middleStack;
-        //                SetNextFirstQuestion(currentStack);
-        //            }
-        //            else
-        //            {
-        //                SetNextFirstQuestion(currentStack);
-        //            }
-        //        }
-        //    }
-        //    else if(currentStack == middleStack)
-        //    {
-        //        if (HasMoreQuestions(currentStack))
-        //        {
-        //            var currentQuestion = CurrentQuestion;
-        //            SetNextQuestion(currentStack);
-        //            middleStack.RemoveQuestion(currentQuestion);
-        //            leftStack.AddQuestion(currentQuestion);
-        //        }
-        //        else
-        //        {
-        //            middleStack.RemoveQuestion(CurrentQuestion);
-        //            leftStack.AddQuestion(CurrentQuestion);
-        //            currentStack = leftStack;
-        //            SetNextFirstQuestion(currentStack);
-        //        }
-        //    }
-        //    else throw new System.NotImplementedException("All questions are answered");
-        //}
-
-        //public void ExecuteConfident(IFlashCardStack leftStack, IFlashCardStack middleStack, IFlashCardStack rightStack, IFlashCardStack currentStack)
-        //{
-        //    if (currentStack == leftStack)
-        //    {
-        //        if (HasMoreQuestions(currentStack))
-        //        {
-        //            var currentQuestion = CurrentQuestion;
-        //            SetNextQuestion(currentStack);
-        //            leftStack.RemoveQuestion(currentQuestion);
-        //            middleStack.AddQuestion(currentQuestion);
-        //        }
-        //        else
-        //        {
-        //            leftStack.RemoveQuestion(CurrentQuestion);
-        //            middleStack.AddQuestion(CurrentQuestion);
-        //            currentStack = middleStack;
-        //            SetNextFirstQuestion(currentStack);
-        //        }
-        //    }
-        //    else if (currentStack == middleStack)
-        //    {
-        //        if (HasMoreQuestions(currentStack))
-        //        {
-        //            var currentQuestion = CurrentQuestion;
-        //            SetNextQuestion(currentStack);
-        //            middleStack.RemoveQuestion(currentQuestion);
-        //            rightStack.AddQuestion(currentQuestion);
-        //        }
-        //        else
-        //        {
-        //            middleStack.RemoveQuestion(CurrentQuestion);
-        //            rightStack.AddQuestion(CurrentQuestion);
-        //            if(leftStack.Count > 0)
-        //            {
-        //                currentStack = leftStack;
-        //                SetNextFirstQuestion(currentStack);
-        //            }
-        //            else
-        //            {
-        //                CurrentQuestion = null;
-        //            }
-        //        }
-        //    }
-        //    else throw new System.NotImplementedException("All questions are answered");
-        //}
     }
 }

@@ -41,8 +41,28 @@ namespace VATrainer.ViewModels
         {
             if (_currentStack == _leftStack.Stack)
             {
-                var nextQuestion = _leftStack.GetNextQuestion(_currentQuestion);
-                if (nextQuestion != null)
+                ExecuteUnconfidentForLeftStack();
+            }
+            if (_currentStack == _middleStack.Stack)
+            {
+                ExecuteUnconfidentForMiddleStack();
+            }
+            else
+            {
+                throw new NotImplementedException("Unconfident Button should be locked at this stage!");
+            }
+        }
+
+        private void ExecuteUnconfidentForLeftStack()
+        {
+            var nextQuestion = _leftStack.GetNextQuestion(_currentQuestion);
+            if (nextQuestion != _currentQuestion && nextQuestion != null)
+            {
+                _currentQuestion = nextQuestion;
+            }
+            else if (nextQuestion == _currentQuestion)
+            {
+                if(_middleStack.Count == 0)
                 {
                     _currentQuestion = nextQuestion;
                 }
@@ -51,29 +71,46 @@ namespace VATrainer.ViewModels
                     _currentStack = _middleStack.Stack;
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
+
             }
-            if (_currentStack == _middleStack.Stack)
+            else
             {
-                var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
-                if (nextQuestion != null)
+                _currentStack = _middleStack.Stack;
+                _currentQuestion = _middleStack.GetFirstQuestion();
+            }
+        }
+
+        private void ExecuteUnconfidentForMiddleStack()
+        {
+            var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
+            if (nextQuestion != _currentQuestion && nextQuestion != null)
+            {
+                _middleStack.RemoveQuestion(_currentQuestion);
+                _leftStack.AddQuestion(_currentQuestion);
+                _currentQuestion = nextQuestion;
+            }
+            else if (nextQuestion == _currentQuestion)
+            {
+                if (_middleStack.Count == 0)
                 {
-                    _middleStack.RemoveQuestion(_currentQuestion);
-                    _leftStack.AddQuestion(_currentQuestion);
                     _currentQuestion = nextQuestion;
                 }
                 else
                 {
-                    _middleStack.RemoveQuestion(_currentQuestion);
-                    _leftStack.AddQuestion(_currentQuestion);
-                    _currentStack = _leftStack.Stack;
-                    _currentQuestion = _leftStack.GetFirstQuestion();
+                    _currentStack = _middleStack.Stack;
+                    _currentQuestion = _middleStack.GetFirstQuestion();
                 }
+
             }
             else
             {
-                throw new NotImplementedException("Unconfident Button should be locked at this stage!");
+                _middleStack.RemoveQuestion(_currentQuestion);
+                _leftStack.AddQuestion(_currentQuestion);
+                _currentStack = _leftStack.Stack;
+                _currentQuestion = _leftStack.GetFirstQuestion();
             }
         }
+
 
         public void ExecuteConfident()
         {
@@ -133,9 +170,17 @@ namespace VATrainer.ViewModels
             questions.AddRange(_leftStack.Questions);
             questions.AddRange(_rightStack.Questions);
             questions.AddRange(_middleStack.Questions);
-            questions.ForEach(q => q.IsNext = false);
-            questions.Find(q => q.Equals(_currentQuestion)).IsNext = true;
+            SetIsNextFlag(questions);
             _repository.SaveChanges(questions);
+        }
+
+        private void SetIsNextFlag(List<Question> questions)
+        {
+            questions.ForEach(q => q.IsNext = false);
+            if (_currentQuestion != null)
+            {
+                questions.Find(q => q.Equals(_currentQuestion)).IsNext = true;
+            }
         }
 
         private void SetCurrentState()
