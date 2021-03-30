@@ -23,6 +23,20 @@ namespace VATrainer.Test.ViewModels
         }
 
         [Fact]
+        public void Test_Ctor_empty_Question_List()
+        {
+            // Arrange
+            List<Question> questions = new List<Question>();
+
+            // Act
+            var flashCardStack = new FlashCardStack(questions, CardStack.Left);
+
+            // Assert
+            flashCardStack.Questions.Count.Should().Be(0);
+            flashCardStack.Stack.Should().Be(CardStack.Left);
+        }
+
+        [Fact]
         public void Test_Ctor_Questions_from_an_other_stack_1()
         {
             // Arrange
@@ -76,6 +90,52 @@ namespace VATrainer.Test.ViewModels
             flashCardStack.Questions[3].Order.Should().Be(6);
             flashCardStack.Questions[4].Order.Should().Be(7);
             flashCardStack.Questions[5].Order.Should().Be(10);
+        }
+
+        [Fact]
+        public void Test_Questions_and_Stack()
+        {
+            // Arrange
+            List<Question> questions = new List<Question>()
+            {
+                new Question(){ Stack = (int)CardStack.Middle },
+                new Question(){ Stack = (int)CardStack.Left},
+                new Question(){ Stack = (int)CardStack.Left },
+                new Question(){ Stack = (int)CardStack.Right },
+                new Question(){ Stack = (int)CardStack.Middle },
+                new Question(){ Stack = (int)CardStack.Middle }
+            };
+
+            // Act
+            var flashCardStack = new FlashCardStack(questions, CardStack.Right);
+
+            // Assert
+            flashCardStack.Stack.Should().Be(CardStack.Right);
+            flashCardStack.Questions.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void Test_GetNextQuestion()
+        {
+            5.Should().Be(1);
+        }
+
+        [Fact]
+        public void Test_GetFirstQuestion()
+        {
+            5.Should().Be(1);
+        }
+
+        [Fact]
+        public void Test_AddQuestion()
+        {
+            5.Should().Be(1);
+        }
+
+        [Fact]
+        public void Test_RemoveQuestion()
+        {
+            5.Should().Be(1);
         }
 
         private List<Question> GetQuestions(int number, CardStack stack)

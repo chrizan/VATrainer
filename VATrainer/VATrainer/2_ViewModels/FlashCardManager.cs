@@ -45,7 +45,7 @@ namespace VATrainer.ViewModels
             }
             if (_currentStack == _middleStack.Stack)
             {
-                ExecuteUnconfidentForMiddleStack();
+                //ExecuteUnconfidentForMiddleStack();
             }
             else
             {
@@ -74,12 +74,12 @@ namespace VATrainer.ViewModels
             }
             else if (_currentStack == _middleStack.Stack)
             {
-                var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
-                if (nextQuestion != null)
+                var nextQuestion1 = _middleStack.GetNextQuestion(_currentQuestion);
+                if (nextQuestion1 != null)
                 {
                     _middleStack.RemoveQuestion(_currentQuestion);
                     _leftStack.AddQuestion(_currentQuestion);
-                    _currentQuestion = nextQuestion;
+                    _currentQuestion = nextQuestion1;
                 }
                 else
                 {
