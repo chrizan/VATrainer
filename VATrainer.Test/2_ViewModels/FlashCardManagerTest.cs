@@ -12,10 +12,27 @@ namespace VATrainer.Test.ViewModels
         private const int Theme = 1;
 
         [Fact]
-        public void Test_Init()
+        public void Test_Init_NextQuestion_On_Left_Stack()
         {
             // Arrange
-            var repoMock = GetRepositoryMock(3, 3, 0, 0);
+            var repoMock = GetRepositoryMock(12, 0, 0, 0);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
+
+            // Act
+            flashCardManager.Init(Theme);
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(12);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.IsNext.Should().Be(true);
+        }
+
+        [Fact]
+        public void Test_Init_NextQuestion_On_Middle_Stack()
+        {
+            // Arrange
+            var repoMock = GetRepositoryMock(3, 2, 5, 3);
             var flashCardManager = new FlashCardManager(repoMock.Object);
 
             // Act
@@ -23,9 +40,26 @@ namespace VATrainer.Test.ViewModels
 
             // Assert
             flashCardManager.CardsOnUnconfidentStack.Should().Be(3);
-            flashCardManager.CardsOnSemiConfidentStack.Should().Be(3);
-            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(2);
+            flashCardManager.CardsOnConfidentStack.Should().Be(5);
             flashCardManager.NextQuestion.IsNext.Should().Be(true);
+        }
+
+        [Fact]
+        public void Test_Init_NextQuestion_On_Right_Stack()
+        {
+            // Arrange
+            var repoMock = GetRepositoryMock(2, 4, 3, 7);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
+
+            // Act
+            flashCardManager.Init(Theme);
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(2);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(4);
+            flashCardManager.CardsOnConfidentStack.Should().Be(3);
+            flashCardManager.NextQuestion.Should().BeNull();
         }
 
         private Mock<IRepository> GetRepositoryMock(
