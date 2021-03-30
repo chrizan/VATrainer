@@ -71,28 +71,14 @@ namespace VATrainer.ViewModels
                     _currentStack = _middleStack.Stack;
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
-
             }
-            else
+            else if (_currentStack == _middleStack.Stack)
             {
-                _currentStack = _middleStack.Stack;
-                _currentQuestion = _middleStack.GetFirstQuestion();
-            }
-        }
-
-        private void ExecuteUnconfidentForMiddleStack()
-        {
-            var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
-            if (nextQuestion != _currentQuestion && nextQuestion != null)
-            {
-                _middleStack.RemoveQuestion(_currentQuestion);
-                _leftStack.AddQuestion(_currentQuestion);
-                _currentQuestion = nextQuestion;
-            }
-            else if (nextQuestion == _currentQuestion)
-            {
-                if (_middleStack.Count == 0)
+                var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
+                if (nextQuestion != null)
                 {
+                    _middleStack.RemoveQuestion(_currentQuestion);
+                    _leftStack.AddQuestion(_currentQuestion);
                     _currentQuestion = nextQuestion;
                 }
                 else
@@ -131,7 +117,7 @@ namespace VATrainer.ViewModels
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
             }
-            if (_currentStack == _middleStack.Stack)
+            else if (_currentStack == _middleStack.Stack)
             {
                 var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
                 if (nextQuestion != null)
@@ -160,7 +146,7 @@ namespace VATrainer.ViewModels
             }
             else
             {
-                throw new NotImplementedException("Unconfident Button should be locked at this stage!");
+                throw new NotImplementedException("Confident Button should be locked at this stage!");
             }
         }
 
