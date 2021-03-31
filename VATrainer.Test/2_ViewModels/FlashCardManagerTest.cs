@@ -110,7 +110,19 @@ namespace VATrainer.Test.ViewModels
         }
 
         [Fact]
+        public void Test_Execute_Unconfident_Middle_Stack_No_Question_Present()
+        {
+
+        }
+
+        [Fact]
         public void Test_Execute_Unconfident_Left_Stack_One_Question_Present_Questions_On_Middle_Stack()
+        {
+
+        }
+
+        [Fact]
+        public void Test_Execute_Unconfident_Middle_Stack_One_Question_Present_Questions_On_Left_Stack()
         {
 
         }
@@ -122,7 +134,19 @@ namespace VATrainer.Test.ViewModels
         }
 
         [Fact]
+        public void Test_Execute_Unconfident_Middle_Stack_One_Question_Present_No_Questions_On_Left_Stack()
+        {
+
+        }
+
+        [Fact]
         public void Test_Execute_Unconfident_Left_Stack_Several_Questions_Next_Question_Present()
+        {
+
+        }
+
+        [Fact]
+        public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_Next_Question_Present()
         {
 
         }
@@ -134,49 +158,19 @@ namespace VATrainer.Test.ViewModels
         }
 
         [Fact]
+        public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Left_Stack_Present()
+        {
+
+        }
+
+        [Fact]
         public void Test_Execute_Unconfident_Left_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Middel_Stack_Present()
         {
 
         }
 
         [Fact]
-        public void Test_Execute_Unconfident_Middle_Stack_No_Question_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Unconfident_Middle_Stack_One_Question_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Unconfident_Middle_Stack_One_Question_Present_Questions_On_Left_Stack_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Unconfident_Middle_Stack_One_Question_Present_No_Questions_On_Left_Stack_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_Present_Next_Question_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_Present_No_Next_Question_Present_Questions_On_Left_Stack_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_Present_No_Next_Question_Present_No_Questions_On_Left_Stack_Present()
+        public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Left_Stack_Present()
         {
 
         }
@@ -188,13 +182,31 @@ namespace VATrainer.Test.ViewModels
         }
 
         [Fact]
-        public void Test_Execute_Confident_Left_Stack_No_Question()
+        public void Test_Execute_Confident_Left_Stack_No_Question_Present()
         {
 
         }
 
         [Fact]
-        public void Test_Execute_Confident_Left_Stack_One_Question()
+        public void Test_Execute_Confident_Middle_Stack_No_Question_Present()
+        {
+
+        }
+
+        [Fact]
+        public void Test_Execute_Confident_Left_Stack_One_Question_Present()
+        {
+
+        }
+
+        [Fact]
+        public void Test_Execute_Confident_Middle_Stack_One_Question_Present_Questions_On_Left_Stack_Present()
+        {
+
+        }
+
+        [Fact]
+        public void Test_Execute_Confident_Middle_Stack_One_Question_Present_No_Questions_On_Left_Stack_Present()
         {
 
         }
@@ -206,48 +218,35 @@ namespace VATrainer.Test.ViewModels
         }
 
         [Fact]
-        public void Test_Execute_Confident_Left_Stack_Several_Questions_No_Next_Question_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Confident_Middle_Stack_No_Question()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Confident_Middle_Stack_One_Question_Questions_On_Left_Stack_Present()
-        {
-
-        }
-
-        [Fact]
-        public void Test_Execute_Confident_Middle_Stack_One_Question_No_Questions_On_Left_Stack_Present()
-        {
-
-        }
-
-        [Fact]
         public void Test_Execute_Confident_Middle_Stack_Several_Questions_Next_Question_Present()
         {
 
         }
 
         [Fact]
-        public void Test_Execute_Confident_Middle_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Left_Stack_Present()
+        public void Test_Execute_Confident_Left_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Middle_Stack()
         {
 
         }
 
         [Fact]
-        public void Test_Execute_Confident_Middle_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Left_Stack_Present()
+        public void Test_Execute_Confident_Middle_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Left_Stack()
         {
 
         }
 
         [Fact]
+        public void Test_Execute_Confident_Left_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Middle_Stack()
+        {
+
+        }
+
+        [Fact]
+        public void Test_Execute_Confident_Middle_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Left_Stack()
+        {
+
+        }
+
         public void Test_Execute_Confident_Right_Stack()
         {
 
