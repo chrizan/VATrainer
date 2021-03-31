@@ -319,7 +319,7 @@ namespace VATrainer.Test.ViewModels
 
         [Fact]
         public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Left_Stack_Present()
-        {            
+        {
             // Arrange
             var repoMock = new Mock<IRepository>();
             var questions = new List<Question>()
@@ -696,18 +696,15 @@ namespace VATrainer.Test.ViewModels
         }
 
         [Fact]
-        public void Test_SaveState()
+        public void Test_SaveState_CurrentQuestion_Has_IsNext_Flag_Only_One_Question()
         {
             // Arrange
             var repoMock = new Mock<IRepository>();
             var questions = new List<Question>()
             {
-                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = true },
-                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 5, IsNext = false },
-                new Question() { Id = 5, Stack = (int)CardStack.Right, Order = 10, IsNext = false }
+                new Question() { Id = 5, Stack = (int)CardStack.Right, IsNext = true }
             };
             repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
-            repoMock.Setup(r => r.SaveChanges(It.IsAny<List<Question>>())).Verifiable();
             var flashCardManager = new FlashCardManager(repoMock.Object);
 
             // Act
@@ -715,7 +712,68 @@ namespace VATrainer.Test.ViewModels
             flashCardManager.SaveState();
 
             // Assert
-            repoMock.Verify(r => r.SaveChanges(It.IsAny<List<Question>>()), Times.Once);
+            repoMock.Verify(r => r.SaveChanges(It.Is<List<Question>>(l => l.Count == 1)), Times.Once);
+            repoMock.Verify(r => r.SaveChanges(It.Is<List<Question>>(l => l[0].IsNext)), Times.Once);
+        }
+
+        [Fact]
+        public void Test_SaveState_CurrentQuestion_Has_Not_IsNext_Flag_Only_One_Question()
+        {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 5, Stack = (int)CardStack.Right, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
+
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.SaveState();
+
+            // Assert
+            repoMock.Verify(r => r.SaveChanges(It.Is<List<Question>>(l => l.Count == 0)), Times.Once);
+        }
+
+        [Fact]
+        public void Test_SaveState_CurrentQuestion_Has_IsNext_Flag_Several_Questions()
+        {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 5, Stack = (int)CardStack.Right, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
+
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.SaveState();
+
+            // Assert
+            repoMock.Verify(r => r.SaveChanges(It.Is<List<Question>>(l => l.Count == 0)), Times.Once);
+        }
+
+        [Fact]
+        public void Test_SaveState_CurrentQuestion_Has_Not_IsNext_Flag_Several_Questions()
+        {
+        }
+
+        [Fact]
+        public void Test_SaveState_No_Questions_Present()
+        {
+        }
+
+        [Fact]
+        public void Test_SaveState_No_IsNext_Flag_Present()
+        {
+        }
+
+        [Fact]
+        public void Test_SaveState_No_CurrentQuestion_Present()
+        {
         }
 
         private Mock<IRepository> GetRepositoryMock(
