@@ -106,150 +106,593 @@ namespace VATrainer.Test.ViewModels
         [Fact]
         public void Test_Execute_Unconfident_Left_Stack_No_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(new List<Question>());
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Should().BeNull();
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Middle_Stack_No_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(new List<Question>());
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Should().BeNull();
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Left_Stack_One_Question_Present_Questions_On_Middle_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = true },
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 2, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(1);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(2);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(2);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Middle_Stack_One_Question_Present_Questions_On_Left_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Middle, Order = 1, IsNext = true },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 2, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(2);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(1);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(2);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Left_Stack_One_Question_Present_No_Questions_On_Middle_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(1);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(1);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Middle_Stack_One_Question_Present_No_Questions_On_Left_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 10, Stack = (int)CardStack.Middle, Order = 1, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(1);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(10);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Left_Stack_Several_Questions_Next_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 1, IsNext = true },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 4, Stack = (int)CardStack.Left, Order = 1, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(4);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(3);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_Next_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 1, IsNext = true },
+                new Question() { Id = 4, Stack = (int)CardStack.Middle, Order = 1, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(4);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(4);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Left_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Middel_Stack_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 4, Stack = (int)CardStack.Left, Order = 1, IsNext = true },
+                new Question() { Id = 5, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 6, Stack = (int)CardStack.Middle, Order = 1, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(4);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(2);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(5);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Left_Stack_Present()
-        {
+        {            
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 4, Stack = (int)CardStack.Middle, Order = 1, IsNext = true },
+                new Question() { Id = 6, Stack = (int)CardStack.Left, Order = 1, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(3);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(1);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(6);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Left_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Middel_Stack_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 1, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(3);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(1);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Middle_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Left_Stack_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 6, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 7, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 8, Stack = (int)CardStack.Middle, Order = 1, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteUnconfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(3);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(6);
         }
 
         [Fact]
         public void Test_Execute_Unconfident_Right_Stack()
         {
-
+            1.Should().Be(2);
         }
 
         [Fact]
         public void Test_Execute_Confident_Left_Stack_No_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(new List<Question>());
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Should().BeNull();
         }
 
         [Fact]
         public void Test_Execute_Confident_Middle_Stack_No_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(new List<Question>());
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Should().BeNull();
         }
 
         [Fact]
-        public void Test_Execute_Confident_Left_Stack_One_Question_Present()
+        public void Test_Execute_Confident_Left_Stack_One_Question_Present_No_Questions_On_Middle_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 8, Stack = (int)CardStack.Left, Order = 1, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(1);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(8);
+        }
+
+        [Fact]
+        public void Test_Execute_Confident_Middle_Stack_One_Question_Present_No_Questions_On_Left_Stack()
+        {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 8, Stack = (int)CardStack.Middle, Order = 1, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
+
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(1);
+            flashCardManager.NextQuestion.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_Execute_Confident_Left_Stack_One_Question_Present_Questions_On_Middle_Stack()
+        {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 8, Stack = (int)CardStack.Left, Order = 1, IsNext = true },
+                new Question() { Id = 1, Stack = (int)CardStack.Middle, Order = 4, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 5, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
+
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(3);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(1);
         }
 
         [Fact]
         public void Test_Execute_Confident_Middle_Stack_One_Question_Present_Questions_On_Left_Stack_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 8, Stack = (int)CardStack.Middle, Order = 1, IsNext = true },
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 4, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 5, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
-        }
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
 
-        [Fact]
-        public void Test_Execute_Confident_Middle_Stack_One_Question_Present_No_Questions_On_Left_Stack_Present()
-        {
-
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(2);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnConfidentStack.Should().Be(1);
+            flashCardManager.NextQuestion.Id.Should().Be(1);
         }
 
         [Fact]
         public void Test_Execute_Confident_Left_Stack_Several_Questions_Next_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 2, IsNext = true },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 3, IsNext = false },
+                new Question() { Id = 4, Stack = (int)CardStack.Left, Order = 4, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(3);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(1);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(3);
         }
 
         [Fact]
         public void Test_Execute_Confident_Middle_Stack_Several_Questions_Next_Question_Present()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 2, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 3, IsNext = true },
+                new Question() { Id = 4, Stack = (int)CardStack.Middle, Order = 4, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(3);
+            flashCardManager.CardsOnConfidentStack.Should().Be(1);
+            flashCardManager.NextQuestion.Id.Should().Be(4);
         }
 
         [Fact]
         public void Test_Execute_Confident_Left_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Middle_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 2, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 3, IsNext = true },
+                new Question() { Id = 41, Stack = (int)CardStack.Middle, Order = 4, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(2);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(2);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(41);
         }
 
         [Fact]
         public void Test_Execute_Confident_Middle_Stack_Several_Questions_No_Next_Question_Present_Questions_On_Left_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 2, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 3, IsNext = true },
+                new Question() { Id = 11, Stack = (int)CardStack.Left, Order = 8, IsNext = false },
+                new Question() { Id = 13, Stack = (int)CardStack.Left, Order = 9, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(3);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(2);
+            flashCardManager.CardsOnConfidentStack.Should().Be(1);
+            flashCardManager.NextQuestion.Id.Should().Be(11);
         }
 
         [Fact]
         public void Test_Execute_Confident_Left_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Middle_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 2, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 3, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(2);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(1);
+            flashCardManager.CardsOnConfidentStack.Should().Be(0);
+            flashCardManager.NextQuestion.Id.Should().Be(3);
         }
 
         [Fact]
         public void Test_Execute_Confident_Middle_Stack_Several_Questions_No_Next_Question_Present_No_Questions_On_Left_Stack()
         {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 2, IsNext = false },
+                new Question() { Id = 5, Stack = (int)CardStack.Middle, Order = 20, IsNext = false },
+                new Question() { Id = 6, Stack = (int)CardStack.Middle, Order = 31, IsNext = true }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            var flashCardManager = new FlashCardManager(repoMock.Object);
 
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.ExecuteConfident();
+
+            // Assert
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(3);
+            flashCardManager.CardsOnConfidentStack.Should().Be(1);
+            flashCardManager.NextQuestion.Id.Should().Be(1);
         }
 
+        [Fact]
         public void Test_Execute_Confident_Right_Stack()
         {
-
+            3.Should().Be(4);
         }
 
         private Mock<IRepository> GetRepositoryMock(
