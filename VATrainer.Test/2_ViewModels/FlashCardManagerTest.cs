@@ -695,6 +695,29 @@ namespace VATrainer.Test.ViewModels
             3.Should().Be(4);
         }
 
+        [Fact]
+        public void Test_SaveState()
+        {
+            // Arrange
+            var repoMock = new Mock<IRepository>();
+            var questions = new List<Question>()
+            {
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = true },
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 5, IsNext = false },
+                new Question() { Id = 5, Stack = (int)CardStack.Right, Order = 10, IsNext = false }
+            };
+            repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
+            repoMock.Setup(r => r.SaveChanges(It.IsAny<List<Question>>())).Verifiable();
+            var flashCardManager = new FlashCardManager(repoMock.Object);
+
+            // Act
+            flashCardManager.Init(Theme);
+            flashCardManager.SaveState();
+
+            // Assert
+            repoMock.Verify(r => r.SaveChanges(It.IsAny<List<Question>>()), Times.Once);
+        }
+
         private Mock<IRepository> GetRepositoryMock(
             int questionsOnLeftStack,
             int questionsOnMiddleStack,
