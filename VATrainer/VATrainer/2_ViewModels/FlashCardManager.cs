@@ -45,11 +45,27 @@ namespace VATrainer.ViewModels
             }
             if (_currentStack == _middleStack.Stack)
             {
-                //ExecuteUnconfidentForMiddleStack();
+                ExecuteUnconfidentForMiddleStack();
             }
             else
             {
                 throw new NotImplementedException("Unconfident Button should be locked at this stage!");
+            }
+        }
+
+        public void ExecuteConfident()
+        {
+            if (_currentStack == _leftStack.Stack)
+            {
+                ExecuteConfidentForLeftStack();
+            }
+            else if (_currentStack == _middleStack.Stack)
+            {
+                ExecuteConfidentForMiddleStack();
+            }
+            else
+            {
+                throw new NotImplementedException("Confident Button should be locked at this stage!");
             }
         }
 
@@ -60,9 +76,9 @@ namespace VATrainer.ViewModels
             {
                 _currentQuestion = nextQuestion;
             }
-            else if (nextQuestion == _currentQuestion)
+            else
             {
-                if(_middleStack.Count == 0)
+                if (_middleStack.Count == 0)
                 {
                     _currentQuestion = nextQuestion;
                 }
@@ -71,42 +87,43 @@ namespace VATrainer.ViewModels
                     _currentStack = _middleStack.Stack;
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
-            }
-            else if (_currentStack == _middleStack.Stack)
-            {
-                var nextQuestion1 = _middleStack.GetNextQuestion(_currentQuestion);
-                if (nextQuestion1 != null)
-                {
-                    _middleStack.RemoveQuestion(_currentQuestion);
-                    _leftStack.AddQuestion(_currentQuestion);
-                    _currentQuestion = nextQuestion1;
-                }
-                else
-                {
-                    _currentStack = _middleStack.Stack;
-                    _currentQuestion = _middleStack.GetFirstQuestion();
-                }
-
-            }
-            else
-            {
-                _middleStack.RemoveQuestion(_currentQuestion);
-                _leftStack.AddQuestion(_currentQuestion);
-                _currentStack = _leftStack.Stack;
-                _currentQuestion = _leftStack.GetFirstQuestion();
             }
         }
 
-
-        public void ExecuteConfident()
+        private void ExecuteUnconfidentForMiddleStack()
         {
-            if (_currentStack == _leftStack.Stack)
+            var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
+            if (nextQuestion != _currentQuestion && nextQuestion != null)
             {
-                var nextQuestion = _leftStack.GetNextQuestion(_currentQuestion);
-                if (nextQuestion != null)
+                _currentQuestion = nextQuestion;
+            }
+            else
+            {
+                if (_leftStack.Count == 0)
                 {
-                    _leftStack.RemoveQuestion(_currentQuestion);
-                    _middleStack.AddQuestion(_currentQuestion);
+                    _currentQuestion = nextQuestion;
+                }
+                else
+                {
+                    _currentStack = _leftStack.Stack;
+                    _currentQuestion = _leftStack.GetFirstQuestion();
+                }
+            }
+        }
+
+        private void ExecuteConfidentForLeftStack()
+        {
+            var nextQuestion = _leftStack.GetNextQuestion(_currentQuestion);
+            if (nextQuestion != _currentQuestion && nextQuestion != null)
+            {
+                _leftStack.RemoveQuestion(_currentQuestion);
+                _middleStack.AddQuestion(_currentQuestion);
+                _currentQuestion = nextQuestion;
+            }
+            else
+            {
+                if (_middleStack.Count == 0)
+                {
                     _currentQuestion = nextQuestion;
                 }
                 else
@@ -117,36 +134,28 @@ namespace VATrainer.ViewModels
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
             }
-            else if (_currentStack == _middleStack.Stack)
+        }
+
+        private void ExecuteConfidentForMiddleStack()
+        {
+            var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
+            if (nextQuestion != _currentQuestion && nextQuestion != null)
             {
-                var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
-                if (nextQuestion != null)
+                _middleStack.RemoveQuestion(_currentQuestion);
+                _rightStack.AddQuestion(_currentQuestion);
+                _currentQuestion = nextQuestion;
+            }
+            else
+            {
+                if (_leftStack.Count == 0)
                 {
-                    _middleStack.RemoveQuestion(_currentQuestion);
-                    _rightStack.AddQuestion(_currentQuestion);
                     _currentQuestion = nextQuestion;
                 }
                 else
                 {
-                    if (_leftStack.Questions.Count != 0)
-                    {
-                        _middleStack.RemoveQuestion(_currentQuestion);
-                        _rightStack.AddQuestion(_currentQuestion);
-                        _currentStack = _leftStack.Stack;
-                        _currentQuestion = _leftStack.GetFirstQuestion();
-                    }
-                    else
-                    {
-                        _middleStack.RemoveQuestion(_currentQuestion);
-                        _rightStack.AddQuestion(_currentQuestion);
-                        _currentStack = _rightStack.Stack;
-                        _currentQuestion = null;
-                    }
+                    _currentStack = _leftStack.Stack;
+                    _currentQuestion = _leftStack.GetFirstQuestion();
                 }
-            }
-            else
-            {
-                throw new NotImplementedException("Confident Button should be locked at this stage!");
             }
         }
 
