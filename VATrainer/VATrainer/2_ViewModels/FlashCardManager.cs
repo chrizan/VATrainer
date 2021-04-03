@@ -49,7 +49,7 @@ namespace VATrainer.ViewModels
             }
             else
             {
-                throw new NotImplementedException("Unconfident Button should be locked at this stage!");
+                _currentQuestion = null;
             }
         }
 
@@ -65,13 +65,13 @@ namespace VATrainer.ViewModels
             }
             else
             {
-                throw new NotImplementedException("Confident Button should be locked at this stage!");
+                _currentQuestion = null;
             }
         }
 
         private void ExecuteUnconfidentForLeftStack(Question nextQuestion)
         {
-            if (nextQuestion != _currentQuestion && nextQuestion != null)
+            if (nextQuestion != null)
             {
                 _currentQuestion = nextQuestion;
             }
@@ -95,7 +95,7 @@ namespace VATrainer.ViewModels
 
         private void ExecuteUnconfidentForMiddleStack(Question nextQuestion)
         {
-            if (nextQuestion != _currentQuestion && nextQuestion != null)
+            if (nextQuestion != null)
             {
                 _currentQuestion = nextQuestion;
             }
@@ -119,16 +119,14 @@ namespace VATrainer.ViewModels
 
         private void ExecuteConfidentForLeftStack(Question nextQuestion)
         {
-            if (nextQuestion != _currentQuestion && nextQuestion != null)
+            _leftStack.RemoveQuestion(_currentQuestion);
+            _middleStack.AddQuestion(_currentQuestion);
+            if (nextQuestion != null)
             {
-                _leftStack.RemoveQuestion(_currentQuestion);
-                _middleStack.AddQuestion(_currentQuestion);
                 _currentQuestion = nextQuestion;
             }
             else
             {
-                _leftStack.RemoveQuestion(_currentQuestion);
-                _middleStack.AddQuestion(_currentQuestion);
                 _currentStack = _middleStack.Stack;
                 _currentQuestion = _middleStack.GetFirstQuestion();
             }
@@ -136,16 +134,14 @@ namespace VATrainer.ViewModels
 
         private void ExecuteConfidentForMiddleStack(Question nextQuestion)
         {
-            if (nextQuestion != _currentQuestion && nextQuestion != null)
+            _middleStack.RemoveQuestion(_currentQuestion);
+            _rightStack.AddQuestion(_currentQuestion);
+            if (nextQuestion != null)
             {
-                _middleStack.RemoveQuestion(_currentQuestion);
-                _rightStack.AddQuestion(_currentQuestion);
                 _currentQuestion = nextQuestion;
             }
             else
             {
-                _middleStack.RemoveQuestion(_currentQuestion);
-                _rightStack.AddQuestion(_currentQuestion);
                 if (_leftStack.Questions.Count != 0)
                 {
                     _currentStack = _leftStack.Stack;
