@@ -41,11 +41,11 @@ namespace VATrainer.ViewModels
         {
             if (_currentStack == _leftStack.Stack)
             {
-                ExecuteUnconfidentForLeftStack();
+                ExecuteUnconfidentForLeftStack(_leftStack.GetNextQuestion(_currentQuestion));
             }
-            if (_currentStack == _middleStack.Stack)
+            else if (_currentStack == _middleStack.Stack)
             {
-                ExecuteUnconfidentForMiddleStack();
+                ExecuteUnconfidentForMiddleStack(_middleStack.GetNextQuestion(_currentQuestion));
             }
             else
             {
@@ -57,11 +57,11 @@ namespace VATrainer.ViewModels
         {
             if (_currentStack == _leftStack.Stack)
             {
-                ExecuteConfidentForLeftStack();
+                ExecuteConfidentForLeftStack(_leftStack.GetNextQuestion(_currentQuestion));
             }
             else if (_currentStack == _middleStack.Stack)
             {
-                ExecuteConfidentForMiddleStack();
+                ExecuteConfidentForMiddleStack(_middleStack.GetNextQuestion(_currentQuestion));
             }
             else
             {
@@ -69,51 +69,56 @@ namespace VATrainer.ViewModels
             }
         }
 
-        private void ExecuteUnconfidentForLeftStack()
+        private void ExecuteUnconfidentForLeftStack(Question nextQuestion)
         {
-            var nextQuestion = _leftStack.GetNextQuestion(_currentQuestion);
             if (nextQuestion != _currentQuestion && nextQuestion != null)
             {
                 _currentQuestion = nextQuestion;
             }
             else
             {
-                if (_middleStack.Count == 0)
-                {
-                    _currentQuestion = nextQuestion;
-                }
-                else
+                if (_middleStack.Questions.Count != 0)
                 {
                     _currentStack = _middleStack.Stack;
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
+                else if (_leftStack.Questions.Count != 0)
+                {
+                    _currentQuestion = _leftStack.GetFirstQuestion();
+                }
+                else
+                {
+                    _currentQuestion = null;
+                }
             }
         }
 
-        private void ExecuteUnconfidentForMiddleStack()
+        private void ExecuteUnconfidentForMiddleStack(Question nextQuestion)
         {
-            var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
             if (nextQuestion != _currentQuestion && nextQuestion != null)
             {
                 _currentQuestion = nextQuestion;
             }
             else
             {
-                if (_leftStack.Count == 0)
-                {
-                    _currentQuestion = nextQuestion;
-                }
-                else
+                if (_leftStack.Questions.Count != 0)
                 {
                     _currentStack = _leftStack.Stack;
                     _currentQuestion = _leftStack.GetFirstQuestion();
                 }
+                else if (_middleStack.Questions.Count != 0)
+                {
+                    _currentQuestion = _middleStack.GetFirstQuestion();
+                }
+                else
+                {
+                    _currentQuestion = null;
+                }
             }
         }
 
-        private void ExecuteConfidentForLeftStack()
+        private void ExecuteConfidentForLeftStack(Question nextQuestion)
         {
-            var nextQuestion = _leftStack.GetNextQuestion(_currentQuestion);
             if (nextQuestion != _currentQuestion && nextQuestion != null)
             {
                 _leftStack.RemoveQuestion(_currentQuestion);
@@ -122,23 +127,15 @@ namespace VATrainer.ViewModels
             }
             else
             {
-                if (_middleStack.Count == 0)
-                {
-                    _currentQuestion = nextQuestion;
-                }
-                else
-                {
-                    _leftStack.RemoveQuestion(_currentQuestion);
-                    _middleStack.AddQuestion(_currentQuestion);
-                    _currentStack = _middleStack.Stack;
-                    _currentQuestion = _middleStack.GetFirstQuestion();
-                }
+                _leftStack.RemoveQuestion(_currentQuestion);
+                _middleStack.AddQuestion(_currentQuestion);
+                _currentStack = _middleStack.Stack;
+                _currentQuestion = _middleStack.GetFirstQuestion();
             }
         }
 
-        private void ExecuteConfidentForMiddleStack()
+        private void ExecuteConfidentForMiddleStack(Question nextQuestion)
         {
-            var nextQuestion = _middleStack.GetNextQuestion(_currentQuestion);
             if (nextQuestion != _currentQuestion && nextQuestion != null)
             {
                 _middleStack.RemoveQuestion(_currentQuestion);
@@ -147,14 +144,20 @@ namespace VATrainer.ViewModels
             }
             else
             {
-                if (_leftStack.Count == 0)
-                {
-                    _currentQuestion = nextQuestion;
-                }
-                else
+                _middleStack.RemoveQuestion(_currentQuestion);
+                _rightStack.AddQuestion(_currentQuestion);
+                if (_leftStack.Questions.Count != 0)
                 {
                     _currentStack = _leftStack.Stack;
                     _currentQuestion = _leftStack.GetFirstQuestion();
+                }
+                else if (_middleStack.Questions.Count != 0)
+                {
+                    _currentQuestion = _middleStack.GetFirstQuestion();
+                }
+                else
+                {
+                    _currentQuestion = null;
                 }
             }
         }

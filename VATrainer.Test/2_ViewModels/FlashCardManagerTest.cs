@@ -271,9 +271,9 @@ namespace VATrainer.Test.ViewModels
             var questions = new List<Question>()
             {
                 new Question() { Id = 1, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
-                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
-                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 1, IsNext = true },
-                new Question() { Id = 4, Stack = (int)CardStack.Middle, Order = 1, IsNext = false }
+                new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 2, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 3, IsNext = true },
+                new Question() { Id = 4, Stack = (int)CardStack.Middle, Order = 4, IsNext = false }
             };
             repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
             var flashCardManager = new FlashCardManager(repoMock.Object);
@@ -283,8 +283,8 @@ namespace VATrainer.Test.ViewModels
             flashCardManager.ExecuteUnconfident();
 
             // Assert
-            flashCardManager.CardsOnUnconfidentStack.Should().Be(4);
-            flashCardManager.CardsOnSemiConfidentStack.Should().Be(0);
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(0);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(4);
             flashCardManager.CardsOnConfidentStack.Should().Be(0);
             flashCardManager.NextQuestion.Id.Should().Be(4);
         }
@@ -325,9 +325,9 @@ namespace VATrainer.Test.ViewModels
             var questions = new List<Question>()
             {
                 new Question() { Id = 2, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
-                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
-                new Question() { Id = 4, Stack = (int)CardStack.Middle, Order = 1, IsNext = true },
-                new Question() { Id = 6, Stack = (int)CardStack.Left, Order = 1, IsNext = false }
+                new Question() { Id = 3, Stack = (int)CardStack.Middle, Order = 2, IsNext = false },
+                new Question() { Id = 4, Stack = (int)CardStack.Middle, Order = 3, IsNext = true },
+                new Question() { Id = 6, Stack = (int)CardStack.Left, Order = 4, IsNext = false }
             };
             repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
             var flashCardManager = new FlashCardManager(repoMock.Object);
@@ -337,8 +337,8 @@ namespace VATrainer.Test.ViewModels
             flashCardManager.ExecuteUnconfident();
 
             // Assert
-            flashCardManager.CardsOnUnconfidentStack.Should().Be(3);
-            flashCardManager.CardsOnSemiConfidentStack.Should().Be(1);
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(1);
+            flashCardManager.CardsOnSemiConfidentStack.Should().Be(3);
             flashCardManager.CardsOnConfidentStack.Should().Be(0);
             flashCardManager.NextQuestion.Id.Should().Be(6);
         }
@@ -350,9 +350,9 @@ namespace VATrainer.Test.ViewModels
             var repoMock = new Mock<IRepository>();
             var questions = new List<Question>()
             {
-                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
-                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 1, IsNext = false },
-                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 1, IsNext = true }
+                new Question() { Id = 1, Stack = (int)CardStack.Left, Order = 3, IsNext = false },
+                new Question() { Id = 2, Stack = (int)CardStack.Left, Order = 6, IsNext = false },
+                new Question() { Id = 3, Stack = (int)CardStack.Left, Order = 12, IsNext = true }
             };
             repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
             var flashCardManager = new FlashCardManager(repoMock.Object);
@@ -376,8 +376,8 @@ namespace VATrainer.Test.ViewModels
             var questions = new List<Question>()
             {
                 new Question() { Id = 6, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
-                new Question() { Id = 7, Stack = (int)CardStack.Middle, Order = 1, IsNext = false },
-                new Question() { Id = 8, Stack = (int)CardStack.Middle, Order = 1, IsNext = true }
+                new Question() { Id = 7, Stack = (int)CardStack.Middle, Order = 2, IsNext = false },
+                new Question() { Id = 8, Stack = (int)CardStack.Middle, Order = 3, IsNext = true }
             };
             repoMock.Setup(r => r.GetAllQuestionsOfTheme(Theme)).ReturnsAsync(questions);
             var flashCardManager = new FlashCardManager(repoMock.Object);
@@ -632,7 +632,7 @@ namespace VATrainer.Test.ViewModels
             flashCardManager.ExecuteConfident();
 
             // Assert
-            flashCardManager.CardsOnUnconfidentStack.Should().Be(3);
+            flashCardManager.CardsOnUnconfidentStack.Should().Be(2);
             flashCardManager.CardsOnSemiConfidentStack.Should().Be(2);
             flashCardManager.CardsOnConfidentStack.Should().Be(1);
             flashCardManager.NextQuestion.Id.Should().Be(11);
@@ -734,7 +734,7 @@ namespace VATrainer.Test.ViewModels
 
             // Assert
             repoMock.Verify(r => r.SaveChanges(It.Is<List<Question>>(l => l.Count == 0)), Times.Once);
-            repoMock.Verify(r => r.SaveChanges(It.Is<List<Question>>(l => l[0].IsNext == false)), Times.Once);
+            repoMock.Verify(r => r.SaveChanges(It.Is<List<Question>>(l => !l[0].IsNext)), Times.Once);
         }
 
         [Fact]
