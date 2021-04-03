@@ -141,7 +141,7 @@ namespace VATrainer.Test.ViewModels
             var nextQuestion = flashCardStack.GetNextQuestion(currentQuestion);
 
             // Assert
-            nextQuestion.Should().Be(currentQuestion);
+            nextQuestion.Should().BeNull();
         }
 
         [Fact]

@@ -39,10 +39,6 @@ namespace VATrainer.ViewModels
             {
                 return Questions[posCurrentQuestion + 1];
             }
-            else if (Questions.Count == 1)
-            {
-                return currentQuestion;
-            }
             else return null;
         }
 
