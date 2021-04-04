@@ -76,13 +76,14 @@ namespace VATrainer.ViewModels
             }
             else
             {
+                string html = "<p>Congratulations &#128077;<br>You finished this chapter!</p>";
                 Question = new HtmlWebViewSource
                 {
-                    Html = "<p>Congratulations!<p>"
+                    Html = html
                 };
                 Answer = new HtmlWebViewSource
                 {
-                    Html = "<p>You finished this chapter!<p>"
+                    Html = html
                 };
             }
 

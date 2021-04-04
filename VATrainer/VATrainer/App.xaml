@@ -66,6 +66,22 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Stroke" Value="White" />
             </Style>
+            <!--  Primary Color Brush  -->
+            <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}" />
+            <!--  Flashcard Stack  -->
+            <Style x:Key="FlashcardStackStyle" TargetType="Path">
+                <Setter Property="Aspect" Value="None" />
+                <Setter Property="HeightRequest" Value="35" />
+                <Setter Property="Rotation" Value="180" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Stroke" Value="{StaticResource PrimaryColorBrush}" />
+            </Style>
+            <!--  Flashcard Stack Label  -->
+            <Style x:Key="FlashcardLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

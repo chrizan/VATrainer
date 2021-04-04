@@ -14,7 +14,9 @@ namespace VATrainer.ViewModels
         private readonly IRepository _repository;
         private readonly IGeometryCalculator _geometryCalculator;
 
-        public TrainingPageViewModel(INavigationService navigationService, IRepository repository, IGeometryCalculator geometryCalculator)
+        public TrainingPageViewModel(INavigationService navigationService, 
+            IRepository repository, 
+            IGeometryCalculator geometryCalculator)
         {
             _navigationService = navigationService;
             _repository = repository;
@@ -28,6 +30,18 @@ namespace VATrainer.ViewModels
         public DelegateCommand<string> NavigateCommand { get; }
 
         public DelegateCommand<string> ResetCommand { get; }
+
+        public int UnconfidentNumber => 15;
+
+        public GeometryGroup UnconfidentStack => _geometryCalculator.GetDeckGeometry(UnconfidentNumber);
+
+        public int SemiConfidentNumber => 8;
+
+        public GeometryGroup SemiConfidentStack => _geometryCalculator.GetDeckGeometry(SemiConfidentNumber);
+
+        public int ConfidentNumber => 11;
+
+        public GeometryGroup ConfidentStack => _geometryCalculator.GetDeckGeometry(ConfidentNumber);
 
         private async void NavigateCommandExecuted(string view)
         {

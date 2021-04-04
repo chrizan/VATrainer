@@ -13,17 +13,20 @@
         <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*" />
-                <ColumnDefinition Width="0.8*" />
-                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="0.05*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -35,58 +38,57 @@
                 Style="{StaticResource FrameButtonStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
                         <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="0">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Introduction}" />
-                        </views:SelfAdaptiveLabel>
-                        <views:SelfAdaptiveLabel Grid.Row="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="Last seen: --/--/--" />
-                        </views:SelfAdaptiveLabel>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="25"
+                            Style="{StaticResource LabelStyleLarge}"
+                            Text="{x:Static resx:AppResources.Introduction}"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="15"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="Last seen: 04/04/21"
+                            VerticalOptions="Center" />
                     </Grid>
-                    <Grid Grid.Column="1" BackgroundColor="{StaticResource BackgroundColorDark}">
+                    <Grid Grid.Column="1" Padding="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="0">
-                            <Label Text="9" TextColor="Red" />
-                        </views:SelfAdaptiveLabel>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label
-                                BackgroundColor="Black"
-                                HorizontalOptions="Center"
-                                Text="5"
-                                TextColor="Yellow" />
-                        </views:SelfAdaptiveLabel>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="2">
-                            <Label Text="1" TextColor="Green" />
-                        </views:SelfAdaptiveLabel>
-                    </Grid>
-                    <Grid Grid.Column="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.9*" />
-                            <ColumnDefinition Width="0.05*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>
+                        <StackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding UnconfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding UnconfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding SemiConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding SemiConfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding ConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding ConfidentNumber}" />
+                        </StackLayout>
                     </Grid>
                 </Grid>
             </views:FrameButton>
@@ -94,11 +96,89 @@
             <views:FrameButton
                 Grid.Row="1"
                 Grid.Column="2"
+                Padding="10,0,0,0"
                 Command="{Binding ResetCommand}"
                 CommandParameter="1"
                 Style="{StaticResource FrameButtonStyle}">
                 <Label
-                    FontSize="30"
+                    FontSize="40"
+                    Rotation="90"
+                    Style="{StaticResource LabelStyleLarge}"
+                    Text="&#8635;" />
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="2"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="QAPage"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="25"
+                            Style="{StaticResource LabelStyleLarge}"
+                            Text="{x:Static resx:AppResources.Introduction}"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="15"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="Last seen: 04/04/21"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Column="1" Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding UnconfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding UnconfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding SemiConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding SemiConfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding ConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding ConfidentNumber}" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="2"
+                Grid.Column="2"
+                Padding="10,0,0,0"
+                Command="{Binding ResetCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Label
+                    FontSize="40"
                     Rotation="90"
                     Style="{StaticResource LabelStyleLarge}"
                     Text="&#8635;" />
@@ -112,134 +192,306 @@
                 Style="{StaticResource FrameButtonStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
                         <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="0">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="{x:Static resx:AppResources.Introduction}" />
-                        </views:SelfAdaptiveLabel>
-                        <views:SelfAdaptiveLabel Grid.Row="1">
-                            <Label Style="{StaticResource LabelStyleLarge}" Text="Last seen: --/--/--" />
-                        </views:SelfAdaptiveLabel>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>
-
-                        <StackLayout
+                        <Label
+                            Grid.Row="0"
+                            FontSize="25"
+                            Style="{StaticResource LabelStyleLarge}"
+                            Text="{x:Static resx:AppResources.Introduction}"
+                            VerticalOptions="End" />
+                        <Label
                             Grid.Row="1"
+                            FontSize="15"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="Last seen: 04/04/21"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Column="1" Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
                             Grid.Column="0"
-                            Spacing="0">
-                            <Label
-                                FontSize="Small"
-                                Text="15"
-                                TextColor="{StaticResource PrimaryColorDark}" />
-                            <Path
-                                Aspect="Uniform"
-                                Data="{Binding DeckGeometry}"
-                                HorizontalOptions="Start"
-                                StrokeThickness="1">
-                                <Path.Stroke>
-                                    <SolidColorBrush Color="{StaticResource PrimaryColorDark}" />
-                                </Path.Stroke>
-                            </Path>
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding UnconfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding UnconfidentNumber}" />
                         </StackLayout>
-
                         <StackLayout
-                            Grid.Row="1"
                             Grid.Column="1"
-                            Spacing="0">
-                            <Label
-                                FontSize="Small"
-                                Text="15"
-                                TextColor="{StaticResource PrimaryColor}" />
-                            <Path
-                                Aspect="Uniform"
-                                Data="{Binding DeckGeometry}"
-                                HorizontalOptions="Start"
-                                StrokeThickness="1">
-                                <Path.Stroke>
-                                    <SolidColorBrush Color="{StaticResource PrimaryColor}" />
-                                </Path.Stroke>
-                            </Path>
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding SemiConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding SemiConfidentNumber}" />
                         </StackLayout>
-
                         <StackLayout
-                            Grid.Row="1"
                             Grid.Column="2"
-                            Spacing="0">
-                            <Label
-                                FontSize="Small"
-                                Text="15"
-                                TextColor="{StaticResource PrimaryColorLight}" />
-                            <Path
-                                Aspect="Uniform"
-                                Data="{Binding DeckGeometry}"
-                                HorizontalOptions="Start"
-                                StrokeThickness="1">
-                                <Path.Stroke>
-                                    <SolidColorBrush Color="{StaticResource PrimaryColorLight}" />
-                                </Path.Stroke>
-                            </Path>
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding ConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding ConfidentNumber}" />
                         </StackLayout>
-
-                    </Grid>
-                    <Grid Grid.Column="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.9*" />
-                            <ColumnDefinition Width="0.05*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label
-                                Rotation="90"
-                                Style="{StaticResource LabelStyleLarge}"
-                                Text="&#8635;" />
-                        </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
             </views:FrameButton>
 
-            <StackLayout
+            <views:FrameButton
+                Grid.Row="3"
+                Grid.Column="2"
+                Padding="10,0,0,0"
+                Command="{Binding ResetCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Label
+                    FontSize="40"
+                    Rotation="90"
+                    Style="{StaticResource LabelStyleLarge}"
+                    Text="&#8635;" />
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="4"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="QAPage"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="25"
+                            Style="{StaticResource LabelStyleLarge}"
+                            Text="{x:Static resx:AppResources.Introduction}"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="15"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="Last seen: 04/04/21"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Column="1" Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding UnconfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding UnconfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding SemiConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding SemiConfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding ConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding ConfidentNumber}" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="4"
+                Grid.Column="2"
+                Padding="10,0,0,0"
+                Command="{Binding ResetCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Label
+                    FontSize="40"
+                    Rotation="90"
+                    Style="{StaticResource LabelStyleLarge}"
+                    Text="&#8635;" />
+            </views:FrameButton>
+
+            <views:FrameButton
                 Grid.Row="5"
                 Grid.Column="1"
-                BackgroundColor="AliceBlue"
-                Spacing="0">
+                Command="{Binding NavigateCommand}"
+                CommandParameter="QAPage"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="25"
+                            Style="{StaticResource LabelStyleLarge}"
+                            Text="{x:Static resx:AppResources.Introduction}"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="15"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="Last seen: 04/04/21"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Column="1" Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding UnconfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding UnconfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding SemiConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding SemiConfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding ConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding ConfidentNumber}" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="5"
+                Grid.Column="2"
+                Padding="10,0,0,0"
+                Command="{Binding ResetCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
                 <Label
-                    BackgroundColor="Aquamarine"
-                    FontSize="Small"
-                    Text="15"
-                    TextColor="{StaticResource PrimaryColorDark}" />
-                <Path
-                    Aspect="Uniform"
-                    BackgroundColor="Bisque"
-                    Data="{Binding DeckGeometry}"
-                    HorizontalOptions="Start"
-                    StrokeThickness="1">
-                    <Path.Stroke>
-                        <SolidColorBrush Color="{StaticResource PrimaryColorDark}" />
-                    </Path.Stroke>
-                </Path>
-            </StackLayout>
+                    FontSize="40"
+                    Rotation="90"
+                    Style="{StaticResource LabelStyleLarge}"
+                    Text="&#8635;" />
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="6"
+                Grid.Column="1"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="QAPage"
+                Style="{StaticResource FrameButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="25"
+                            Style="{StaticResource LabelStyleLarge}"
+                            Text="{x:Static resx:AppResources.Introduction}"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="15"
+                            Style="{StaticResource LabelStyleSmall}"
+                            Text="Last seen: 04/04/21"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Column="1" Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding UnconfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding UnconfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding SemiConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding SemiConfidentNumber}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0"
+                            VerticalOptions="End">
+                            <Path Data="{Binding ConfidentStack}" Style="{StaticResource FlashcardStackStyle}" />
+                            <Label Style="{StaticResource FlashcardLabelStyle}" Text="{Binding ConfidentNumber}" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="6"
+                Grid.Column="2"
+                Padding="10,0,0,0"
+                Command="{Binding ResetCommand}"
+                CommandParameter="1"
+                Style="{StaticResource FrameButtonStyle}">
+                <Label
+                    FontSize="40"
+                    Rotation="90"
+                    Style="{StaticResource LabelStyleLarge}"
+                    Text="&#8635;" />
+            </views:FrameButton>
+
         </Grid>
     </ContentPage.Content>
 
