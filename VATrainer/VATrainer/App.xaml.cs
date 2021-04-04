@@ -1,7 +1,7 @@
+using DryIoc;
 using Prism;
+using Prism.DryIoc;
 using Prism.Ioc;
-using Rg.Plugins.Popup.Contracts;
-using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
 using VATrainer.DataLayer;
 using VATrainer.Models;
@@ -19,6 +19,8 @@ namespace VATrainer
             : base(initializer)
         {
         }
+
+        public static IContainer AppContainer { get; private set; }
 
         protected override async void OnInitialized()
         {
@@ -61,8 +63,8 @@ namespace VATrainer
             containerRegistry.RegisterForNavigation<ContentsPage, ContentsPageViewModel>();
             containerRegistry.RegisterForNavigation<TrainingPage, TrainingPageViewModel>();
             containerRegistry.RegisterForNavigation<QAPage, QAPageViewModel>();
-            containerRegistry.RegisterForNavigation<InstructionPopUp, InstructionPopUpViewModel>();
-            containerRegistry.RegisterForNavigation<ResetPopUp, ResetPopUpViewModel>();
+
+            AppContainer = containerRegistry.GetContainer();
         }
     }
 }

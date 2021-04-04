@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using DryIoc;
+using Rg.Plugins.Popup.Pages;
+using VATrainer.ViewModels;
 using Xamarin.Forms.Xaml;
 
 namespace VATrainer.Views
@@ -9,6 +11,7 @@ namespace VATrainer.Views
         public InstructionPopUp()
         {
             InitializeComponent();
+            BindingContext = new InstructionPopUpViewModel(App.AppContainer.Resolve<ISettings>());
         }
     }
 }
