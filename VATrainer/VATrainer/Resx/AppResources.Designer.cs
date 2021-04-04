@@ -268,6 +268,24 @@ namespace VATrainer.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        public static string Reset_Question {
+            get {
+                return ResourceManager.GetString("Reset_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will reset your learning progress for the selected topic..
+        /// </summary>
+        public static string Reset_Text {
+            get {
+                return ResourceManager.GetString("Reset_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resources.
         /// </summary>
         public static string Resources {

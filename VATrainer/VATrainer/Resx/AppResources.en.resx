@@ -186,6 +186,12 @@
   <data name="Question" xml:space="preserve">
     <value>Question</value>
   </data>
+  <data name="Reset_Question" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Reset_Text" xml:space="preserve">
+    <value>This will reset your learning progress for the selected topic.</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Resources</value>
   </data>

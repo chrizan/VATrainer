@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <popups:PopupPage
-    x:Class="VATrainer.Views.InstructionPopUp"
+    x:Class="VATrainer.Views.ResetPopUp"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:popups="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="http://prismlibrary.com"
-    xmlns:resx="clr-namespace:VATrainer.Resx"
     xmlns:views="clr-namespace:VATrainer.Views;assembly=VATrainer"
     prism:ViewModelLocator.AutowireViewModel="True">
 
@@ -26,26 +25,28 @@
         <StackLayout>
             <Frame BackgroundColor="{StaticResource BackgroundColorLight}">
                 <StackLayout Orientation="Vertical">
-                    <Label Text="{Binding Instruction}" TextColor="{StaticResource PrimaryColorDark}" />
-                    <Label Text="{Binding Greetings}" TextColor="{StaticResource PrimaryColorDark}" />
+                    <Label Text="{Binding Text}" TextColor="{StaticResource PrimaryColorDark}" />
+                    <Label Text="{Binding Question}" TextColor="{StaticResource PrimaryColorDark}" />
                 </StackLayout>
             </Frame>
             <StackLayout Padding="0,10,0,0" Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding DontShowAgain}" VerticalOptions="Center" />
-                <Label
-                    FontSize="Small"
-                    Text="{x:Static resx:AppResources.DontShowAgain}"
-                    TextColor="{StaticResource SecondaryColor}"
-                    VerticalOptions="Center" />
                 <views:FrameButton
                     Command="{Binding OkCommand}"
-                    HorizontalOptions="EndAndExpand"
-                    Style="{StaticResource FrameButtonStyle}"
-                    VerticalOptions="Center">
+                    HorizontalOptions="StartAndExpand"
+                    Style="{StaticResource FrameButtonStyle}">
                     <Label
                         Padding="15,5,15,5"
                         Style="{StaticResource LabelStyleMedium}"
                         Text="&#x2713;" />
+                </views:FrameButton>
+                <views:FrameButton
+                    Command="{Binding CancelCommand}"
+                    HorizontalOptions="EndAndExpand"
+                    Style="{StaticResource FrameButtonStyle}">
+                    <Label
+                        Padding="15,5,15,5"
+                        Style="{StaticResource LabelStyleMedium}"
+                        Text="&#x2717;" />
                 </views:FrameButton>
             </StackLayout>
         </StackLayout>

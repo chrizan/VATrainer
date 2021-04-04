@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="1_Views\ResetPopUp.xaml.cs">
+      <DependentUpon>ResetPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\InstructionPopUp.xaml.cs">
       <DependentUpon>InstructionPopUp.xaml</DependentUpon>
     </Compile>

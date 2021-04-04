@@ -12,9 +12,10 @@
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource BackgroundColorDark}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="8*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.05*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="0.05*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -25,7 +26,6 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
 
             <views:FrameButton
                 Grid.Row="1"
@@ -87,14 +87,21 @@
                             <RowDefinition Height="3*" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <views:SelfAdaptiveLabel Grid.Row="1" Grid.Column="1">
-                            <Label
-                                Rotation="90"
-                                Style="{StaticResource LabelStyleSmall}"
-                                Text="&#8635;" />
-                        </views:SelfAdaptiveLabel>
                     </Grid>
                 </Grid>
+            </views:FrameButton>
+
+            <views:FrameButton
+                Grid.Row="1"
+                Grid.Column="2"
+                Command="{Binding ResetCommand}"
+                CommandParameter="Introduction"
+                Style="{StaticResource FrameButtonStyle}">
+                <Label
+                    FontSize="30"
+                    Rotation="90"
+                    Style="{StaticResource LabelStyleLarge}"
+                    Text="&#8635;" />
             </views:FrameButton>
 
             <views:FrameButton

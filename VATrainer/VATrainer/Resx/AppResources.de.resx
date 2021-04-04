@@ -186,6 +186,12 @@
   <data name="Question" xml:space="preserve">
     <value>Frage</value>
   </data>
+  <data name="Reset_Question" xml:space="preserve">
+    <value>Bist du dir sicher?</value>
+  </data>
+  <data name="Reset_Text" xml:space="preserve">
+    <value>Dies wird deinen Lernfortschritt für das selektierte Thema zurücksetzen.</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Ressourcen</value>
   </data>

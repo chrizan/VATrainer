@@ -1,5 +1,7 @@
 using Prism;
 using Prism.Ioc;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
 using VATrainer.DataLayer;
 using VATrainer.Models;
@@ -60,6 +62,7 @@ namespace VATrainer
             containerRegistry.RegisterForNavigation<TrainingPage, TrainingPageViewModel>();
             containerRegistry.RegisterForNavigation<QAPage, QAPageViewModel>();
             containerRegistry.RegisterForNavigation<InstructionPopUp, InstructionPopUpViewModel>();
+            containerRegistry.RegisterForNavigation<ResetPopUp, ResetPopUpViewModel>();
         }
     }
 }
