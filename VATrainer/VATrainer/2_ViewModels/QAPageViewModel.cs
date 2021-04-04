@@ -105,7 +105,11 @@ namespace VATrainer.ViewModels
         {
             if (_settings.DisplayInstruction)
             {
-                await PopupNavigation.Instance.PushAsync(new InstructionPopUp(), true);
+                var instructionPopUp = new InstructionPopUp
+                {
+                    BindingContext = new InstructionPopUpViewModel(_settings)
+                };
+                await PopupNavigation.Instance.PushAsync(instructionPopUp, true);
             }
         }
 

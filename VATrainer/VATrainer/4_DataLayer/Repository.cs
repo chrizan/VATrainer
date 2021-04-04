@@ -73,5 +73,21 @@ namespace VATrainer.DataLayer
             }
             await context.SaveChangesAsync();
         }
+
+        public async Task ResetTheme(int themeId)
+        {
+            using var context = new VATrainerContext();
+            List<Question> questions = await context.Question
+                .Where(question => question.ThemeId == themeId)
+                .OrderBy(question => question.Id)
+                .ToListAsync();
+            questions.First().IsNext = true;
+            foreach (Question question in questions)
+            {
+                question.Order = question.Id;
+                question.Stack = 1;
+            }
+            await context.SaveChangesAsync();
+        }
     }
 }

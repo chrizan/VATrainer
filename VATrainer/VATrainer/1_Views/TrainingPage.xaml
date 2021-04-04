@@ -95,7 +95,7 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 Command="{Binding ResetCommand}"
-                CommandParameter="Introduction"
+                CommandParameter="1"
                 Style="{StaticResource FrameButtonStyle}">
                 <Label
                     FontSize="30"

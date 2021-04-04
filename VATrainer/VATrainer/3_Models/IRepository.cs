@@ -37,10 +37,17 @@ namespace VATrainer.Models
         Task<Article> GetArticleForId(int articleId);
 
         /// <summary>
-        /// Saves all changes
+        /// Saves all changes to the attributes "IsNext", "Order" and "Stack"
         /// </summary>
         /// <param name="questions">The altered questions</param>
         /// <returns></returns>
         Task SaveChanges(List<Question> questions);
+
+        /// <summary>
+        /// Resets the attributes "IsNext", "Order" and "Stack" of all questions of the given theme
+        /// </summary>
+        /// <param name="themeId">The id of the theme</param>
+        /// <returns></returns>
+        Task ResetTheme(int themeId);
     }
 }

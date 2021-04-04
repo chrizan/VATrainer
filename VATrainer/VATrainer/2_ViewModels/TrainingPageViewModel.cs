@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Services;
+using VATrainer.Models;
 using VATrainer.Views;
 using Xamarin.Forms.Shapes;
 
@@ -10,11 +11,13 @@ namespace VATrainer.ViewModels
     public class TrainingPageViewModel : BindableBase
     {
         private readonly INavigationService _navigationService;
+        private readonly IRepository _repository;
         private readonly IGeometryCalculator _geometryCalculator;
 
-        public TrainingPageViewModel(INavigationService navigationService, IGeometryCalculator geometryCalculator)
+        public TrainingPageViewModel(INavigationService navigationService, IRepository repository, IGeometryCalculator geometryCalculator)
         {
             _navigationService = navigationService;
+            _repository = repository;
             _geometryCalculator = geometryCalculator;
             NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);
             ResetCommand = new DelegateCommand<string>(ResetCommandExecuted);
@@ -32,9 +35,13 @@ namespace VATrainer.ViewModels
             await _navigationService.NavigateAsync(view, navigationParams);
         }
 
-        private async void ResetCommandExecuted(string chapter)
+        private async void ResetCommandExecuted(string themeId)
         {
-            await PopupNavigation.Instance.PushAsync(new ResetPopUp(), true);
+            var resetPopUp = new ResetPopUp
+            {
+                BindingContext = new ResetPopUpViewModel(_repository, themeId)
+            };
+            await PopupNavigation.Instance.PushAsync(resetPopUp, true);
         }
     }
 }

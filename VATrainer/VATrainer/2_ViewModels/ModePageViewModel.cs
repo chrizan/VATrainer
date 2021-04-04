@@ -1,15 +1,12 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace VATrainer.ViewModels
 {
     public class ModePageViewModel : BindableBase
     {
-        private INavigationService _navigationService { get; }
+        private readonly INavigationService _navigationService;
 
         public ModePageViewModel(INavigationService navigationService)
         {

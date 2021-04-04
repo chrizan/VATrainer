@@ -1,13 +1,19 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
+using VATrainer.Models;
 
 namespace VATrainer.ViewModels
 {
     public class ResetPopUpViewModel : BindableBase
     {
-        public ResetPopUpViewModel()
+        private readonly IRepository _repository;
+        private readonly string _theme;
+
+        public ResetPopUpViewModel(IRepository repository, string theme)
         {
+            _repository = repository;
+            _theme = theme;
             OkCommand = new DelegateCommand(OkCommandExecuted);
             CancelCommand = new DelegateCommand(CancelCommandExecuted);
         }
@@ -28,6 +34,7 @@ namespace VATrainer.ViewModels
 
         private async void OkCommandExecuted()
         {
+            await _repository.ResetTheme(int.Parse(_theme));
             await PopupNavigation.Instance.PopAsync(true);
         }
 
