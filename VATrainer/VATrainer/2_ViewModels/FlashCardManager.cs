@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VATrainer.Models;
 
 namespace VATrainer.ViewModels
@@ -82,13 +81,9 @@ namespace VATrainer.ViewModels
                     _currentStack = _middleStack.Stack;
                     _currentQuestion = _middleStack.GetFirstQuestion();
                 }
-                else if (_leftStack.Questions.Count != 0)
-                {
-                    _currentQuestion = _leftStack.GetFirstQuestion();
-                }
                 else
                 {
-                    _currentQuestion = null;
+                    _currentQuestion = _leftStack.GetFirstQuestion();
                 }
             }
         }
@@ -106,13 +101,9 @@ namespace VATrainer.ViewModels
                     _currentStack = _leftStack.Stack;
                     _currentQuestion = _leftStack.GetFirstQuestion();
                 }
-                else if (_middleStack.Questions.Count != 0)
-                {
-                    _currentQuestion = _middleStack.GetFirstQuestion();
-                }
                 else
                 {
-                    _currentQuestion = null;
+                    _currentQuestion = _middleStack.GetFirstQuestion();
                 }
             }
         }
@@ -153,6 +144,7 @@ namespace VATrainer.ViewModels
                 }
                 else
                 {
+                    _currentStack = _rightStack.Stack;
                     _currentQuestion = null;
                 }
             }
