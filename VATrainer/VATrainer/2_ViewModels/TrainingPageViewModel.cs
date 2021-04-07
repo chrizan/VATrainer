@@ -86,7 +86,6 @@ namespace VATrainer.ViewModels
                 BindingContext = new ResetPopUpViewModel(_repository, themeId, UpdateCardStacks)
             };
             await PopupNavigation.Instance.PushAsync(resetPopUp, true);
-            UpdateCardStacks();
         }
 
         public void OnAppearing()
