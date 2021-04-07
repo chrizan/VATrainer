@@ -49,5 +49,11 @@ namespace VATrainer.Models
         /// <param name="themeId">The id of the theme</param>
         /// <returns></returns>
         Task ResetTheme(int themeId);
+
+        /// <summary>
+        /// Returns a LearningProgress object for every theme
+        /// </summary>
+        /// <returns></returns>
+        Task<List<LearningProgress>> GetProgress();
     }
 }

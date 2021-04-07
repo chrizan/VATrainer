@@ -89,5 +89,26 @@ namespace VATrainer.DataLayer
             }
             await context.SaveChangesAsync();
         }
+
+        public async Task<List<LearningProgress>> GetProgress()
+        {
+            List<LearningProgress> progress = new List<LearningProgress>();
+            
+            using var context = new VATrainerContext();
+            List<Theme> themes = await context.Theme.ToListAsync();
+            
+            foreach(Theme theme in themes)
+            {
+                IQueryable<Question> queryable = context.Question.Where(q => q.ThemeId == theme.Id).AsQueryable();
+                progress.Add(new LearningProgress()
+                {
+                    ThemeId = theme.Id,
+                    Unconfident = queryable.Where(q => q.Stack == 1).Count(),
+                    SemiConfident = queryable.Where(q => q.Stack == 2).Count(),
+                    Confident = queryable.Where(q => q.Stack == 3).Count()
+                });
+            }
+            return progress;
+        }
     }
 }
