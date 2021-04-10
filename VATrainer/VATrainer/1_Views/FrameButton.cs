@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace VATrainer.Views
@@ -49,9 +48,10 @@ namespace VATrainer.Views
             {
                 return new Command(async () =>
                 {
+                    BackgroundColor = (Color)Prism.PrismApplicationBase.Current.Resources["BackgroundColorLight"];
                     await this.ScaleTo(0.8, 50, Easing.Linear);
-                    await Task.Delay(25);
                     await this.ScaleTo(1, 50, Easing.Linear);
+                    BackgroundColor = Color.White;
                     Command?.Execute(CommandParameter);
                 });
             }

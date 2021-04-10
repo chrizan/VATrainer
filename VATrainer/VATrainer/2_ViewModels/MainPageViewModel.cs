@@ -10,7 +10,7 @@ namespace VATrainer.ViewModels
 {
     public class MainPageViewModel : BindableBase
     {
-        private INavigationService _navigationService { get; }
+        private readonly INavigationService _navigationService;
 
         public MainPageViewModel(INavigationService navigationService)
         {

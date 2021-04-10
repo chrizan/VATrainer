@@ -6,7 +6,7 @@ namespace VATrainer.ViewModels
 {
     public class HomePageViewModel : BindableBase
     {
-        private INavigationService _navigationService { get; }
+        private readonly INavigationService _navigationService;
 
         public HomePageViewModel(INavigationService navigationService)
         {

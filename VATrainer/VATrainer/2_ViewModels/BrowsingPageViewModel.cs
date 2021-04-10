@@ -1,19 +1,16 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace VATrainer.ViewModels
 {
     public class BrowsingPageViewModel : BindableBase
     {
-        private INavigationService NavigationService { get; }
+        private readonly INavigationService _navigationService;
 
         public BrowsingPageViewModel(INavigationService navigationService)
         {
-            NavigationService = navigationService;
+            _navigationService = navigationService;
             NavigateCommand = new DelegateCommand<string>(NavigateCommandExecuted);
         }
 
@@ -25,7 +22,7 @@ namespace VATrainer.ViewModels
             {
                 { "theme", theme }
             };
-            await NavigationService.NavigateAsync("ContentsPage", navigationParams);
+            await _navigationService.NavigateAsync("ContentsPage", navigationParams);
         }
     }
 }

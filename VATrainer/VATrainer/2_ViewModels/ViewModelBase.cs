@@ -1,15 +1,11 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace VATrainer.ViewModels
 {
     public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
     {
-        protected INavigationService NavigationService { get; private set; }
+        protected readonly INavigationService _navigationService;
 
         private string _title;
         public string Title
@@ -20,7 +16,7 @@ namespace VATrainer.ViewModels
 
         public ViewModelBase(INavigationService navigationService)
         {
-            NavigationService = navigationService;
+            _navigationService = navigationService;
         }
 
         public virtual void Initialize(INavigationParameters parameters)
